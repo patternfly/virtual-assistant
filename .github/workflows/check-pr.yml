@@ -1,0 +1,9 @@
+name: check-pr
+on:
+  pull_request:
+    branches:
+      - main
+      - v4
+jobs:
+  call-build-lint-test-workflow:
+    uses: ./.github/workflows/build-lint-test.yml

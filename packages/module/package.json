@@ -1,0 +1,57 @@
+{
+  "name": "@patternfly/virtual-assistant",
+  "version": "1.0.0-prerelease.0",
+  "description": "Virtual assistant used for Red Hat projects.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "build": "npm run build:index && npm run build:js && npm run build:esm && npm run build:fed:packages",
+    "build:watch": "npm run build:js && npm run build:esm -- --watch && npm run build:fed:packages -- --watch",
+    "build:esm": "tsc --build --verbose ./tsconfig.json",
+    "build:fed:packages": "node generate-fed-package-json.js",
+    "build:js": "tsc -p tsconfig.cjs.json",
+    "build:index": "node generate-index.js",
+    "clean": "rimraf dist",
+    "docs:develop": "pf-docs-framework start",
+    "docs:build": "pf-docs-framework build all --output public",
+    "docs:serve": "pf-docs-framework serve public --port 5001",
+    "docs:screenshots": "pf-docs-framework screenshots --urlPrefix http://localhost:5001",
+    "test:a11y": "patternfly-a11y --config patternfly-a11y.config",
+    "serve:a11y": "serve coverage"
+  },
+  "repository": "git+https://github.com/patternfly/virtual-assistant.git",
+  "author": "Red Hat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patternfly/virtual-assistant/issues"
+  },
+  "homepage": "https://github.com/patternfly/virtual-assistant#readme",
+  "publishConfig": {
+    "access": "public",
+    "tag": "prerelease"
+  },
+  "dependencies": {
+    "@patternfly/react-core": "^5.1.1",
+    "@patternfly/react-icons": "^5.1.1",
+    "react-jss": "^10.10.0",
+    "clsx": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^17 || ^18",
+    "react-dom": "^17 || ^18"
+  },
+  "devDependencies": {
+    "@patternfly/patternfly-a11y": "^4.3.1",
+    "@patternfly/documentation-framework": "^2.0.0-alpha.57",
+    "@patternfly/patternfly": "^5.1.0",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@types/react-router-dom": "^5.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.18.0",
+    "react-router-dom": "^6.18.0",
+    "rimraf": "^2.6.2",
+    "typescript": "^5.2.2"
+  }
+}
