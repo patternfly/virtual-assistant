@@ -16,11 +16,13 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
-import SystemMessageEntry from '@patternfly/virtual-assistant/dist/esm/SystemMessageEntry'
+import SystemMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/SystemMessageEntry';
 import LoadingMessage from '@patternfly/virtual-assistant/dist/dynamic/LoadingMessage';
 import { GrinIcon } from '@patternfly/react-icons';
 import { AngleDownIcon } from '@patternfly/react-icons';
-import ConversationAlert from '@patternfly/virtual-assistant/dist/esm/ConversationAlert'
+import ConversationAlert from '@patternfly/virtual-assistant/dist/dynamic/ConversationAlert';
+import AssistantMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/AssistantMessageEntry';
+import UserMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/UserMessageEntry';
 
 The **virtual assistant** component renders body of the virtual assistant window.
 
@@ -66,8 +68,6 @@ Custom actions can be added to the assistant body using the `actions` property.
 
 ```
 
-
-
 ### Conversation Alert
 
 You can configure a custom title and variant input value using `title` and `variant` props.
@@ -94,3 +94,26 @@ The `LoadingMessage` component shows a typing indicator for messages still being
 
 ```
 
+### Assistant Message
+
+This is an example of a message sent by assistant. Additionally, it allows for the use of a custom icon through the `icon` property.
+
+```js file="./AssistantMessage.tsx"
+
+```
+
+### Assistant Message with follow-up options
+
+This is an example of a message sent by assistant with follow-up options. Follow-up options are defined within `options` property.
+
+```js file="./AssistantMessageWithFollowup.tsx"
+
+```
+
+### User Message
+
+This is an example of a message sent by user. Additionally, it allows for the use of a custom icon through the `icon` property.
+
+```js file="./UserMessage.tsx"
+
+```
