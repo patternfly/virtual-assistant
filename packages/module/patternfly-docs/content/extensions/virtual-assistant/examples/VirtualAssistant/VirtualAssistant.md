@@ -17,6 +17,9 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
 import { AngleDownIcon } from '@patternfly/react-icons';
+import AssistantMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/AssistantMessageEntry';
+import UserMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/UserMessageEntry';
+import { From } from '@patternfly/virtual-assistant/dist/dynamic/types';
 
 The **virtual assistant** component renders body of the virtual assistant window.
 
@@ -59,5 +62,29 @@ Custom actions can be added to the assistant body using the `actions` property.
 
 
 ```js file="./VirtualAssistantWithActions.tsx"
+
+```
+
+### Assistant Message
+
+This is an example of a message sent by assistant. Message content is defined within `content` property.
+
+```js file="./AssistantMessage.tsx"
+
+```
+
+### Assistant Message with follow-up options
+
+This is an example of a message sent by assistant with follow-up options. Message content is defined within `content` property. Follow-up options are defined within `options` property.
+
+```js file="./AssistantMessageWithFollowup.tsx"
+
+```
+
+### User Message
+
+This is an example of a message sent by user. Message content is defined within `content` property.
+
+```js file="./UserMessage.tsx"
 
 ```
