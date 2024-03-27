@@ -16,6 +16,7 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
+import LoadingMessage from '@patternfly/virtual-assistant/dist/dynamic/LoadingMessage';
 import { AngleDownIcon } from '@patternfly/react-icons';
 
 The **virtual assistant** component renders body of the virtual assistant window.
@@ -59,5 +60,13 @@ Custom actions can be added to the assistant body using the `actions` property.
 
 
 ```js file="./VirtualAssistantWithActions.tsx"
+
+```
+
+### Loading Messages
+
+The LoadingMessage component displays a typing indicator for messages that are still processing, adding an artificial delay to create a more natural conversation flow.
+
+```js file="./VirtualAssistantLoadingMessage.tsx"
 
 ```
