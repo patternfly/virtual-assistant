@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "npm run build:packages && npm run build:fed:packages",
-    "build:watch": "npm run build:packages:watch && npm run build:fed:packages",
+    "build:watch": "concurrently \"npm run build:packages:watch\" \"npx wait-on packages/module/dist/esm && npm run build:fed:packages\"",
     "build:docs": "npm run docs:build -w @patternfly/virtual-assistant",
     "build:packages": "npm run build -w @patternfly/virtual-assistant",
     "build:packages:watch": "npm run build:watch -w @patternfly/virtual-assistant",
@@ -18,7 +18,7 @@
     "cypress:run:ci:cp": "cypress run --component",
     "cypress:run:e2e": "cypress run --headless",
     "cypress:run:ci:e2e": "start-server-and-test start http://localhost:8006 cypress:run:e2e",
-    "start": "concurrently --kill-others \"npm run build:watch\" \"npm run docs:develop -w @patternfly/virtual-assistant\"",
+    "start": "concurrently \"npm run build:watch\" \"npx wait-on packages/module/dist && npm run docs:develop -w @patternfly/virtual-assistant\"",
     "serve:docs": "npm run docs:serve -w @patternfly/virtual-assistant",
     "clean": "npm run clean -w @patternfly/virtual-assistant",
     "lint:js": "node --max-old-space-size=4096 node_modules/.bin/eslint packages --ext js,jsx,ts,tsx --cache",
@@ -79,6 +79,7 @@
     "start-server-and-test": "^2.0.3",
     "surge": "^0.23.1",
     "ts-jest": "29.1.2",
+    "wait-on": "^7.2.0",
     "whatwg-fetch": "^3.6.20"
   }
 }
