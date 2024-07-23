@@ -14,19 +14,41 @@ const useStyles = createUseStyles({
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
+  },
+  activeOption: {
+    backgroundColor: "var(--pf-v5-global--danger-color--100)",
+    color: "white",
+    pointerEvents: "none"
+  },
+  disabledOption: {
+    opacity: 0.5,
+    pointerEvents: "none"
   }
 })
 
 interface AssistantMessageEntryProps {
   options?: {
     title: React.ReactNode;
-    props?: LabelProps
-  }[],
+    props?: LabelProps & { onClick?: () => void };
+  }[];
   icon?: React.ComponentType;
 }
 
-export const AssistantMessageEntry = ({ children, options, icon: IconComponent = RobotIcon }: PropsWithChildren<AssistantMessageEntryProps>) => {
+export const AssistantMessageEntry = ({
+  children,
+  options,
+  icon: IconComponent = RobotIcon
+}: PropsWithChildren<AssistantMessageEntryProps>) => {
+  const [selectedOptionIndex, setSelectedOptionIndex] = React.useState<number | null>(null);
   const classes = useStyles();
+
+  const handleOptionClick = (index: number, customOnClick?: () => void) => {
+    setSelectedOptionIndex(index);
+    if (customOnClick) {
+      customOnClick();
+    }
+  };
+
   return (
     <div className="pf-v5-u-mb-md">
       <Split className={classes.chatbot}>
@@ -41,18 +63,28 @@ export const AssistantMessageEntry = ({ children, options, icon: IconComponent =
           </TextContent>
         </SplitItem>
       </Split>
-      {options ? ( 
+      {options ? (
         <Split>
-          <SplitItem className={classnames(classes.chatbot,"pf-v5-u-ml-xl pf-v5-u-mt-md")}>
-            {options.map((option, index) => (
-              <Label key={index} className="pf-v5-u-m-xs" {...option.props}>
-                {option.title}
-              </Label>
-            ))}
+          <SplitItem className={classnames(classes.chatbot, "pf-v5-u-ml-xl pf-v5-u-mt-md")}>
+            {options.map((option, index) => {
+              const { onClick: customOnClick, ...restProps } = option.props || {};
+              return (
+                <Label
+                  key={index}
+                  className={classnames("pf-v5-u-m-xs", {
+                    [classes.activeOption]: selectedOptionIndex === index,
+                    [classes.disabledOption]: selectedOptionIndex !== null && selectedOptionIndex !== index
+                  })}
+                  onClick={() => handleOptionClick(index, customOnClick)}
+                  {...restProps}
+                >
+                  {option.title}
+                </Label>
+              );
+            })}
           </SplitItem>
         </Split>
-      ) : null
-      }
+      ) : null}
     </div>
   );
 };
