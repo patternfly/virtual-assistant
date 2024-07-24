@@ -91,7 +91,7 @@ export const AssistantMessageEntry = ({
                   key={index}
                   className={classnames(classes.label, 'pf-v5-u-m-xs pf-m-red', {
                     [classes.activeOption]: selectedOptionIndex === index,
-                    [classes.inactiveOption]: selectedOptionIndex !== null && selectedOptionIndex !== index
+                    [classes.inactiveOption]: selectedOptionIndex !== undefined && selectedOptionIndex !== index
                   })}
                   onClick={(event) => handleOptionClick(event, index, customOnClick)}
                   {...restProps}
