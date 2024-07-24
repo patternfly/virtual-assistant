@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
       color: "var(--pf-v5-global--BackgroundColor--100)",
     },
   },
-  disabledOption: {
+  inactiveOption: {
     background: "var(--pf-v5-c-label--m-red--BackgroundColor)",
     opacity: "0.6",
     pointerEvents: "none",
@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
 interface AssistantMessageEntryProps {
   options?: {
     title: React.ReactNode;
-    props?: LabelProps & { onClick?: () => void };
+    props?: LabelProps;
   }[];
   icon?: React.ComponentType;
 }
@@ -57,13 +57,13 @@ export const AssistantMessageEntry = ({
   options,
   icon: IconComponent = RobotIcon
 }: PropsWithChildren<AssistantMessageEntryProps>) => {
-  const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number | null>(null);
+  const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
   const classes = useStyles();
 
-  const handleOptionClick = (index: number, customOnClick?: () => void) => {
+  const handleOptionClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {
     setSelectedOptionIndex(index);
     if (customOnClick) {
-      customOnClick();
+      customOnClick(event);
     }
   };
 
@@ -89,11 +89,11 @@ export const AssistantMessageEntry = ({
               return (
                 <Label
                   key={index}
-                  className={classnames(classes.label, "pf-v5-u-m-xs pf-m-red", {
+                  className={classnames(classes.label, 'pf-v5-u-m-xs pf-m-red', {
                     [classes.activeOption]: selectedOptionIndex === index,
-                    [classes.disabledOption]: selectedOptionIndex !== null && selectedOptionIndex !== index
+                    [classes.inactiveOption]: selectedOptionIndex !== null && selectedOptionIndex !== index
                   })}
-                  onClick={() => handleOptionClick(index, customOnClick)}
+                  onClick={(event) => handleOptionClick(event, index, customOnClick)}
                   {...restProps}
                 >
                   {option.title}
