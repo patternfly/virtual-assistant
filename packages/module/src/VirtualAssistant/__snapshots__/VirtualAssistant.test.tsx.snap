@@ -58,53 +58,44 @@ exports[`VirtualAssistant should render assistant 1`] = `
     <div
       class="pf-v5-c-card__footer cardFooter-0-2-7"
     >
-      <div
-        class="pf-v5-c-input-group inputGroup-0-2-8"
+      <hr
+        class="pf-v5-c-divider pf-v5-u-pb-md"
+      />
+      <span
+        class="pf-v5-c-form-control pf-m-resize-both textArea-0-2-8"
       >
-        <span
-          class="pf-v5-c-form-control pf-m-resize-both textArea-0-2-9"
+        <textarea
+          aria-invalid="false"
+          aria-label="Assistant input"
+          data-test-id="assistant-text-input"
+          placeholder="Send a message..."
+          type="text"
+        />
+      </span>
+      <button
+        aria-disabled="false"
+        aria-label="Virtual assistant's message"
+        class="pf-v5-c-button pf-m-plain sendButton-0-2-9"
+        data-ouia-component-id="OUIA-Generated-Button-plain-1"
+        data-ouia-component-type="PF5/Button"
+        data-ouia-safe="true"
+        data-test-id="assistant-send-button"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="pf-v5-svg"
+          fill="currentColor"
+          height="1em"
+          role="img"
+          viewBox="0 0 512 512"
+          width="1em"
         >
-          <textarea
-            aria-invalid="false"
-            aria-label="Assistant input"
-            data-test-id="assistant-text-input"
-            placeholder="Type a message..."
-            type="text"
+          <path
+            d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
           />
-        </span>
-        <div
-          class="pf-v5-c-input-group__item pf-m-box"
-        >
-          <span
-            class="pf-v5-c-input-group__text"
-          >
-            <button
-              aria-disabled="false"
-              aria-label="Virtual assistant's message"
-              class="pf-v5-c-button pf-m-plain pf-v5-u-px-sm"
-              data-ouia-component-id="OUIA-Generated-Button-plain-1"
-              data-ouia-component-type="PF5/Button"
-              data-ouia-safe="true"
-              data-test-id="assistant-send-button"
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                class="pf-v5-svg"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
-                />
-              </svg>
-            </button>
-          </span>
-        </div>
-      </div>
+        </svg>
+      </button>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ describe('VirtualAssistant', () => {
     cy.mount(<VirtualAssistant />);
 
     cy.get('[data-test-id="assistant-title"]').first().should('contain', 'Virtual Assistant');
-    cy.get('[data-test-id="assistant-text-input"]').first().should('have.attr', 'placeholder', 'Type a message...');
+    cy.get('[data-test-id="assistant-text-input"]').first().should('have.attr', 'placeholder', 'Send a message...');
     cy.get('[data-test-id="assistant-send-button"]').first().should('not.be.disabled');
   })
 

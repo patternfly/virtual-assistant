@@ -5,10 +5,9 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  Icon,
-  InputGroup,
-  InputGroupText,
+  Divider,
   Flex,
+  Icon,
   TextArea
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
@@ -50,7 +49,7 @@ const useStyles = createUseStyles({
   cardTitle: {
     alignSelf: "center",
     color: "var(--pf-v5-global--Color--light-100)",
-    fontSize: "18px",
+    fontSize: "var(--pf-v5-global--FontSize--lg)",
     fontWeight: "400",
     lineHeight: "27px",
     paddingLeft: "var(--pf-v5-global--spacer--sm)",
@@ -59,14 +58,14 @@ const useStyles = createUseStyles({
     marginLeft: "5px",
     marginTop: "4px",
     fontSize: "28px",
-    color: "#C9190B",
+    color: "var(--pf-v5-global--danger-color--100)",
   },
   titleIconWrapper: {
     display: "block",
     float: "left",
     width: "38px",
     height: "38px",
-    background: "#fff",
+    background: "var(--pf-v5-global--BackgroundColor--100)",
     borderRadius: "20px",
     marginRight: "7px",
   },
@@ -79,14 +78,40 @@ const useStyles = createUseStyles({
     "&::-webkit-scrollbar": "display: none",
   },
   cardFooter: {
-    padding: "0",
-  },
-  inputGroup: {
-    height: "60px",
+    padding: "10px",
+    paddingBottom: "16px",
+    "& :focus-visible": {
+      outline: "none",
+    },
+    "& .pf-v5-c-button.pf-m-disabled": {
+      color: "transparent !important",
+    },
+    "& .pf-v5-c-button.pf-m-plain": {
+      "--pf-v5-c-button--disabled--Color": "transparent",
+      color: "var(--pf-v5-global--danger-color--100)",
+    },
+    "& .pf-v5-c-form-control": {
+      "--pf-v5-c-form-control--after--BorderBottomWidth": "0",
+    },
+    "& .pf-v5-svg": {
+      width: "27px",
+      height: "27px",
+    }
   },
   textArea: {
     resize: "none",
-  }
+    backgroundColor: "var(--pf-v5-global--BackgroundColor--200)",
+    borderRadius: "50px 50px 50px 50px",
+    color: "var(--pf-v5-global--Color--light-100)",
+    paddingRight: "50px",
+    paddingLeft: "20px",
+
+  },
+  sendButton: {
+    position: "absolute",
+    bottom: "22px",
+    right: "14px",
+  },
 })
 
 export interface VirtualAssistantProps {
@@ -115,7 +140,7 @@ export interface VirtualAssistantProps {
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
   title = 'Virtual Assistant',
-  inputPlaceholder = 'Type a message...',
+  inputPlaceholder = 'Send a message...',
   message = '',
   actions,
   onChangeMessage,
@@ -158,26 +183,24 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
         {children}
       </CardBody>
       <CardFooter className={classes.cardFooter}>
-        <InputGroup className={classes.inputGroup}>
-          <TextArea
-            className={classes.textArea}
-            placeholder={inputPlaceholder}
-            value={message}
-            onChange={onChangeMessage}
-            onKeyPress={handleKeyPress}
-            type="text"
-            aria-label="Assistant input"
-            isDisabled={isInputDisabled}
-            data-test-id="assistant-text-input"
-          />
-          <InputGroupText>
-            <Button isDisabled={isSendButtonDisabled} data-test-id="assistant-send-button" aria-label="Virtual assistant's message" variant="plain" className="pf-v5-u-px-sm" onClick={onSendMessage ? () => {
-              onSendMessage(message);
-            } : undefined}>
-              <PaperPlaneIcon />
-            </Button>
-          </InputGroupText>
-        </InputGroup>
+        <Divider className="pf-v5-u-pb-md" />
+        <TextArea
+          className={classes.textArea}
+          placeholder={inputPlaceholder}
+          value={message}
+          onChange={onChangeMessage}
+          onKeyPress={handleKeyPress}
+          type="text"
+          aria-label="Assistant input"
+          isDisabled={isInputDisabled}
+          data-test-id="assistant-text-input"
+        >
+        </TextArea>
+        <Button className={classes.sendButton} isDisabled={isSendButtonDisabled} data-test-id="assistant-send-button" aria-label="Virtual assistant's message" variant="plain" onClick={onSendMessage ? () => {
+          onSendMessage(message);
+        } : undefined}>
+          <PaperPlaneIcon />
+        </Button>
       </CardFooter>
     </Card>
   );
