@@ -15,14 +15,32 @@ const useStyles = createUseStyles({
     maxWidth: "100%",
     wordWrap: "break-word",
   },
+  label: {
+    backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
+    "--pf-v5-c-label__content--before--BorderColor": "#971d13",
+    "--pf-v5-c-label--PaddingBottom": ".3rem",
+    "--pf-v5-c-label--PaddingRight": "1rem",
+    "--pf-v5-c-label--PaddingLeft": "1rem",
+    "--pf-v5-c-label--PaddingTop": ".3rem",
+  },
   activeOption: {
-    backgroundColor: "var(--pf-v5-global--danger-color--100)",
-    color: "white",
-    pointerEvents: "none"
+    background: "var(--pf-v5-global--danger-color--100)",
+    pointerEvents: "none",
+    "--pf-v5-c-label__content--before--BorderColor": "#971d13",
+    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": "#971d13",
+    "--pf-v5-c-label__content--link--focus--before--BorderColor": "#971d13",
+    "& .pf-v5-c-label__content": {
+      color: "var(--pf-v5-global--BackgroundColor--100)",
+    },
   },
   disabledOption: {
-    opacity: 0.5,
-    pointerEvents: "none"
+    background: "var(--pf-v5-c-label--m-red--BackgroundColor)",
+    opacity: "0.6",
+    pointerEvents: "none",
+    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-c-label--m-red--BackgroundColor) !important",
+    "& .pf-v5-c-label__content": {
+      color: "var(--pf-v5-c-label--m-red__content--Color)",
+    },
   }
 })
 
@@ -39,7 +57,7 @@ export const AssistantMessageEntry = ({
   options,
   icon: IconComponent = RobotIcon
 }: PropsWithChildren<AssistantMessageEntryProps>) => {
-  const [selectedOptionIndex, setSelectedOptionIndex] = React.useState<number | null>(null);
+  const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number | null>(null);
   const classes = useStyles();
 
   const handleOptionClick = (index: number, customOnClick?: () => void) => {
@@ -71,7 +89,7 @@ export const AssistantMessageEntry = ({
               return (
                 <Label
                   key={index}
-                  className={classnames("pf-v5-u-m-xs", {
+                  className={classnames(classes.label, "pf-v5-u-m-xs pf-m-red", {
                     [classes.activeOption]: selectedOptionIndex === index,
                     [classes.disabledOption]: selectedOptionIndex !== null && selectedOptionIndex !== index
                   })}
