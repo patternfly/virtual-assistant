@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
   },
   label: {
     backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
-    "--pf-v5-c-label__content--before--BorderColor": "#971d13",
+    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
     "--pf-v5-c-label--PaddingBottom": ".3rem",
     "--pf-v5-c-label--PaddingRight": "1rem",
     "--pf-v5-c-label--PaddingLeft": "1rem",
@@ -26,9 +26,9 @@ const useStyles = createUseStyles({
   activeOption: {
     background: "var(--pf-v5-global--danger-color--100)",
     pointerEvents: "none",
-    "--pf-v5-c-label__content--before--BorderColor": "#971d13",
-    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": "#971d13",
-    "--pf-v5-c-label__content--link--focus--before--BorderColor": "#971d13",
+    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label__content--link--focus--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
     "& .pf-v5-c-label__content": {
       color: "var(--pf-v5-global--BackgroundColor--100)",
     },
