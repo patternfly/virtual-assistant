@@ -9,8 +9,8 @@
   --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--white);
 
   position: fixed;
-  bottom: var(--pf-t--global--spacer--md);
-  right: var(--pf-t--global--spacer--md); // should this be on the left in a right-to-left language?
+  inset-block-end: var(--pf-t--global--spacer--md);
+  inset-inline-end: var(--pf-t--global--spacer--md); // these properties replace bottom/right for RTL language support
   background-color: var(--pf-t--chatbot-toggle--background);
   border-radius: var(--pf-t--global--border--radius--pill);
   color: var(--pf-t--chatbot-toggle--color);
