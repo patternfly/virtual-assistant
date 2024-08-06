@@ -1,6 +1,5 @@
 import React from 'react';
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
-import { Brand } from '@patternfly/react-core';
 
 export const BasicDemo: React.FunctionComponent = () => {
   const [ chatbotVisible, setChatbotVisible ] = React.useState<boolean>(false);

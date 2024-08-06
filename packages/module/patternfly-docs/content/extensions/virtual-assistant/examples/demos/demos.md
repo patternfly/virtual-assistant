@@ -23,7 +23,7 @@ A blank example of the virtual assistant body.
 
 ```
 
-### Theme sensitive SVG example
+### Theme sensitive SVG demo
 
 ```js file="./IncludingAThemeSensitiveSVG.tsx"
 
