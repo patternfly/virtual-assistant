@@ -9,7 +9,7 @@ export const SVGDemo: React.FunctionComponent = () => (
         y1="2.25860997e-13%"
         x2="32%"
         y2="100%"
-        id="linearGradient-website-masthead"
+        id="theme-sensitive-svg"
       >
         <stop stopColor="#2B9AF3" offset="0%"></stop>
         <stop
