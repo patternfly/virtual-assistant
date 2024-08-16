@@ -25,6 +25,11 @@ const useStyles = createUseStyles({
       height: "420px",
       width: "100%",
     },
+    "&.fullPage": {
+      width: "100%",
+      height: "%",
+      borderRadius: "0",
+    },
   },
   cardHeader: {
     background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
@@ -135,6 +140,8 @@ export interface VirtualAssistantProps {
   isSendButtonDisabled?: boolean;
   /** Virtual assistant icon */
   icon?: React.ComponentType;
+  /** Expands the assistant to fill the entire page */
+  isFullPage?: boolean;
 }
 
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
@@ -148,6 +155,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   isInputDisabled = false,
   isSendButtonDisabled = false,
   icon: VAIcon = undefined,
+  isFullPage = false,
 }: VirtualAssistantProps) => {
   const classes = useStyles();
 
@@ -164,7 +172,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <Card className={classnames(classes.card,"pf-v5-u-box-shadow-lg")}>
+    <Card className={classnames(classes.card, { fullPage: isFullPage }, "pf-v5-u-box-shadow-lg")}>
       <CardHeader className={classes.cardHeader} actions={actions ? {
         actions
       } : undefined}>

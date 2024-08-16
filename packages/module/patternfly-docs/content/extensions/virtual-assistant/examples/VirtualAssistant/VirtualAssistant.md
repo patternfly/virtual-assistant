@@ -34,6 +34,14 @@ A blank example of the virtual assistant body.
 
 ```
 
+### Full page example
+
+You can make the assistant body use whole available space with the `isFullPage` property.
+
+```js file="./VirtualAssistantFullPageExample.tsx"
+
+```
+
 ### Customizing input title and placeholder
 
 You can configure a custom title and placeholder input value using `title` and `inputPlaceholder` props.
