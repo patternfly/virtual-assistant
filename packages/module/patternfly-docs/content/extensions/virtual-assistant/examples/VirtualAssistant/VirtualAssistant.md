@@ -18,8 +18,8 @@ import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/Virtual
 import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
 import SystemMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/SystemMessageEntry';
 import LoadingMessage from '@patternfly/virtual-assistant/dist/dynamic/LoadingMessage';
-import { GrinIcon } from '@patternfly/react-icons';
-import { AngleDownIcon } from '@patternfly/react-icons';
+import EllipsisVIcon from '@patternfly/react-icons/dist/dynamic/icons/ellipsis-v-icon';
+import { GrinIcon, AngleDownIcon, UserIcon } from '@patternfly/react-icons';
 import ConversationAlert from '@patternfly/virtual-assistant/dist/dynamic/ConversationAlert';
 import AssistantMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/AssistantMessageEntry';
 import UserMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/UserMessageEntry';
@@ -39,6 +39,24 @@ A blank example of the virtual assistant body.
 You can make the assistant body use whole available space with the `isFullPage` property.
 
 ```js file="./VirtualAssistantFullPageExample.tsx"
+
+```
+
+### Using custom actions
+
+Custom actions can be added to the assistant body using the `actions` property.
+
+
+```js file="./VirtualAssistantWithActions.tsx"
+
+```
+
+### Using custom header
+
+You can override the default header layout using the `customHeader` property accepting any React node. It is recommended to use the original `CardHeader` component as a wrapper for your custom header.
+
+
+```js file="./VirtualAssistantCustomHeaderExample.tsx"
 
 ```
 
@@ -64,15 +82,6 @@ The `onSendMessage` property can be used for listening to the send button click.
 Disabling the send button using `isSendButtonDisabled` prevents it from being clicked.
 
 ```js file="./VirtualAssistantDisableOnEmptyText.tsx"
-
-```
-
-### Using custom actions
-
-Custom actions can be added to the assistant body using the `actions` property.
-
-
-```js file="./VirtualAssistantWithActions.tsx"
 
 ```
 

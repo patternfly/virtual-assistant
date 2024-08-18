@@ -142,6 +142,8 @@ export interface VirtualAssistantProps {
   icon?: React.ComponentType;
   /** Expands the assistant to fill the entire page */
   isFullPage?: boolean;
+  /** Allows to overwrite the default header with a custom one */
+  customHeader?: React.ReactNode;
 }
 
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
@@ -156,6 +158,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   isSendButtonDisabled = false,
   icon: VAIcon = undefined,
   isFullPage = false,
+  customHeader = null
 }: VirtualAssistantProps) => {
   const classes = useStyles();
 
@@ -173,20 +176,22 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
 
   return (
     <Card className={classnames(classes.card, { fullPage: isFullPage }, "pf-v5-u-box-shadow-lg")}>
-      <CardHeader className={classes.cardHeader} actions={actions ? {
-        actions
-      } : undefined}>
-        <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
-          <div className={classes.titleIconWrapper} >
-            <Icon className={classes.titleIcon}>
-              {VAIcon ? <VAIcon /> : <RobotIcon />}
-            </Icon>
-          </div>
-          <div className={classes.cardTitle} data-test-id="assistant-title">
-            {title}
-          </div>
-        </Flex>
-      </CardHeader>
+      {customHeader ? customHeader : (
+        <CardHeader className={classes.cardHeader} actions={actions ? {
+          actions
+        } : undefined}>
+          <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
+            <div className={classes.titleIconWrapper} >
+              <Icon className={classes.titleIcon}>
+                {VAIcon ? <VAIcon /> : <RobotIcon />}
+              </Icon>
+            </div>
+            <div className={classes.cardTitle} data-test-id="assistant-title">
+              {title}
+            </div>
+          </Flex>
+        </CardHeader>
+      )}
       <CardBody className={classes.cardBody}>
         {children}
       </CardBody>
