@@ -3,8 +3,8 @@
 exports[`VirtualAssistant should render assistant 1`] = `
 <div>
   <div
-    class="pf-v5-c-card card-0-2-1 pf-v5-u-box-shadow-lg"
-    data-ouia-component-id="OUIA-Generated-Card-1"
+    class="pf-v5-c-card card-0-2-1 card-d0-0-2-10 pf-v5-u-box-shadow-lg"
+    data-ouia-component-id="VirtualAssistant-body"
     data-ouia-component-type="PF5/Card"
     data-ouia-safe="true"
     id=""
@@ -45,7 +45,7 @@ exports[`VirtualAssistant should render assistant 1`] = `
           </div>
           <div
             class="cardTitle-0-2-3"
-            data-test-id="assistant-title"
+            data-ouia-component-id="VirtualAssistant-title"
           >
             Virtual Assistant
           </div>
@@ -62,7 +62,7 @@ exports[`VirtualAssistant should render assistant 1`] = `
         class="pf-v5-c-divider pf-v5-u-pb-md"
       />
       <span
-        class="pf-v5-c-form-control pf-m-resize-both textArea-0-2-8"
+        class="pf-v5-c-form-control pf-m-resize-both textArea-0-2-8 textArea-d1-0-2-11"
       >
         <textarea
           aria-invalid="false"

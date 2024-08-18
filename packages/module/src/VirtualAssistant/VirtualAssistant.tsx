@@ -145,6 +145,8 @@ export interface VirtualAssistantProps {
   customHeader?: React.ReactNode;
   /** Removes border radius from the component and its children */
   removeBorderRadius?: boolean;
+  /** VirtualAssistant OUIA ID */
+  ouiaId?: string;
 }
 
 const isReactElement = (child: React.ReactNode): child is React.ReactElement => React.isValidElement(child);
@@ -162,7 +164,8 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   icon: VAIcon = undefined,
   isFullPage = false,
   customHeader = null,
-  removeBorderRadius = false
+  removeBorderRadius = false,
+  ouiaId = 'VirtualAssistant'
 }: VirtualAssistantProps) => {
   const classes = useStyles({ removeBorderRadius });
 
@@ -179,7 +182,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <Card className={classnames(classes.card, { fullPage: isFullPage }, "pf-v5-u-box-shadow-lg")}>
+    <Card className={classnames(classes.card, { fullPage: isFullPage }, "pf-v5-u-box-shadow-lg")} ouiaId={`${ouiaId}-body`}>
       {customHeader ? customHeader : (
         <CardHeader className={classes.cardHeader} actions={actions ? { actions } : undefined}>
           <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
@@ -188,7 +191,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
                 {VAIcon ? <VAIcon /> : <RobotIcon />}
               </Icon>
             </div>
-            <div className={classes.cardTitle} data-test-id="assistant-title">
+            <div className={classes.cardTitle} data-ouia-component-id={`${ouiaId}-title`}>
               {title}
             </div>
           </Flex>
