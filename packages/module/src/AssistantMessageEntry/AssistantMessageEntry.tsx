@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
     marginRight: "40px",
   },
   bubble: {
-    borderRadius: "14px",
+    borderRadius: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => removeBorderRadius ? "0" : "14px",
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
@@ -20,6 +20,7 @@ const useStyles = createUseStyles({
   },
   label: {
     backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
+    "--pf-v5-c-label--BorderRadius": ({ removeBorderRadius }: { removeBorderRadius: boolean }) => removeBorderRadius ? "0" : "var(--pf-v5-global--BorderRadius--lg)",
     "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
     "--pf-v5-c-label--PaddingBottom": ".3rem",
     "--pf-v5-c-label--PaddingRight": "1rem",
@@ -107,7 +108,7 @@ export const AssistantMessageEntry = ({
           <TextContent className="pf-v5-u-font-size-xs pf-v5-u-font-weight-bold pf-v5-u-py-xs" data-test-id="assistant-title">
             {title}
           </TextContent>
-          <div className={classnames(classes.bubble," pf-v5-u-background-color-200")}>
+          <div className={classnames(classes.bubble, "pf-v5-u-background-color-200")}>
             <TextContent className="pf-v5-u-font-size-sm">
               {children}
             </TextContent>

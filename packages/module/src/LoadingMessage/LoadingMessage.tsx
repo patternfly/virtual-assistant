@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     marginRight: "40px",
   },
   bubble: {
-    borderRadius: "14px",
+    borderRadius: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => removeBorderRadius ? "0" : "14px",
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
@@ -59,11 +59,14 @@ const useStyles = createUseStyles({
 })
 
 export interface LoadingMessageProps {
+  /** Icon component to display in the loading message */
   icon?: React.ComponentType;
+  /** Remove border radius from the bubble */
+  removeBorderRadius?: boolean;
 }
 
-export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon }) => {
-  const classes = useStyles();
+export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon, removeBorderRadius = false }) => {
+  const classes = useStyles({ removeBorderRadius });
   return (
     <Split className={classes.chatbot}>
       <SplitItem>
@@ -71,8 +74,8 @@ export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ i
           <IconComponent />
         </Icon>
       </SplitItem>
-      <SplitItem className={classnames(classes.bubble," pf-u-background-color-200")} >
-        <div className={classnames(classes.typing,"pf-v5-u-display-flex pf-u-align-items-center")} data-test-id="assistant-loading-dots">
+      <SplitItem className={classnames(classes.bubble, "pf-u-background-color-200")} >
+        <div className={classnames(classes.typing, "pf-v5-u-display-flex pf-v5-u-align-items-center")} data-test-id="assistant-loading-dots">
           <div className={classes.dot}></div>
           <div className={classes.dot}></div>
           <div className={classes.dot}></div>

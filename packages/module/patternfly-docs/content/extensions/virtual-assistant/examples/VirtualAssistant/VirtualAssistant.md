@@ -69,6 +69,14 @@ You can configure a custom title and placeholder input value using `title` and `
 
 ```
 
+### Removing border radius
+
+Although this is not recommended, you can use the `removeBorderRadius` property to remove rounded borders of the assistant and it's child elements.
+
+```js file="./AssistantMessageNoRadiusExample.tsx"
+
+```
+
 ### Listening to messages
 
 The `onSendMessage` property can be used for listening to the send button click.

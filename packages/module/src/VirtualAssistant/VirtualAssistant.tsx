@@ -16,21 +16,21 @@ import { PaperPlaneIcon } from '@patternfly/react-icons';
 import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
 
 const useStyles = createUseStyles({
-  card: {
+  card: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => ({
     width: "400px",
     height: "600px",
     overflow: "hidden",
-    borderRadius: "20px 20px 20px 20px",
+    borderRadius: removeBorderRadius ? "0" : "20px",
     "@media screen and (max-width: 768px)": {
       height: "420px",
       width: "100%",
     },
     "&.fullPage": {
       width: "100%",
-      height: "%",
+      height: "100%",
       borderRadius: "0",
-    },
-  },
+    }
+  }),
   cardHeader: {
     background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
     boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
@@ -103,21 +103,20 @@ const useStyles = createUseStyles({
       height: "27px",
     }
   },
-  textArea: {
+  textArea: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => ({
     resize: "none",
     backgroundColor: "var(--pf-v5-global--BackgroundColor--200)",
-    borderRadius: "50px 50px 50px 50px",
+    borderRadius: removeBorderRadius ? "0" : "50px",
     color: "var(--pf-v5-global--Color--light-100)",
     paddingRight: "50px",
     paddingLeft: "20px",
-
-  },
+  }),
   sendButton: {
     position: "absolute",
     bottom: "22px",
     right: "14px",
   },
-})
+});
 
 export interface VirtualAssistantProps {
   /** Messages rendered within the assistant */
@@ -144,7 +143,11 @@ export interface VirtualAssistantProps {
   isFullPage?: boolean;
   /** Allows to overwrite the default header with a custom one */
   customHeader?: React.ReactNode;
+  /** Removes border radius from the component and its children */
+  removeBorderRadius?: boolean;
 }
+
+const isReactElement = (child: React.ReactNode): child is React.ReactElement => React.isValidElement(child);
 
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
@@ -158,9 +161,10 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   isSendButtonDisabled = false,
   icon: VAIcon = undefined,
   isFullPage = false,
-  customHeader = null
+  customHeader = null,
+  removeBorderRadius = false
 }: VirtualAssistantProps) => {
-  const classes = useStyles();
+  const classes = useStyles({ removeBorderRadius });
 
   const handleKeyPress: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
@@ -177,11 +181,9 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   return (
     <Card className={classnames(classes.card, { fullPage: isFullPage }, "pf-v5-u-box-shadow-lg")}>
       {customHeader ? customHeader : (
-        <CardHeader className={classes.cardHeader} actions={actions ? {
-          actions
-        } : undefined}>
+        <CardHeader className={classes.cardHeader} actions={actions ? { actions } : undefined}>
           <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
-            <div className={classes.titleIconWrapper} >
+            <div className={classes.titleIconWrapper}>
               <Icon className={classes.titleIcon}>
                 {VAIcon ? <VAIcon /> : <RobotIcon />}
               </Icon>
@@ -193,7 +195,11 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
         </CardHeader>
       )}
       <CardBody className={classes.cardBody}>
-        {children}
+        {React.Children.map(children, (child) =>
+          isReactElement(child)
+            ? React.cloneElement(child, { removeBorderRadius })
+            : child
+        )}
       </CardBody>
       <CardFooter className={classes.cardFooter}>
         <Divider className="pf-v5-u-pb-md" />
@@ -207,11 +213,14 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
           aria-label="Assistant input"
           isDisabled={isInputDisabled}
           data-test-id="assistant-text-input"
-        >
-        </TextArea>
-        <Button className={classes.sendButton} isDisabled={isSendButtonDisabled} data-test-id="assistant-send-button" aria-label="Virtual assistant's message" variant="plain" onClick={onSendMessage ? () => {
-          onSendMessage(message);
-        } : undefined}>
+        />
+        <Button
+          className={classes.sendButton}
+          isDisabled={isSendButtonDisabled}
+          data-test-id="assistant-send-button"
+          aria-label="Virtual assistant's message"
+          variant="plain"
+          onClick={onSendMessage ? () => onSendMessage(message) : undefined}>
           <PaperPlaneIcon />
         </Button>
       </CardFooter>
