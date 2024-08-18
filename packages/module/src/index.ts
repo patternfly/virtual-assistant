@@ -3,6 +3,12 @@
 export { default as AssistantMessageEntry } from './AssistantMessageEntry';
 export * from './AssistantMessageEntry';
 
+export { default as Citation } from './Citation';
+export * from './Citation';
+
+export { default as Citations } from './Citations';
+export * from './Citations';
+
 export { default as ConversationAlert } from './ConversationAlert';
 export * from './ConversationAlert';
 

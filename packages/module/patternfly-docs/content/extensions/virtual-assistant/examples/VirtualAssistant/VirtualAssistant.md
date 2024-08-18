@@ -10,7 +10,7 @@ id: Virtual assistant
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: ['VirtualAssistant']
+propComponents: ['VirtualAssistant', 'VirtualAssistantAction', 'SystemMessageEntry', 'LoadingMessage', 'ConversationAlert', 'AssistantMessageEntry', 'UserMessageEntry', 'Citation', 'Citations']
 sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/VirtualAssistant/VirtualAssistant.md
 ---
 
@@ -23,6 +23,7 @@ import { GrinIcon, AngleDownIcon, UserIcon } from '@patternfly/react-icons';
 import ConversationAlert from '@patternfly/virtual-assistant/dist/dynamic/ConversationAlert';
 import AssistantMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/AssistantMessageEntry';
 import UserMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/UserMessageEntry';
+import Citations from '@patternfly/virtual-assistant/dist/dynamic/Citations';
 
 The **virtual assistant** component renders body of the virtual assistant window.
 
@@ -148,5 +149,13 @@ This is an example of a message sent by assistant with dropdown options. Follow-
 This is an example of a message sent by user. 
 
 ```js file="./UserMessage.tsx"
+
+```
+
+### Citations
+
+You can use the citations component to render an accordion of sources as a part of the assistant response. 
+
+```js file="./VirtualAssistantCitationsExample.tsx"
 
 ```
