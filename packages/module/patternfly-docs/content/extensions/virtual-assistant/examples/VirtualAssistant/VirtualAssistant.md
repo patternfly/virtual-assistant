@@ -10,7 +10,7 @@ id: Virtual assistant
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: ['VirtualAssistant', 'VirtualAssistantAction', 'SystemMessageEntry', 'LoadingMessage', 'ConversationAlert', 'AssistantMessageEntry', 'UserMessageEntry', 'Citation', 'Citations']
+propComponents: ['VirtualAssistant', 'VirtualAssistantHeader', 'VirtualAssistantAction', 'SystemMessageEntry', 'LoadingMessage', 'ConversationAlert', 'AssistantMessageEntry', 'UserMessageEntry', 'Citation', 'Citations']
 sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/VirtualAssistant/VirtualAssistant.md
 ---
 
@@ -54,7 +54,7 @@ Custom actions can be added to the assistant body using the `actions` property.
 
 ### Using custom header
 
-You can override the default header layout using the `customHeader` property accepting any React node. It is recommended to use the original `CardHeader` component as a wrapper for your custom header.
+You can override the default header layout using the `header` property accepting any React node. It is recommended to use the original `CardHeader` component as a wrapper for your custom header. The default virtual assistant header component is also exported as `VirtualAssistantHeader` component.
 
 
 ```js file="./VirtualAssistantCustomHeaderExample.tsx"

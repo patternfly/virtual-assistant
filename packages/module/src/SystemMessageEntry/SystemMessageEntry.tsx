@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
   }
 })
 
-export const SystemMessageEntry: React.FunctionComponent<SystemMessageEntryProps> = (props) => {
+export const SystemMessageEntry: React.FunctionComponent<SystemMessageEntryProps> = (props: SystemMessageEntryProps) => {
   const classes = useStyles();
   return (
     <TextContent>

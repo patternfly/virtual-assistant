@@ -34,7 +34,7 @@ export const BasicExample: React.FunctionComponent = () => {
   );
 
   return (
-    <VirtualAssistant customHeader={
+    <VirtualAssistant header={
       <CardHeader actions={{ actions: headerActions }}>
         <UserIcon className='pf-v5-u-mr-sm' />My custom header
       </CardHeader>

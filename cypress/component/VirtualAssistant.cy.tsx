@@ -42,8 +42,7 @@ describe('VirtualAssistant', () => {
   });
 
   it('renders a custom header', () => {
-    const customHeader = <CardHeader data-ouia-component-id="custom-header">Custom Header</CardHeader>;
-    cy.mount(<VirtualAssistant customHeader={customHeader} />);
+    cy.mount(<VirtualAssistant header={<CardHeader data-ouia-component-id="custom-header">Custom Header</CardHeader>} />);
     
     cy.get('[data-ouia-component-id="custom-header"]').should('contain', 'Custom Header');
   });

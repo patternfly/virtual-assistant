@@ -4,16 +4,13 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
   Divider,
-  Flex,
-  Icon,
   TextArea
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
-import classnames from "clsx";
+import clsx from "clsx";
 import { PaperPlaneIcon } from '@patternfly/react-icons';
-import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
+import VirtualAssistantHeader, { VirtualAssistantHeaderProps } from '../VirtualAssistantHeader';
 
 const useStyles = createUseStyles({
   card: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => ({
@@ -31,56 +28,15 @@ const useStyles = createUseStyles({
       borderRadius: "0",
     }
   }),
-  cardHeader: {
-    background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
-    boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
-    height: "74px",
-    marginBottom: "6px",
-    "&:first-child": {
-      paddingBlockStart: "10px",
-      paddingInlineEnd: "10px",
-    },
-    "& .pf-v5-c-button.pf-m-plain": {
-      color: "var(--pf-v5-global--Color--light-100)",
-      paddingLeft: "0",
-      paddingRight: "0",
-      "& .pf-v5-svg": {
-        width: ".8em",
-        height: ".8em",
-        verticalAlign: "1em",
-      }
-    }
-  },
-  cardTitle: {
-    alignSelf: "center",
-    color: "var(--pf-v5-global--Color--light-100)",
-    fontSize: "var(--pf-v5-global--FontSize--lg)",
-    fontWeight: "400",
-    lineHeight: "27px",
-    paddingLeft: "var(--pf-v5-global--spacer--sm)",
-  },
-  titleIcon: {
-    marginLeft: "5px",
-    marginTop: "4px",
-    fontSize: "28px",
-    color: "var(--pf-v5-global--danger-color--100)",
-  },
-  titleIconWrapper: {
-    display: "block",
-    float: "left",
-    width: "38px",
-    height: "38px",
-    background: "var(--pf-v5-global--BackgroundColor--100)",
-    borderRadius: "20px",
-    marginRight: "7px",
-  },
   cardBody: {
     backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
     paddingLeft: "var(--pf-v5-global--spacer--md)",
     paddingRight: "var(--pf-v5-global--spacer--md)",
     paddingTop: "var(--pf-v5-global--spacer--lg)",
     overflowY: "scroll",
-    "&::-webkit-scrollbar": "display: none",
+    "&::-webkit-scrollbar": {
+      display: "none"
+    }
   },
   cardFooter: {
     padding: "10px",
@@ -118,17 +74,13 @@ const useStyles = createUseStyles({
   },
 });
 
-export interface VirtualAssistantProps {
+export interface VirtualAssistantProps extends VirtualAssistantHeaderProps {
   /** Messages rendered within the assistant */
   children?: React.ReactNode;
-  /** Header title for the assistant */
-  title?: React.ReactNode;
   /** Input's placeholder for the assistant */
   inputPlaceholder?: string;
   /** Input's content */
   message?: string;
-  /** Header actions of the assistant */
-  actions?: React.ReactNode;
   /** Input's content change */
   onChangeMessage?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
   /** Fire when clicking the Send (Plane) icon */
@@ -137,23 +89,21 @@ export interface VirtualAssistantProps {
   isInputDisabled?: boolean;
   /** Disables the send button */
   isSendButtonDisabled?: boolean;
-  /** Virtual assistant icon */
-  icon?: React.ComponentType;
   /** Expands the assistant to fill the entire page */
   isFullPage?: boolean;
   /** Allows to overwrite the default header with a custom one */
-  customHeader?: React.ReactNode;
+  header?: React.ReactNode;
   /** Removes border radius from the component and its children */
   removeBorderRadius?: boolean;
   /** VirtualAssistant OUIA ID */
   ouiaId?: string;
 }
 
-const isReactElement = (child: React.ReactNode): child is React.ReactElement => React.isValidElement(child);
+const isReactElement = (child: React.ReactNode): child is React.ReactElement =>
+  React.isValidElement(child);
 
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
-  title = 'Virtual Assistant',
   inputPlaceholder = 'Send a message...',
   message = '',
   actions,
@@ -161,9 +111,10 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   onSendMessage,
   isInputDisabled = false,
   isSendButtonDisabled = false,
-  icon: VAIcon = undefined,
+  title,
+  icon,
   isFullPage = false,
-  customHeader = null,
+  header = null,
   removeBorderRadius = false,
   ouiaId = 'VirtualAssistant'
 }: VirtualAssistantProps) => {
@@ -182,21 +133,15 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <Card className={classnames(classes.card, { fullPage: isFullPage }, "pf-v5-u-box-shadow-lg")} ouiaId={`${ouiaId}-body`}>
-      {customHeader ? customHeader : (
-        <CardHeader className={classes.cardHeader} actions={actions ? { actions } : undefined}>
-          <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
-            <div className={classes.titleIconWrapper}>
-              <Icon className={classes.titleIcon}>
-                {VAIcon ? <VAIcon /> : <RobotIcon />}
-              </Icon>
-            </div>
-            <div className={classes.cardTitle} data-ouia-component-id={`${ouiaId}-title`}>
-              {title}
-            </div>
-          </Flex>
-        </CardHeader>
+    <Card
+      className={clsx(
+        classes.card,
+        { fullPage: isFullPage },
+        "pf-v5-u-box-shadow-lg"
       )}
+      ouiaId={`${ouiaId}-body`}
+    >
+      { header ?? <VirtualAssistantHeader title={title} icon={icon} actions={actions} /> }
       <CardBody className={classes.cardBody}>
         {React.Children.map(children, (child) =>
           isReactElement(child)
@@ -223,7 +168,8 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
           data-test-id="assistant-send-button"
           aria-label="Virtual assistant's message"
           variant="plain"
-          onClick={onSendMessage ? () => onSendMessage(message) : undefined}>
+          onClick={onSendMessage ? () => onSendMessage(message) : undefined}
+        >
           <PaperPlaneIcon />
         </Button>
       </CardFooter>

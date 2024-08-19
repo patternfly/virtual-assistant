@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, ButtonProps, ButtonVariant } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
-import classnames from "clsx";
+import clsx from "clsx";
 
 const useStyles = createUseStyles({
   button: {
@@ -16,9 +16,9 @@ export const VirtualAssistantAction: React.FunctionComponent<ButtonProps> = ({
   variant = ButtonVariant.plain,
   className,
   ...otherProps
-}) => {
+}: VirtualAssistantActionProps) => {
   const classes = useStyles();
-  return <Button variant={variant} className={classnames(className, classes.button)} {...otherProps} ></Button>
+  return <Button variant={variant} className={clsx(className, classes.button)} {...otherProps}></Button>
 }
 
 export default VirtualAssistantAction;

@@ -65,7 +65,7 @@ export interface LoadingMessageProps {
   removeBorderRadius?: boolean;
 }
 
-export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon, removeBorderRadius = false }) => {
+export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon, removeBorderRadius = false }: LoadingMessageProps) => {
   const classes = useStyles({ removeBorderRadius });
   return (
     <Split className={classes.chatbot}>
