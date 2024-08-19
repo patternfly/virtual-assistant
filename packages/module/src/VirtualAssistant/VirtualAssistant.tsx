@@ -75,7 +75,7 @@ const useStyles = createUseStyles({
   },
 });
 
-export interface VirtualAssistantProps extends VirtualAssistantHeaderProps {
+export interface VirtualAssistantProps extends Omit<VirtualAssistantHeaderProps, 'ouiaId'> {
   /** Messages rendered within the assistant */
   children?: React.ReactNode;
   /** Input's placeholder for the assistant */

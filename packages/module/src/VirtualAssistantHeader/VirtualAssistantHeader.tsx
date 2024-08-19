@@ -10,6 +10,8 @@ export interface VirtualAssistantHeaderProps extends Omit<CardHeaderProps, 'acti
   icon?: React.ComponentType;
   /** Header actions of the assistant */
   actions?: React.ReactNode;
+  /** Custom ouiaId */
+  ouiaId?: string;
 };
 
 const useStyles = createUseStyles({
@@ -61,7 +63,8 @@ const useStyles = createUseStyles({
 export const VirtualAssistantHeader: React.FC<VirtualAssistantHeaderProps> = ({
   title = 'Virtual Assistant',
   icon: VAIcon = RobotIcon,
-  actions
+  actions,
+  ouiaId = 'VirtualAssistant'
 }: VirtualAssistantHeaderProps) => {
   const classes = useStyles();
 
@@ -73,7 +76,7 @@ export const VirtualAssistantHeader: React.FC<VirtualAssistantHeaderProps> = ({
             <VAIcon />
           </Icon>
         </div>
-        <div className={classes.cardTitle}>
+        <div className={classes.cardTitle} data-ouia-component-id={`${ouiaId}-title`}>
           {title}
         </div>
       </Flex>
