@@ -3,7 +3,7 @@ import { Icon, Split, SplitItem } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
 
-import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
+import { useAssistantContext } from '../AssistantContext';
 
 const useStyles = createUseStyles({
   chatbot: {
@@ -61,17 +61,16 @@ const useStyles = createUseStyles({
 export interface LoadingMessageProps {
   /** Icon component to display in the loading message */
   icon?: React.ComponentType;
-  /** Remove border radius from the bubble */
-  removeBorderRadius?: boolean;
 }
 
-export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon, removeBorderRadius = false }: LoadingMessageProps) => {
+export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent }: LoadingMessageProps) => {
+  const { removeBorderRadius, assistantIcon: AssistantIcon } = useAssistantContext();
   const classes = useStyles({ removeBorderRadius });
   return (
     <Split className={classes.chatbot}>
       <SplitItem>
         <Icon size="lg" className="pf-v5-u-mr-sm pf-v5-u-pt-md" data-test-id="assistant-loading-icon">
-          <IconComponent />
+          {IconComponent ? <IconComponent /> : <AssistantIcon/>}
         </Icon>
       </SplitItem>
       <SplitItem className={classnames(classes.bubble, "pf-u-background-color-200")} >

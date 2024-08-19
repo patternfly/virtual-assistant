@@ -9,7 +9,8 @@ import {
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import clsx from "clsx";
-import { PaperPlaneIcon } from '@patternfly/react-icons';
+import { PaperPlaneIcon, RobotIcon } from '@patternfly/react-icons';
+import { AssistantProvider } from '../AssistantContext';
 import VirtualAssistantHeader, { VirtualAssistantHeaderProps } from '../VirtualAssistantHeader';
 
 const useStyles = createUseStyles({
@@ -99,9 +100,6 @@ export interface VirtualAssistantProps extends VirtualAssistantHeaderProps {
   ouiaId?: string;
 }
 
-const isReactElement = (child: React.ReactNode): child is React.ReactElement =>
-  React.isValidElement(child);
-
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
   inputPlaceholder = 'Send a message...',
@@ -112,7 +110,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   isInputDisabled = false,
   isSendButtonDisabled = false,
   title,
-  icon,
+  icon = RobotIcon,
   isFullPage = false,
   header = null,
   removeBorderRadius = false,
@@ -133,47 +131,45 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <Card
-      className={clsx(
-        classes.card,
-        { fullPage: isFullPage },
-        "pf-v5-u-box-shadow-lg"
-      )}
-      ouiaId={`${ouiaId}-body`}
-    >
-      { header ?? <VirtualAssistantHeader title={title} icon={icon} actions={actions} /> }
-      <CardBody className={classes.cardBody}>
-        {React.Children.map(children, (child) =>
-          isReactElement(child)
-            ? React.cloneElement(child, { removeBorderRadius })
-            : child
+    <AssistantProvider assistantIcon={icon} removeBorderRadius={removeBorderRadius}>
+      <Card
+        className={clsx(
+          classes.card,
+          { fullPage: isFullPage },
+          "pf-v5-u-box-shadow-lg"
         )}
-      </CardBody>
-      <CardFooter className={classes.cardFooter}>
-        <Divider className="pf-v5-u-pb-md" />
-        <TextArea
-          className={classes.textArea}
-          placeholder={inputPlaceholder}
-          value={message}
-          onChange={onChangeMessage}
-          onKeyPress={handleKeyPress}
-          type="text"
-          aria-label="Assistant input"
-          isDisabled={isInputDisabled}
-          data-test-id="assistant-text-input"
-        />
-        <Button
-          className={classes.sendButton}
-          isDisabled={isSendButtonDisabled}
-          data-test-id="assistant-send-button"
-          aria-label="Virtual assistant's message"
-          variant="plain"
-          onClick={onSendMessage ? () => onSendMessage(message) : undefined}
-        >
-          <PaperPlaneIcon />
-        </Button>
-      </CardFooter>
-    </Card>
+        ouiaId={`${ouiaId}-body`}
+      >
+        { header ?? <VirtualAssistantHeader title={title} icon={icon} actions={actions} /> }
+        <CardBody className={classes.cardBody}>
+          {children}
+        </CardBody>
+        <CardFooter className={classes.cardFooter}>
+          <Divider className="pf-v5-u-pb-md" />
+          <TextArea
+            className={classes.textArea}
+            placeholder={inputPlaceholder}
+            value={message}
+            onChange={onChangeMessage}
+            onKeyPress={handleKeyPress}
+            type="text"
+            aria-label="Assistant input"
+            isDisabled={isInputDisabled}
+            data-test-id="assistant-text-input"
+          />
+          <Button
+            className={classes.sendButton}
+            isDisabled={isSendButtonDisabled}
+            data-test-id="assistant-send-button"
+            aria-label="Virtual assistant's message"
+            variant="plain"
+            onClick={onSendMessage ? () => onSendMessage(message) : undefined}
+          >
+            <PaperPlaneIcon />
+          </Button>
+        </CardFooter>
+      </Card>
+    </AssistantProvider>
   );
 };
 

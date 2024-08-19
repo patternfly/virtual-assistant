@@ -2,8 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Dropdown, DropdownItem, DropdownList, Icon, Label, MenuToggle, MenuToggleElement, Split, SplitItem, TextContent, LabelProps, DropdownItemProps, DropdownProps } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
-
-import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
+import { useAssistantContext } from '../AssistantContext';
 
 const useStyles = createUseStyles({
   chatbot: {
@@ -66,12 +65,13 @@ export const AssistantMessageEntry = ({
   children,
   options,
   title = 'Virtual Assistant',
-  icon: IconComponent = RobotIcon,
+  icon: IconComponent,
   dropdown,
 }: PropsWithChildren<AssistantMessageEntryProps>) => {
   const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
   const [ isOpen, setIsOpen ] = React.useState(false);
   const [ selected, setSelected ] = React.useState<string | number | undefined>();
+  const { assistantIcon: AssistantIcon } = useAssistantContext();
   const classes = useStyles();
 
   const handleOptionClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {
@@ -101,7 +101,7 @@ export const AssistantMessageEntry = ({
       <Split className={classes.chatbot}>
         <SplitItem>
           <Icon size="lg" className="pf-v5-u-mr-sm pf-v5-u-pt-md">
-            <IconComponent />
+            {IconComponent ? <IconComponent /> : <AssistantIcon/>}
           </Icon>
         </SplitItem>
         <SplitItem>
