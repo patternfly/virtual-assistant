@@ -110,6 +110,14 @@ This is an example of a message sent by assistant with follow-up options. Follow
 
 ```
 
+### Assistant Message with dropdown options
+
+This is an example of a message sent by assistant with dropdown options. Follow-up options are defined within `dropdown` property.
+
+```js file="./AssistantMessageWithDropdown.tsx"
+
+```
+
 ### User Message
 
 This is an example of a message sent by user. 

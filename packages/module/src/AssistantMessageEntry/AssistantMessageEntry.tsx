@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Icon, Label, Split, SplitItem, TextContent, LabelProps } from '@patternfly/react-core';
+import { Dropdown, DropdownItem, DropdownList, Icon, Label, MenuToggle, MenuToggleElement, Split, SplitItem, TextContent, LabelProps, DropdownItemProps, DropdownProps } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
 
@@ -14,6 +14,9 @@ const useStyles = createUseStyles({
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
+  },
+  dropdownBlock: {
+    marginTop: "var(--pf-v5-global--spacer--sm)"
   },
   label: {
     backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
@@ -52,15 +55,22 @@ interface AssistantMessageEntryProps {
     props?: LabelProps;
   }[];
   icon?: React.ComponentType;
+  dropdown?: {
+    items: { label: React.ReactNode; props?: DropdownItemProps; }[];
+    dropdownProps?: DropdownProps;
+  };
 }
 
 export const AssistantMessageEntry = ({
   children,
   options,
   title = 'Virtual Assistant',
-  icon: IconComponent = RobotIcon
+  icon: IconComponent = RobotIcon,
+  dropdown,
 }: PropsWithChildren<AssistantMessageEntryProps>) => {
   const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
+  const [ isOpen, setIsOpen ] = React.useState(false);
+  const [ selected, setSelected ] = React.useState<string | number | undefined>();
   const classes = useStyles();
 
   const handleOptionClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {
@@ -68,6 +78,21 @@ export const AssistantMessageEntry = ({
     if (customOnClick) {
       customOnClick(event);
     }
+  };
+
+  const handleDropdownClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {
+    if (customOnClick) {
+      customOnClick(event);
+    }
+  };
+
+  const onToggleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+    setSelected(value);
+    setIsOpen(false);
   };
 
   return (
@@ -86,6 +111,35 @@ export const AssistantMessageEntry = ({
             <TextContent className="pf-v5-u-font-size-sm">
               {children}
             </TextContent>
+            {dropdown ? (
+              <div className={classnames(classes.dropdownBlock," pf-v5-u-background-color-100")}>
+                <Dropdown
+                  isScrollable
+                  isOpen={isOpen}
+                  onSelect={onSelect}
+                  onOpenChange={setIsOpen}
+                  {...dropdown.dropdownProps}
+                  toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                    <MenuToggle ref={toggleRef} onClick={onToggleClick} isExpanded={isOpen}>
+                      {selected ? selected : "A few things I can help you with" }
+                    </MenuToggle>
+                  )}>
+                  <DropdownList>
+                    {dropdown.items.map((option, key) => {
+                      const { onClick: customOnClick, ...dropdownProps } = option.props || {};
+                      return (
+                        <DropdownItem
+                          {...dropdownProps}
+                          key={key}
+                          onClick={(event) => handleDropdownClick(event, key, customOnClick)}>
+                          {option.label}
+                        </DropdownItem>
+                      );
+                    })}
+                  </DropdownList>
+                </Dropdown>
+              </div>
+            ) : null}
           </div>
         </SplitItem>
       </Split>
