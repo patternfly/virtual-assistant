@@ -70,14 +70,6 @@ You can configure a custom title and placeholder input value using `title` and `
 
 ```
 
-### Removing border radius
-
-Although this is not recommended, you can use the `removeBorderRadius` property to remove rounded borders of the assistant and it's child elements.
-
-```js file="./AssistantMessageNoRadiusExample.tsx"
-
-```
-
 ### Listening to messages
 
 The `onSendMessage` property can be used for listening to the send button click.
@@ -157,5 +149,13 @@ This is an example of a message sent by user.
 You can use the citations component to render an accordion of sources as a part of the assistant response. 
 
 ```js file="./VirtualAssistantCitationsExample.tsx"
+
+```
+
+### Using custom theme
+
+In case you need to customize the look and feel of your virtual assistant, you can use your custom JSS theme and pass it through the `theme` property to the virtual assistant component. It will be merged with the default theme, which is also exported as `defaultTheme`.
+
+```js file="./AssistantMessageNoRadiusExample.tsx"
 
 ```

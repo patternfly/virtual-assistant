@@ -1,14 +1,18 @@
 import React from 'react';
-import LoadingMessage from '../../packages/module/src/LoadingMessage';
+import { ThemeProvider } from 'react-jss';
 import GrinIcon from '@patternfly/react-icons/dist/dynamic/icons/grin-icon';
-import { AssistantProvider } from '@patternfly/virtual-assistant/src/AssistantContext';
+import LoadingMessage from '@patternfly/virtual-assistant/src/LoadingMessage';
+import { VirtualAssistantProvider } from '@patternfly/virtual-assistant/src/VirtualAssistantContext';
+import { defaultTheme } from '@patternfly/virtual-assistant/src/VirtualAssistantTheme';
 
 describe('LoadingMessage', () => {
   it('renders default loading message', () => {
     cy.mount(
-      <AssistantProvider assistantIcon={GrinIcon} removeBorderRadius={false}>
-        <LoadingMessage />
-      </AssistantProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <VirtualAssistantProvider assistantIcon={GrinIcon}>
+          <LoadingMessage />
+        </VirtualAssistantProvider>
+      </ThemeProvider>
     );
 
     cy.get('[data-test-id="assistant-loading-icon"]').should('have.length', 1);
@@ -17,9 +21,11 @@ describe('LoadingMessage', () => {
 
   it('renders custom loading message', () => {
     cy.mount(
-      <AssistantProvider assistantIcon={GrinIcon} removeBorderRadius={false}>
-        <LoadingMessage icon={GrinIcon} />
-      </AssistantProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <VirtualAssistantProvider assistantIcon={GrinIcon}>
+          <LoadingMessage icon={GrinIcon} />
+        </VirtualAssistantProvider>
+      </ThemeProvider>
     );
 
     cy.get('[data-test-id="assistant-loading-icon"]').should('have.length', 1);

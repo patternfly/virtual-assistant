@@ -46,10 +46,4 @@ describe('VirtualAssistant', () => {
     
     cy.get('[data-ouia-component-id="custom-header"]').should('contain', 'Custom Header');
   });
-
-  it('adjusts styles based on removeBorderRadius prop', () => {
-    cy.mount(<VirtualAssistant removeBorderRadius />);
-    
-    cy.get('[data-ouia-component-id="VirtualAssistant-body"]').should('have.css', 'border-radius', '0px');
-  });
 });

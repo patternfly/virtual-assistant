@@ -1,17 +1,17 @@
 import React from 'react';
 import { Icon, Split, SplitItem } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
 
-import { useAssistantContext } from '../AssistantContext';
+import { useVirtualAssistantContext } from '../VirtualAssistantContext';
+import { createVaStyles } from '../VirtualAssistantTheme';
 
-const useStyles = createUseStyles({
+const useStyles = createVaStyles((theme) => ({
   chatbot: {
     marginBottom: "var(--pf-v5-global--spacer--md)",
     marginRight: "40px",
   },
   bubble: {
-    borderRadius: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => removeBorderRadius ? "0" : "14px",
+    borderRadius: theme.global.borderRadiusBubble,
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
@@ -56,7 +56,7 @@ const useStyles = createUseStyles({
       },
     }
   }
-})
+}))
 
 export interface LoadingMessageProps {
   /** Icon component to display in the loading message */
@@ -64,8 +64,8 @@ export interface LoadingMessageProps {
 }
 
 export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent }: LoadingMessageProps) => {
-  const { removeBorderRadius, assistantIcon: AssistantIcon } = useAssistantContext();
-  const classes = useStyles({ removeBorderRadius });
+  const { assistantIcon: AssistantIcon } = useVirtualAssistantContext();
+  const classes = useStyles();
   return (
     <Split className={classes.chatbot}>
       <SplitItem>

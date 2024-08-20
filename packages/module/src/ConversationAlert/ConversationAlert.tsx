@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert, TextContent } from '@patternfly/react-core';
-
-import { createUseStyles } from 'react-jss';
+import { createVaStyles } from '../VirtualAssistantTheme';
 
 export interface ConversationAlertProps {
     /** Content for conversation alert */
@@ -11,7 +10,7 @@ export interface ConversationAlertProps {
   children?: React.ReactNode;
 }
 
-const useStyles = createUseStyles({
+const useStyles = createVaStyles({
   banner: {
     paddingTop: "0",
     paddingBottom: "var(--pf-v5-global--spacer--md)",

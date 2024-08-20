@@ -1,13 +1,13 @@
 import React from 'react';
 import { Text, TextContent, TextVariants } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
+import { createVaStyles } from '../VirtualAssistantTheme';
 
 export interface SystemMessageEntryProps {
   /** Message rendered within the system message entry */
   children: React.ReactNode;
 }
 
-const useStyles = createUseStyles({
+const useStyles = createVaStyles({
   systemMessageText: {
     paddingBottom: "var(--pf-v5-global--spacer--md)",
     textAlign: "center",

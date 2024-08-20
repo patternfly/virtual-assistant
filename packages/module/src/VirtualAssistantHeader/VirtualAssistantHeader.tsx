@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardHeader, CardHeaderProps, Flex, Icon } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
 import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
+import { createVaStyles } from '../VirtualAssistantTheme';
 
 export interface VirtualAssistantHeaderProps extends Omit<CardHeaderProps, 'actions' | 'title'> {
   /** Header title for the assistant */
@@ -14,9 +14,9 @@ export interface VirtualAssistantHeaderProps extends Omit<CardHeaderProps, 'acti
   ouiaId?: string;
 };
 
-const useStyles = createUseStyles({
+const useStyles = createVaStyles((theme) => ({
   cardHeader: {
-    background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
+    background: theme.components.VirtualAssistantHeader.background,
     boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
     height: "74px",
     marginBottom: "6px",
@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
       paddingInlineEnd: "10px",
     },
     "& .pf-v5-c-button.pf-m-plain": {
-      color: "var(--pf-v5-global--Color--light-100)",
+      color: theme.global.colors.light100,
       paddingLeft: "0",
       paddingRight: "0",
       "& .pf-v5-svg": {
@@ -37,7 +37,7 @@ const useStyles = createUseStyles({
   },
   cardTitle: {
     alignSelf: "center",
-    color: "var(--pf-v5-global--Color--light-100)",
+    color: theme.global.colors.light100,
     fontSize: "var(--pf-v5-global--FontSize--lg)",
     fontWeight: "400",
     lineHeight: "27px",
@@ -47,18 +47,18 @@ const useStyles = createUseStyles({
     marginLeft: "5px",
     marginTop: "4px",
     fontSize: "28px",
-    color: "var(--pf-v5-global--danger-color--100)",
+    color: theme.global.colors.primary,
   },
   titleIconWrapper: {
     display: "block",
     float: "left",
     width: "38px",
     height: "38px",
-    background: "var(--pf-v5-global--BackgroundColor--100)",
+    background: theme.global.colors.background100,
     borderRadius: "20px",
     marginRight: "7px",
   },
-});
+}));
   
 export const VirtualAssistantHeader: React.FC<VirtualAssistantHeaderProps> = ({
   title = 'Virtual Assistant',

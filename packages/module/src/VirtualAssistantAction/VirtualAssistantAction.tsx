@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Button, ButtonProps, ButtonVariant } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
 import clsx from "clsx";
+import { createVaStyles } from '../VirtualAssistantTheme';
 
-const useStyles = createUseStyles({
+const useStyles = createVaStyles((theme) => ({
   button: {
-    color: "var(--pf-v5-global--Color--light-100)"
+    color: theme.global.colors.light100
   }
-});
+}));
 
 
 export type VirtualAssistantActionProps = ButtonProps;

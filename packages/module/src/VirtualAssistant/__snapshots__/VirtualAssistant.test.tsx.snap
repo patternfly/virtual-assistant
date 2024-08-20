@@ -3,14 +3,14 @@
 exports[`VirtualAssistant should render assistant 1`] = `
 <div>
   <div
-    class="pf-v5-c-card card-0-2-1 card-d0-0-2-6 pf-v5-u-box-shadow-lg"
+    class="pf-v5-c-card card-0-2-1 pf-v5-u-box-shadow-lg"
     data-ouia-component-id="VirtualAssistant-body"
     data-ouia-component-type="PF5/Card"
     data-ouia-safe="true"
     id=""
   >
     <div
-      class="pf-v5-c-card__header cardHeader-0-2-8"
+      class="pf-v5-c-card__header cardHeader-0-2-6"
     >
       <div
         class="pf-v5-c-card__header-main"
@@ -19,10 +19,10 @@ exports[`VirtualAssistant should render assistant 1`] = `
           class="pf-v5-l-flex pf-v5-u-flex-direction-row pf-v5-u-justify-content-center"
         >
           <div
-            class="titleIconWrapper-0-2-11"
+            class="titleIconWrapper-0-2-9"
           >
             <span
-              class="pf-v5-c-icon titleIcon-0-2-10"
+              class="pf-v5-c-icon titleIcon-0-2-8"
             >
               <span
                 class="pf-v5-c-icon__content"
@@ -44,7 +44,8 @@ exports[`VirtualAssistant should render assistant 1`] = `
             </span>
           </div>
           <div
-            class="cardTitle-0-2-9"
+            class="cardTitle-0-2-7"
+            data-ouia-component-id="VirtualAssistant-title"
           >
             Virtual Assistant
           </div>
@@ -61,7 +62,7 @@ exports[`VirtualAssistant should render assistant 1`] = `
         class="pf-v5-c-divider pf-v5-u-pb-md"
       />
       <span
-        class="pf-v5-c-form-control pf-m-resize-both textArea-0-2-4 textArea-d1-0-2-7"
+        class="pf-v5-c-form-control pf-m-resize-both textArea-0-2-4"
       >
         <textarea
           aria-invalid="false"

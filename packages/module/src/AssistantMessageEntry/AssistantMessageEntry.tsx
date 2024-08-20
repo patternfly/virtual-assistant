@@ -1,15 +1,15 @@
 import React, { PropsWithChildren } from 'react';
 import { Dropdown, DropdownItem, DropdownList, Icon, Label, MenuToggle, MenuToggleElement, Split, SplitItem, TextContent, LabelProps, DropdownItemProps, DropdownProps } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
-import { useAssistantContext } from '../AssistantContext';
+import { useVirtualAssistantContext } from '../VirtualAssistantContext';
+import { createVaStyles } from '../VirtualAssistantTheme';
 
-const useStyles = createUseStyles({
+const useStyles = createVaStyles((theme) => ({
   chatbot: {
     marginRight: "40px",
   },
   bubble: {
-    borderRadius: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => removeBorderRadius ? "0" : "14px",
+    borderRadius: theme.global.borderRadiusBubble,
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
@@ -18,34 +18,34 @@ const useStyles = createUseStyles({
     marginTop: "var(--pf-v5-global--spacer--sm)"
   },
   label: {
-    backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
-    "--pf-v5-c-label--BorderRadius": ({ removeBorderRadius }: { removeBorderRadius: boolean }) => removeBorderRadius ? "0" : "var(--pf-v5-global--BorderRadius--lg)",
-    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    backgroundColor: theme.global.colors.background100,
+    "--pf-v5-c-label--BorderRadius": theme.components.AssistantMessageEntry.label.borderRadius,
+    "--pf-v5-c-label__content--before--BorderColor": theme.global.colors.primary,
     "--pf-v5-c-label--PaddingBottom": ".3rem",
     "--pf-v5-c-label--PaddingRight": "1rem",
     "--pf-v5-c-label--PaddingLeft": "1rem",
     "--pf-v5-c-label--PaddingTop": ".3rem",
   },
   activeOption: {
-    background: "var(--pf-v5-global--danger-color--100)",
+    background: theme.global.colors.primary,
     pointerEvents: "none",
-    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
-    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
-    "--pf-v5-c-label__content--link--focus--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label__content--before--BorderColor": theme.global.colors.primary,
+    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": theme.global.colors.primary,
+    "--pf-v5-c-label__content--link--focus--before--BorderColor": theme.global.colors.primary,
     "& .pf-v5-c-label__content": {
-      color: "var(--pf-v5-global--BackgroundColor--100)",
+      color: theme.global.colors.background100,
     },
   },
   inactiveOption: {
-    background: "var(--pf-v5-c-label--m-red--BackgroundColor)",
+    background: theme.global.colors.backgroundPrimaryInactive,
     opacity: "0.6",
     pointerEvents: "none",
-    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-c-label--m-red--BackgroundColor) !important",
+    "--pf-v5-c-label__content--before--BorderColor": `${theme.global.colors.backgroundPrimaryInactive} !important`,
     "& .pf-v5-c-label__content": {
-      color: "var(--pf-v5-c-label--m-red__content--Color)",
+      color: theme.global.colors.primaryInactive,
     },
   }
-})
+}))
 
 interface AssistantMessageEntryProps {
   /** message title for the assistant */
@@ -71,7 +71,7 @@ export const AssistantMessageEntry = ({
   const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
   const [ isOpen, setIsOpen ] = React.useState(false);
   const [ selected, setSelected ] = React.useState<string | number | undefined>();
-  const { assistantIcon: AssistantIcon } = useAssistantContext();
+  const { assistantIcon: AssistantIcon } = useVirtualAssistantContext();
   const classes = useStyles();
 
   const handleOptionClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {

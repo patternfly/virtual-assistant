@@ -1,4 +1,4 @@
-import React, { KeyboardEventHandler } from 'react';
+import React, { KeyboardEventHandler, useMemo } from 'react';
 import {
   Button,
   Card,
@@ -7,18 +7,46 @@ import {
   Divider,
   TextArea
 } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
+import { DefaultTheme, ThemeProvider } from 'react-jss';
 import clsx from "clsx";
 import { PaperPlaneIcon, RobotIcon } from '@patternfly/react-icons';
-import { AssistantProvider } from '../AssistantContext';
+import { VirtualAssistantProvider } from '../VirtualAssistantContext';
 import VirtualAssistantHeader, { VirtualAssistantHeaderProps } from '../VirtualAssistantHeader';
+import { createVaStyles, defaultTheme } from '../VirtualAssistantTheme';
 
-const useStyles = createUseStyles({
-  card: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isObject(item: any): boolean {
+  return item !== null && typeof item === 'object' && !Array.isArray(item);
+}
+
+function deepMerge<T extends object>(target: T, ...sources: Partial<T>[]): T {
+  if (!sources.length) {return target;}
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        const sourceValue = source[key];
+        if (isObject(sourceValue) && isObject(target[key])) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          target[key] = deepMerge(target[key] as any, sourceValue as any);
+        } else {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (target as any)[key] = sourceValue;
+        }
+      }
+    }
+  }
+  // To avoid cross-modification of themes when using multiple instances on the same screen, a new object has to be returned here.
+  return deepMerge({ ...target }, ...sources);
+}
+
+const useStyles = createVaStyles((theme) => ({
+  card: {
     width: "400px",
     height: "600px",
     overflow: "hidden",
-    borderRadius: removeBorderRadius ? "0" : "20px",
+    borderRadius: theme.components.VirtualAssistant.card.borderRadius,
     "@media screen and (max-width: 768px)": {
       height: "420px",
       width: "100%",
@@ -28,9 +56,9 @@ const useStyles = createUseStyles({
       height: "100%",
       borderRadius: "0",
     }
-  }),
+  },
   cardBody: {
-    backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
+    backgroundColor: theme.global.colors.background100,
     paddingLeft: "var(--pf-v5-global--spacer--md)",
     paddingRight: "var(--pf-v5-global--spacer--md)",
     paddingTop: "var(--pf-v5-global--spacer--lg)",
@@ -50,7 +78,7 @@ const useStyles = createUseStyles({
     },
     "& .pf-v5-c-button.pf-m-plain": {
       "--pf-v5-c-button--disabled--Color": "transparent",
-      color: "var(--pf-v5-global--danger-color--100)",
+      color: theme.global.colors.primary,
     },
     "& .pf-v5-c-form-control": {
       "--pf-v5-c-form-control--after--BorderBottomWidth": "0",
@@ -60,20 +88,20 @@ const useStyles = createUseStyles({
       height: "27px",
     }
   },
-  textArea: ({ removeBorderRadius }: { removeBorderRadius: boolean }) => ({
+  textArea: {
     resize: "none",
-    backgroundColor: "var(--pf-v5-global--BackgroundColor--200)",
-    borderRadius: removeBorderRadius ? "0" : "50px",
-    color: "var(--pf-v5-global--Color--light-100)",
+    backgroundColor: theme.global.colors.background200,
+    borderRadius: theme.components.VirtualAssistant.textArea.borderRadius,
+    color: theme.global.colors.light100,
     paddingRight: "50px",
     paddingLeft: "20px",
-  }),
+  },
   sendButton: {
     position: "absolute",
     bottom: "22px",
     right: "14px",
   },
-});
+}));
 
 export interface VirtualAssistantProps extends Omit<VirtualAssistantHeaderProps, 'ouiaId'> {
   /** Messages rendered within the assistant */
@@ -94,13 +122,13 @@ export interface VirtualAssistantProps extends Omit<VirtualAssistantHeaderProps,
   isFullPage?: boolean;
   /** Allows to overwrite the default header with a custom one */
   header?: React.ReactNode;
-  /** Removes border radius from the component and its children */
-  removeBorderRadius?: boolean;
   /** VirtualAssistant OUIA ID */
   ouiaId?: string;
+  /** VirtualAssistant theme */
+  theme?: DefaultTheme;
 }
 
-export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
+const VirtualAssistantImplementation: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
   inputPlaceholder = 'Send a message...',
   message = '',
@@ -113,10 +141,9 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   icon = RobotIcon,
   isFullPage = false,
   header = null,
-  removeBorderRadius = false,
   ouiaId = 'VirtualAssistant'
 }: VirtualAssistantProps) => {
-  const classes = useStyles({ removeBorderRadius });
+  const classes = useStyles();
 
   const handleKeyPress: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
@@ -131,7 +158,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <AssistantProvider assistantIcon={icon} removeBorderRadius={removeBorderRadius}>
+    <VirtualAssistantProvider assistantIcon={icon}>
       <Card
         className={clsx(
           classes.card,
@@ -169,8 +196,16 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
           </Button>
         </CardFooter>
       </Card>
-    </AssistantProvider>
+    </VirtualAssistantProvider>
   );
 };
+
+export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({ theme, ...rest }: VirtualAssistantProps) => {  
+  const vaTheme = useMemo(() => deepMerge({ ...defaultTheme }, theme ?? {}), [ theme ])
+  return (
+    <ThemeProvider theme={vaTheme}>
+      <VirtualAssistantImplementation {...rest}/>
+    </ThemeProvider>
+  )};
 
 export default VirtualAssistant;
