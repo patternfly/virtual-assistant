@@ -1,16 +1,15 @@
 import React, { PropsWithChildren } from 'react';
 import { Dropdown, DropdownItem, DropdownList, Icon, Label, MenuToggle, MenuToggleElement, Split, SplitItem, TextContent, LabelProps, DropdownItemProps, DropdownProps } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
+import { useVirtualAssistantContext } from '../VirtualAssistantContext';
+import { createVaStyles } from '../VirtualAssistantTheme';
 
-import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
-
-const useStyles = createUseStyles({
+const useStyles = createVaStyles((theme) => ({
   chatbot: {
     marginRight: "40px",
   },
   bubble: {
-    borderRadius: "14px",
+    borderRadius: theme.global.borderRadiusBubble,
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
@@ -19,33 +18,34 @@ const useStyles = createUseStyles({
     marginTop: "var(--pf-v5-global--spacer--sm)"
   },
   label: {
-    backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
-    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    backgroundColor: theme.global.colors.background100,
+    "--pf-v5-c-label--BorderRadius": theme.components.AssistantMessageEntry.label.borderRadius,
+    "--pf-v5-c-label__content--before--BorderColor": theme.global.colors.primary,
     "--pf-v5-c-label--PaddingBottom": ".3rem",
     "--pf-v5-c-label--PaddingRight": "1rem",
     "--pf-v5-c-label--PaddingLeft": "1rem",
     "--pf-v5-c-label--PaddingTop": ".3rem",
   },
   activeOption: {
-    background: "var(--pf-v5-global--danger-color--100)",
+    background: theme.global.colors.primary,
     pointerEvents: "none",
-    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
-    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
-    "--pf-v5-c-label__content--link--focus--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label__content--before--BorderColor": theme.global.colors.primary,
+    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": theme.global.colors.primary,
+    "--pf-v5-c-label__content--link--focus--before--BorderColor": theme.global.colors.primary,
     "& .pf-v5-c-label__content": {
-      color: "var(--pf-v5-global--BackgroundColor--100)",
+      color: theme.global.colors.background100,
     },
   },
   inactiveOption: {
-    background: "var(--pf-v5-c-label--m-red--BackgroundColor)",
+    background: theme.global.colors.backgroundPrimaryInactive,
     opacity: "0.6",
     pointerEvents: "none",
-    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-c-label--m-red--BackgroundColor) !important",
+    "--pf-v5-c-label__content--before--BorderColor": `${theme.global.colors.backgroundPrimaryInactive} !important`,
     "& .pf-v5-c-label__content": {
-      color: "var(--pf-v5-c-label--m-red__content--Color)",
+      color: theme.global.colors.primaryInactive,
     },
   }
-})
+}))
 
 interface AssistantMessageEntryProps {
   /** message title for the assistant */
@@ -65,12 +65,13 @@ export const AssistantMessageEntry = ({
   children,
   options,
   title = 'Virtual Assistant',
-  icon: IconComponent = RobotIcon,
+  icon: IconComponent,
   dropdown,
 }: PropsWithChildren<AssistantMessageEntryProps>) => {
   const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
   const [ isOpen, setIsOpen ] = React.useState(false);
   const [ selected, setSelected ] = React.useState<string | number | undefined>();
+  const { assistantIcon: AssistantIcon } = useVirtualAssistantContext();
   const classes = useStyles();
 
   const handleOptionClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {
@@ -100,14 +101,14 @@ export const AssistantMessageEntry = ({
       <Split className={classes.chatbot}>
         <SplitItem>
           <Icon size="lg" className="pf-v5-u-mr-sm pf-v5-u-pt-md">
-            <IconComponent />
+            {IconComponent ? <IconComponent /> : <AssistantIcon/>}
           </Icon>
         </SplitItem>
         <SplitItem>
           <TextContent className="pf-v5-u-font-size-xs pf-v5-u-font-weight-bold pf-v5-u-py-xs" data-test-id="assistant-title">
             {title}
           </TextContent>
-          <div className={classnames(classes.bubble," pf-v5-u-background-color-200")}>
+          <div className={classnames(classes.bubble, "pf-v5-u-background-color-200")}>
             <TextContent className="pf-v5-u-font-size-sm">
               {children}
             </TextContent>

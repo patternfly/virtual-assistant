@@ -95,6 +95,18 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
     "spaced-comment": "error",
-    "use-isnan": "error"
+    "use-isnan": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "react-jss",
+            "importNames": ["createUseStyles"],
+            "message": "Do not import { createUseStyles } from 'react-jss'; Use { createVaStyles, defaultTheme } from '../VirtualAssistantTheme' instead!"
+          }
+        ]
+      }
+    ]
   }
 }

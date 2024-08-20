@@ -5,8 +5,8 @@ describe('Test the Virtual assistant docs page', () => {
     cy.wait(1000);
 
     cy.get('[data-test-id="assistant-example-message"]').should('contain', 'Last received message: ');
-    cy.get('[data-test-id="assistant-text-input"]').eq(2).type('my message');
-    cy.get('[data-test-id="assistant-send-button"]').eq(2).click({ force: true });
+    cy.get('[data-test-id="assistant-text-input"]').eq(5).type('my message');
+    cy.get('[data-test-id="assistant-send-button"]').eq(5).click({ force: true });
     cy.get('[data-test-id="assistant-example-message"]').should('contain', 'Last received message: my message');
   })
 

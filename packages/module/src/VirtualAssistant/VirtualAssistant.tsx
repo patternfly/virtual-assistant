@@ -1,81 +1,71 @@
-import React, { KeyboardEventHandler } from 'react';
+import React, { KeyboardEventHandler, useMemo } from 'react';
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
   Divider,
-  Flex,
-  Icon,
   TextArea
 } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
-import classnames from "clsx";
-import { PaperPlaneIcon } from '@patternfly/react-icons';
-import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
+import { DefaultTheme, ThemeProvider } from 'react-jss';
+import clsx from "clsx";
+import { PaperPlaneIcon, RobotIcon } from '@patternfly/react-icons';
+import { VirtualAssistantProvider } from '../VirtualAssistantContext';
+import VirtualAssistantHeader, { VirtualAssistantHeaderProps } from '../VirtualAssistantHeader';
+import { createVaStyles, defaultTheme } from '../VirtualAssistantTheme';
 
-const useStyles = createUseStyles({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isObject(item: any): boolean {
+  return item !== null && typeof item === 'object' && !Array.isArray(item);
+}
+
+function deepMerge<T extends object>(target: T, ...sources: Partial<T>[]): T {
+  if (!sources.length) {return target;}
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        const sourceValue = source[key];
+        if (isObject(sourceValue) && isObject(target[key])) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          target[key] = deepMerge(target[key] as any, sourceValue as any);
+        } else {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (target as any)[key] = sourceValue;
+        }
+      }
+    }
+  }
+  // To avoid cross-modification of themes when using multiple instances on the same screen, a new object has to be returned here.
+  return deepMerge({ ...target }, ...sources);
+}
+
+const useStyles = createVaStyles((theme) => ({
   card: {
     width: "400px",
     height: "600px",
     overflow: "hidden",
-    borderRadius: "20px 20px 20px 20px",
+    borderRadius: theme.components.VirtualAssistant.card.borderRadius,
     "@media screen and (max-width: 768px)": {
       height: "420px",
       width: "100%",
     },
-  },
-  cardHeader: {
-    background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
-    boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
-    height: "74px",
-    marginBottom: "6px",
-    "&:first-child": {
-      paddingBlockStart: "10px",
-      paddingInlineEnd: "10px",
-    },
-    "& .pf-v5-c-button.pf-m-plain": {
-      color: "var(--pf-v5-global--Color--light-100)",
-      paddingLeft: "0",
-      paddingRight: "0",
-      "& .pf-v5-svg": {
-        width: ".8em",
-        height: ".8em",
-        verticalAlign: "1em",
-      }
+    "&.fullPage": {
+      width: "100%",
+      height: "100%",
+      borderRadius: "0",
     }
   },
-  cardTitle: {
-    alignSelf: "center",
-    color: "var(--pf-v5-global--Color--light-100)",
-    fontSize: "var(--pf-v5-global--FontSize--lg)",
-    fontWeight: "400",
-    lineHeight: "27px",
-    paddingLeft: "var(--pf-v5-global--spacer--sm)",
-  },
-  titleIcon: {
-    marginLeft: "5px",
-    marginTop: "4px",
-    fontSize: "28px",
-    color: "var(--pf-v5-global--danger-color--100)",
-  },
-  titleIconWrapper: {
-    display: "block",
-    float: "left",
-    width: "38px",
-    height: "38px",
-    background: "var(--pf-v5-global--BackgroundColor--100)",
-    borderRadius: "20px",
-    marginRight: "7px",
-  },
   cardBody: {
-    backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
+    backgroundColor: theme.global.colors.background100,
     paddingLeft: "var(--pf-v5-global--spacer--md)",
     paddingRight: "var(--pf-v5-global--spacer--md)",
     paddingTop: "var(--pf-v5-global--spacer--lg)",
     overflowY: "scroll",
-    "&::-webkit-scrollbar": "display: none",
+    "&::-webkit-scrollbar": {
+      display: "none"
+    }
   },
   cardFooter: {
     padding: "10px",
@@ -88,7 +78,7 @@ const useStyles = createUseStyles({
     },
     "& .pf-v5-c-button.pf-m-plain": {
       "--pf-v5-c-button--disabled--Color": "transparent",
-      color: "var(--pf-v5-global--danger-color--100)",
+      color: theme.global.colors.primary,
     },
     "& .pf-v5-c-form-control": {
       "--pf-v5-c-form-control--after--BorderBottomWidth": "0",
@@ -100,31 +90,26 @@ const useStyles = createUseStyles({
   },
   textArea: {
     resize: "none",
-    backgroundColor: "var(--pf-v5-global--BackgroundColor--200)",
-    borderRadius: "50px 50px 50px 50px",
-    color: "var(--pf-v5-global--Color--light-100)",
+    backgroundColor: theme.global.colors.background200,
+    borderRadius: theme.components.VirtualAssistant.textArea.borderRadius,
+    color: theme.global.colors.light100,
     paddingRight: "50px",
     paddingLeft: "20px",
-
   },
   sendButton: {
     position: "absolute",
     bottom: "22px",
     right: "14px",
   },
-})
+}));
 
-export interface VirtualAssistantProps {
+export interface VirtualAssistantProps extends Omit<VirtualAssistantHeaderProps, 'ouiaId'> {
   /** Messages rendered within the assistant */
   children?: React.ReactNode;
-  /** Header title for the assistant */
-  title?: React.ReactNode;
   /** Input's placeholder for the assistant */
   inputPlaceholder?: string;
   /** Input's content */
   message?: string;
-  /** Header actions of the assistant */
-  actions?: React.ReactNode;
   /** Input's content change */
   onChangeMessage?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
   /** Fire when clicking the Send (Plane) icon */
@@ -133,13 +118,18 @@ export interface VirtualAssistantProps {
   isInputDisabled?: boolean;
   /** Disables the send button */
   isSendButtonDisabled?: boolean;
-  /** Virtual assistant icon */
-  icon?: React.ComponentType;
+  /** Expands the assistant to fill the entire page */
+  isFullPage?: boolean;
+  /** Allows to overwrite the default header with a custom one */
+  header?: React.ReactNode;
+  /** VirtualAssistant OUIA ID */
+  ouiaId?: string;
+  /** VirtualAssistant theme */
+  theme?: DefaultTheme;
 }
 
-export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
+const VirtualAssistantImplementation: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
-  title = 'Virtual Assistant',
   inputPlaceholder = 'Send a message...',
   message = '',
   actions,
@@ -147,7 +137,11 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   onSendMessage,
   isInputDisabled = false,
   isSendButtonDisabled = false,
-  icon: VAIcon = undefined,
+  title,
+  icon = RobotIcon,
+  isFullPage = false,
+  header = null,
+  ouiaId = 'VirtualAssistant'
 }: VirtualAssistantProps) => {
   const classes = useStyles();
 
@@ -164,46 +158,54 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <Card className={classnames(classes.card,"pf-v5-u-box-shadow-lg")}>
-      <CardHeader className={classes.cardHeader} actions={actions ? {
-        actions
-      } : undefined}>
-        <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
-          <div className={classes.titleIconWrapper} >
-            <Icon className={classes.titleIcon}>
-              {VAIcon ? <VAIcon /> : <RobotIcon />}
-            </Icon>
-          </div>
-          <div className={classes.cardTitle} data-test-id="assistant-title">
-            {title}
-          </div>
-        </Flex>
-      </CardHeader>
-      <CardBody className={classes.cardBody}>
-        {children}
-      </CardBody>
-      <CardFooter className={classes.cardFooter}>
-        <Divider className="pf-v5-u-pb-md" />
-        <TextArea
-          className={classes.textArea}
-          placeholder={inputPlaceholder}
-          value={message}
-          onChange={onChangeMessage}
-          onKeyPress={handleKeyPress}
-          type="text"
-          aria-label="Assistant input"
-          isDisabled={isInputDisabled}
-          data-test-id="assistant-text-input"
-        >
-        </TextArea>
-        <Button className={classes.sendButton} isDisabled={isSendButtonDisabled} data-test-id="assistant-send-button" aria-label="Virtual assistant's message" variant="plain" onClick={onSendMessage ? () => {
-          onSendMessage(message);
-        } : undefined}>
-          <PaperPlaneIcon />
-        </Button>
-      </CardFooter>
-    </Card>
+    <VirtualAssistantProvider assistantIcon={icon}>
+      <Card
+        className={clsx(
+          classes.card,
+          { fullPage: isFullPage },
+          "pf-v5-u-box-shadow-lg"
+        )}
+        ouiaId={`${ouiaId}-body`}
+      >
+        { header ?? <VirtualAssistantHeader title={title} icon={icon} actions={actions} /> }
+        <CardBody className={classes.cardBody}>
+          {children}
+        </CardBody>
+        <CardFooter className={classes.cardFooter}>
+          <Divider className="pf-v5-u-pb-md" />
+          <TextArea
+            className={classes.textArea}
+            placeholder={inputPlaceholder}
+            value={message}
+            onChange={onChangeMessage}
+            onKeyPress={handleKeyPress}
+            type="text"
+            aria-label="Assistant input"
+            isDisabled={isInputDisabled}
+            data-test-id="assistant-text-input"
+          />
+          <Button
+            className={classes.sendButton}
+            isDisabled={isSendButtonDisabled}
+            data-test-id="assistant-send-button"
+            aria-label="Virtual assistant's message"
+            variant="plain"
+            onClick={onSendMessage ? () => onSendMessage(message) : undefined}
+          >
+            <PaperPlaneIcon />
+          </Button>
+        </CardFooter>
+      </Card>
+    </VirtualAssistantProvider>
   );
 };
+
+export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({ theme, ...rest }: VirtualAssistantProps) => {  
+  const vaTheme = useMemo(() => deepMerge({ ...defaultTheme }, theme ?? {}), [ theme ])
+  return (
+    <ThemeProvider theme={vaTheme}>
+      <VirtualAssistantImplementation {...rest}/>
+    </ThemeProvider>
+  )};
 
 export default VirtualAssistant;
