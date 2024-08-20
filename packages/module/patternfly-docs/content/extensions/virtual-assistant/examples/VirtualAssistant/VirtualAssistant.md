@@ -144,7 +144,7 @@ This is an example of a message sent by user.
 
 ```
 
-### Citations
+### Adding citations
 
 You can use the citations component to render an accordion of sources as a part of the assistant response. 
 
