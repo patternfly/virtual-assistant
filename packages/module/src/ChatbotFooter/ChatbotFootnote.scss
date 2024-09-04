@@ -3,6 +3,8 @@
 // ============================================================================
 
 .pf-chatbot__footnote {
+  align-self: center;
+
   .pf-v6-c-button {
     --pf-v6-c-button--BorderRadius: var(--pf-t--global--border--radius--pill);
     --pf-v6-c-button--FontSize: var(--pf-t--global--font--size--xs);

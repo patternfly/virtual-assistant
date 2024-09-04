@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropEvent, Flex, FlexItem, TextAreaProps } from '@patternfly/react-core';
+import { DropEvent, TextAreaProps } from '@patternfly/react-core';
 import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 
 // Import Chatbot components
@@ -46,7 +46,7 @@ export interface MessageBarProps extends TextAreaProps {
   attachMenuProps?: MessageBarWithAttachMenuProps;
 }
 
-export const MessageBar: React.FC<MessageBarProps & MessageBarWithAttachMenuProps> = ({
+export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   onSendMessage,
   className,
   alwayShowSendButton,
@@ -91,35 +91,45 @@ export const MessageBar: React.FC<MessageBarProps & MessageBarWithAttachMenuProp
     attachMenuProps?.onAttachMenuToggleClick();
   };
 
+  const messageBarContents = (
+    <>
+      <div className="pf-chatbot__message-bar-input">
+        <AutoTextArea
+          ref={textareaRef}
+          className="pf-chatbot__message-textarea"
+          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
+          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
+          onKeyDown={handleKeyDown}
+          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
+          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
+          {...props}
+        />
+      </div>
+      <div className="pf-chatbot__message-bar-actions">
+        {attachMenuProps && (
+          <AttachButton ref={attachButtonRef} onClick={handleAttachMenuToggle} isDisabled={isListeningMessage} />
+        )}
+        {!attachMenuProps && hasAttachButton && (
+          <AttachButton onAttachAccepted={handleAttach} isDisabled={isListeningMessage} />
+        )}
+        {hasMicrophoneButton && (
+          <MicrophoneButton
+            isListening={isListeningMessage}
+            onIsListeningChange={setIsListeningMessage}
+            onSpeechRecognition={setMessage}
+          />
+        )}
+        {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
+      </div>
+    </>
+  );
+
   if (attachMenuProps) {
     return (
       <AttachMenu
         toggle={(toggleRef) => (
           <div ref={toggleRef} className={`pf-chatbot__message-bar ${className ?? ''}`}>
-            <div className="pf-chatbot__message-bar-input">
-              <AutoTextArea
-                ref={textareaRef}
-                className="pf-chatbot__message-textarea"
-                value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-                onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-                onKeyDown={handleKeyDown}
-                placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
-                aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
-                {...props}
-              />
-            </div>
-
-            <div className="pf-chatbot__message-bar-actions">
-              <AttachButton ref={attachButtonRef} onClick={handleAttachMenuToggle} isDisabled={isListeningMessage} />
-              {hasMicrophoneButton && (
-                <MicrophoneButton
-                  isListening={isListeningMessage}
-                  onIsListeningChange={setIsListeningMessage}
-                  onSpeechRecognition={setMessage}
-                />
-              )}
-              {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
-            </div>
+            {messageBarContents}
           </div>
         )}
         filteredItems={attachMenuProps?.attachMenuItems}
@@ -138,39 +148,7 @@ export const MessageBar: React.FC<MessageBarProps & MessageBarWithAttachMenuProp
     );
   }
 
-  return (
-    <Flex
-      className={`pf-chatbot__message-bar ${className ?? ''}`}
-      alignItems={{ default: 'alignItemsCenter' }}
-      justifyContent={{ default: 'justifyContentFlexEnd' }}
-      flexWrap={{ default: 'wrap' }}
-    >
-      <FlexItem flex={{ default: 'flex_1' }} className="pf-chatbot__message-bar-input">
-        <AutoTextArea
-          ref={textareaRef}
-          className="pf-chatbot__message-textarea"
-          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onKeyDown={handleKeyDown}
-          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
-          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
-          {...props}
-        />
-      </FlexItem>
-
-      <FlexItem className="pf-chatbot__message-bar-actions">
-        {hasAttachButton && <AttachButton onAttachAccepted={handleAttach} isDisabled={isListeningMessage} />}
-        {hasMicrophoneButton && (
-          <MicrophoneButton
-            isListening={isListeningMessage}
-            onIsListeningChange={setIsListeningMessage}
-            onSpeechRecognition={setMessage}
-          />
-        )}
-        {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
-      </FlexItem>
-    </Flex>
-  );
+  return <div className={`pf-chatbot__message-bar ${className ?? ''}`}>{messageBarContents}</div>;
 };
 
 export default MessageBar;

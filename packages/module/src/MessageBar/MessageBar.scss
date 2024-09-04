@@ -6,23 +6,21 @@
 // ============================================================================
 // Chatbot Footer - Message Bar
 // ============================================================================
+
 .pf-chatbot__message-bar {
+  --pf-chatbot__message-bar-child--PaddingBlockStart: var(--pf-t--global--spacer--xs);
+  --pf-chatbot__message-bar-child--PaddingBlockEnd: var(--pf-t--global--spacer--xs);
+  --pf-chatbot__message-bar-child--PaddingInlineStart: var(--pf-t--global--spacer--xs);
+  --pf-chatbot__message-bar-child--PaddingInlineEnd: var(--pf-t--global--spacer--xs);
+
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
   align-items: flex-end;
   justify-content: flex-end;
-  min-height: 64px;
   background-color: var(--pf-t--global--background--color--primary--default);
-  border-radius: calc(
-    var(--pf-t--global--border--radius--medium) * 2
-  ); // 32px corners - universal for single and multi-line height
-  padding-inline-end: var(--pf-t--global--spacer--sm);
+  border-radius: calc(var(--pf-t--global--border--radius--medium) * 2);
   transition: box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--sm);
-
-  &-input {
-    padding: var(--pf-t--global--spacer--sm) 0 var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--sm);
-  }
 
   &:hover {
     box-shadow: inset 0 0 0 1px var(--pf-t--global--border--color--default);
@@ -32,58 +30,40 @@
     box-shadow: inset 0 0 0 2px var(--pf-t--global--color--brand--default);
   }
 
-  // Input
-  // --------------------------------------------------------------------------
+  &-actions {
+    display: flex;
+    justify-content: end;
+    padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
+    padding-block-end: var(--pf-t--global--spacer--sm);
+    padding-inline-start: var(--pf-chatbot__message-bar-child--PaddingInlineStart);
+    padding-inline-end: var(--pf-chatbot__message-bar-child--PaddingInlineStart);
+  }
+
   &-input {
-    align-self: stretch;
-    display: flex;
-    // align-items: center;
-    flex-grow: 1;
-    padding: calc(var(--pf-t--global--spacer--100) + var(--pf-t--global--spacer--300)) var(--pf-t--global--spacer--400);
+    flex: 1 1 auto;
+    padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
+    padding-block-end: var(--pf-chatbot__message-bar-child--PaddingBlockEnd);
+    padding-inline-start: var(--pf-chatbot__message-bar-child--PaddingInlineStart);
+    padding-inline-end: var(--pf-chatbot__message-bar-child--PaddingInlineEnd);
   }
-  .pf-chatbot__message-textarea {
-    align-self: stretch;
-    display: flex;
-    // align-items: center;
-    flex-grow: 1;
-    max-width: 100%;
-    max-height: 232px; // 8 rows + padding
-    font-size: var(--pf-t--global--font--size--md);
-    line-height: 24px;
-  }
+}
 
-  .pf-chatbot__message-bar-input {
-    flex: 1 0 0;
-  }
+// - Form control textarea
+.pf-chatbot__message-textarea {
+  padding-block-start: var(--pf-t--global--spacer--md);
+  padding-block-end: var(--pf-t--global--spacer--md);
+  padding-inline-start: var(--pf-v6-c-form-control--PaddingInlineStart);
+  padding-inline-end: var(--pf-v6-c-form-control--PaddingInlineEnd);
+  --pf-v6-c-form-control--before--BorderStyle: none;
+  --pf-v6-c-form-control--after--BorderStyle: none;
+  background-color: transparent;
+  font-size: var(--pf-t--global--font--size--md);
+  line-height: 1.5rem;
+  max-height: 12rem;
+  overflow-y: auto;
+  display:block !important;
 
-  .pf-chatbot__message-bar-actions {
-    align-items: center;
-    height: 100%;
-    display: flex;
+  .pf-v6-c-form-control__textarea:focus-visible {
+    outline: none;
   }
-
-  //.pf-chatbot__message-textarea {
-  //  --pf-v6-c-form-control--Resize: none;
-  //  --pf-v6-c-form-control--before--BorderStyle: none;
-  //  --pf-v6-c-form-control--after--BorderStyle: none;
-  //  --pf-v6-c-form-control--PaddingBlockStart: 0;
-  //  --pf-v6-c-form-control--PaddingBlockEnd: 0;
-  //  --pf-v6-c-form-control--PaddingInlineStart: 0;
-  //  --pf-v6-c-form-control--PaddingInlineEnd: 0;
-  //  --pf-v6-c-form-control--BorderRadius: var(--pf-t--global--border--radius--small);
-  //
-  //  max-width: 100%;
-  //  max-height: 232px; // 8 rows + padding
-  //  font-size: var(--pf-t--global--font--size--md);
-  //  line-height: 24px;
-  //
-  //  textarea:focus {
-  //    outline: none;
-  //    offset: none;
-  //  }
-  //
-  //  textarea:focus-visible {
-  //    outline: none;
-  //  }
-  //}
 }

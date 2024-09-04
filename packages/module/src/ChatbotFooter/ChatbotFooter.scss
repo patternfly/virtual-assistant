@@ -5,7 +5,13 @@
 // Chatbot Footer
 // ============================================================================
 .pf-chatbot__footer {
+  --pf-chatbot__footer--RowGap: var(--pf-t--global--spacer--md);
+
   background-color: var(--pf-t--chatbot--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  row-gap: var(--pf-chatbot__footer--RowGap);
 }
 
 // ============================================================================

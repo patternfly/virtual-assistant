@@ -106,12 +106,7 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
   );
 
   return (
-    <Flex
-      className={`pf-chatbot__footnote ${className ?? ''}`}
-      alignItems={{ default: 'alignItemsCenter' }}
-      justifyContent={{ default: 'justifyContentCenter' }}
-      {...props}
-    >
+    <div className={`pf-chatbot__footnote ${className ?? ''}`} {...props}>
       {popover && (
         <ChatbotPopover
           className="pf-chatbot__popover--footnote"
@@ -133,7 +128,7 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
         </ChatbotPopover>
       )}
       {!popover && <Content component={ContentVariants.small}>{label}</Content>}
-    </Flex>
+    </div>
   );
 };
 
