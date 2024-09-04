@@ -10,6 +10,8 @@
 
 import React from 'react';
 
+import { Flex, Divider } from '@patternfly/react-core';
+
 export interface ChatbotFooterProps extends React.HTMLProps<HTMLDivElement> {
   /** Children for the Footer that supports MessageBar and FootNote components*/
   children?: React.ReactNode;
@@ -22,9 +24,10 @@ export const ChatbotFooter: React.FunctionComponent<ChatbotFooterProps> = ({
   className,
   ...props
 }: ChatbotFooterProps) => (
-  <div className={`pf-chatbot__footer ${className ?? ''}`} {...props}>
+  <Flex className={`pf-chatbot__footer ${className ?? ''}`} direction={{ default: 'column' }} rowGap={{ default: 'rowGapMd' }} {...props}>
+    <Divider />
     {children}
-  </div>
+  </Flex>
 );
 
 export default ChatbotFooter;

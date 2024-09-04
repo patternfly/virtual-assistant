@@ -2,34 +2,19 @@
 // Chatbot Footer - Message Bar - Attach
 // ============================================================================
 .pf-v6-c-button.pf-chatbot__button--attach {
-  width: 48px;
-  height: 48px;
   border-radius: var(--pf-t--global--border--radius--pill);
-  
-  .pf-v6-c-button__text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--pf-t--chatbot--message-bar--icon--fill);
-  }
+  padding: var(--pf-t--global--spacer--md);
+  width: 3rem;
+  height: 3rem;
 
-  svg { height: 20px; }
+  .pf-v6-c-button__icon {
+    color: var(--pf-t--chatbot--icon--fill);
+  }
 
   // Interactive states
   &:hover, &:focus {
-    .pf-v6-c-button__text { color: var(--pf-t--chatbot--message-bar--icon--fill--hover); }
-  }
-
-  // Active state
-  &--active {
-    background-color: var(--pf-t--color--blue--50);
-
-    .pf-v6-c-button__text {
-      color: var(--pf-t--color--white);
-    }
-
-    &:hover, &:focus {
-      .pf-v6-c-button__text { color: var(--pf-t--color--white); }
+    .pf-v6-c-button__icon {
+      color: var(--pf-t--chatbot--icon--fill--hover);
     }
   }
 }

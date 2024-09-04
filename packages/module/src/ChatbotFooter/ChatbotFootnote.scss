@@ -3,38 +3,8 @@
 // ============================================================================
 
 .pf-chatbot__footnote {
-  --pf-t--chatbot--footnote--color: var(--pf-t--color--gray--60);
-  --pf-t--chatbot--footnote--color--hover: var(--pf-t--color--gray--70);
-  --pf-t--chatbot--footnote--color--focus: var(--pf-t--color--black);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--pf-t--chatbot--footnote--color);
-
   .pf-v6-c-button {
-    padding-top: var(--pf-t--global--spacer--100);
-    padding-bottom: var(--pf-t--global--spacer--100);
-    border-radius: var(--pf-t--global--border--radius--pill);
-    font-size: var(--pf-t--global--font--size--xs);
-    color: var(--pf-t--chatbot--footnote--color);
-
-    &:hover {
-      color: var(--pf-t--chatbot--footnote--color--hover);
-    }
-    &:focus {
-      color: var(--pf-t--chatbot--footnote--color--focus);
-    }
-  }
-}
-
-// ============================================================================
-// Chatbot Dark Theme
-// ============================================================================
-.pf-v6-theme-dark {
-  .pf-chatbot__footnote {
-    --pf-t--chatbot--footnote--color: var(--pf-t--color--gray--40);
-    --pf-t--chatbot--footnote--color--hover: var(--pf-t--color--gray--30);
-    --pf-t--chatbot--footnote--color--focus: var(--pf-t--color--white);
+    --pf-v6-c-button--BorderRadius: var(--pf-t--global--border--radius--pill);
+    --pf-v6-c-button--FontSize: var(--pf-t--global--font--size--xs);
   }
 }

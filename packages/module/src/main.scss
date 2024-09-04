@@ -15,6 +15,19 @@
 @import './Message/Message';
 @import './Popover/Popover';
 
+:where(:root) {
+  --pf-t--chatbot--icon--fill: var(--pf-t--global--icon--color--subtle);
+  --pf-t--chatbot--icon--fill--hover: var(--pf-t--global--icon--color--regular);
+  --pf-t--chatbot--icon--fill--active: var(--pf-t--global--text--color--regular);
+
+  --pf-t--chatbot--blue-icon--fill: var(--pf-t--global--color--brand--default);
+  --pf-t--chatbot--blue-icon--fill--hover: var(--pf-t--global--color--brand--hover);
+  --pf-t--chatbot--blue-icon--background--color--hover: rgba(224, 240, 255, .5); // --pf-t--color--blue--10 @ 50%
+
+  --pf-t--chatbot--timing-function: cubic-bezier(0.77,0,0.175,1);
+
+}
+
 .ws-full-page-utils {
   bottom: auto !important;
 }

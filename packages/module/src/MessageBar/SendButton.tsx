@@ -4,7 +4,7 @@
 import React from 'react';
 
 // Import PatternFly components
-import { Button, ButtonProps, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 
 import { PaperPlaneIcon } from '@patternfly/react-icons/dist/esm/icons/paper-plane-icon';
 
@@ -23,34 +23,28 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
   tooltipProps,
   ...props
 }: SendButtonProps) => {
-  // Configure tooltip
-  const tooltipSendMessageRef = React.useRef();
 
   return (
-    <>
+    <Tooltip
+      id="pf-chatbot__tooltip--send"
+      content="Send"
+      position={tooltipProps?.position || 'top'}
+      entryDelay={tooltipProps?.entryDelay || 0}
+      exitDelay={tooltipProps?.exitDelay || 0}
+      distance={tooltipProps?.distance || 8}
+      animationDuration={tooltipProps?.animationDuration || 0}
+      {...tooltipProps}
+    >
       <Button
         className={`pf-chatbot__button--send ${className ?? ''}`}
-        variant="plain"
+        variant="link"
         aria-describedby="pf-chatbot__tooltip--send"
         aria-label={props['aria-label'] || 'Send Button'}
-        ref={tooltipSendMessageRef}
         onClick={onClick}
+        icon={<Icon iconSize="xl" isInline><PaperPlaneIcon /></Icon>}
         {...props}
-      >
-        <PaperPlaneIcon />
-      </Button>
-      <Tooltip
-        id="pf-chatbot__tooltip--send"
-        content="Send"
-        triggerRef={tooltipSendMessageRef}
-        position={tooltipProps?.position || 'top'}
-        entryDelay={tooltipProps?.entryDelay || 0}
-        exitDelay={tooltipProps?.exitDelay || 0}
-        distance={tooltipProps?.distance || 8}
-        animationDuration={tooltipProps?.animationDuration || 0}
-        {...tooltipProps}
       />
-    </>
+    </Tooltip>
   );
 };
 

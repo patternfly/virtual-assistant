@@ -2,7 +2,7 @@
 // Chatbot Footer - Message Bar
 // ============================================================================
 import React from 'react';
-import { TextAreaProps } from '@patternfly/react-core';
+import { TextArea, TextAreaProps, Flex, FlexItem } from '@patternfly/react-core';
 import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 
 // Import Chatbot components
@@ -64,9 +64,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   );
 
   return (
-    <div className={`pf-chatbot__message-bar ${className ?? ''}`}>
-      <div className="pf-chatbot__message-bar-input">
-        <AutoTextArea
+    <Flex className={`pf-chatbot__message-bar ${className ?? ''}`} alignItems={{default:'alignItemsCenter'}} justifyContent={{default: 'justifyContentFlexEnd'}} flexWrap={{default:'wrap'}}>
+      <FlexItem flex={{default: 'flex_1'}} className="pf-chatbot__message-bar-input">
+        <TextArea
           ref={textareaRef}
           className="pf-chatbot__message-textarea"
           value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
@@ -76,9 +76,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
           {...props}
         />
-      </div>
+      </FlexItem>
 
-      <div className="pf-chatbot__message-bar-actions">
+      <FlexItem className="pf-chatbot__message-bar-actions">
         {hasAttachButton && <AttachButton onClick={handleAttach} isDisabled={isListeningMessage} />}
         {hasMicrophoneButton && (
           <MicrophoneButton
@@ -87,9 +87,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             onSpeechRecognition={setMessage}
           />
         )}
-        {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
-      </div>
-    </div>
+        <SendButton value={message} onClick={handleSend} />
+      </FlexItem>
+    </Flex>
   );
 };
 

@@ -5,26 +5,8 @@
 // Chatbot Footer
 // ============================================================================
 .pf-chatbot__footer {
-  grid-area: 3 / 1 / 4 / 2;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--pf-t--global--spacer--300);
-  padding: var(--pf-t--global--spacer--400);
+  padding: var(--pf-t--global--spacer--lg);
   background-color: var(--pf-t--chatbot--background);
-
-  // Divider
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    display: block;
-    width: calc(100% - 48px);
-    height: 1px;
-    background-color: var(--pf-t--chatbot--border);
-    transform: translateX(-50%);
-  }
 }
 
 // ============================================================================
@@ -32,7 +14,7 @@
 // ============================================================================
 .pf-chatbot--fullscreen {
   .pf-chatbot__footer {
-    &::before {
+    .pf-v6-c-divider {
       display: none;
     }
   }
@@ -44,7 +26,7 @@
 @media screen and (min-width: 1024px) {
   .pf-chatbot--embedded {
     .pf-chatbot__footer {
-      &::before {
+      .pf-v6-c-divider {
         display: none;
       }
     }

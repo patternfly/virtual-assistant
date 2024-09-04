@@ -5,7 +5,7 @@
 import React from 'react';
 
 // Import Patternfly components
-import { Button, Content, ContentVariants, PopoverProps } from '@patternfly/react-core';
+import { Button, Label, Content, ContentVariants, Flex, PopoverProps } from '@patternfly/react-core';
 
 // Import Patternfly icons
 import { InfoCircleIcon } from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
@@ -106,7 +106,7 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
   );
 
   return (
-    <div className={`pf-chatbot__footnote ${className ?? ''}`} {...props}>
+    <Flex className={`pf-chatbot__footnote ${className ?? ''}`} alignItems={{ default: 'alignItemsCenter' }} justifyContent={{ default: 'justifyContentCenter' }} {...props}>
       {popover && (
         <Popover
           className="pf-chatbot__popover--footnote"
@@ -122,13 +122,13 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
           showClose={false}
           {...popover.popoverProps}
         >
-          <Button variant="plain">
+          <Button variant="link" size="sm">
             {label} <InfoCircleIcon />
           </Button>
         </Popover>
       )}
       {!popover && <Content component={ContentVariants.small}>{label}</Content>}
-    </div>
+    </Flex>
   );
 };
 

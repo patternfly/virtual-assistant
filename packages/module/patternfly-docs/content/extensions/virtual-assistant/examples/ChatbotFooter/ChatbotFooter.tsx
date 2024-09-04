@@ -29,7 +29,7 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   return (
     <ChatbotFooter>
-      <MessageBar onSendMessage={handleSend} hasMicrophoneButton />
+      <MessageBar onSendMessage={handleSend} hasMicrophoneButton hasAttachButton />
       <ChatbotFootnote {...footnoteProps} />
     </ChatbotFooter>
   );

@@ -4,7 +4,7 @@
 import React from 'react';
 
 // Import PatternFly components
-import { Button, ButtonProps, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 
 // Import FontAwesome icons
 import { MicrophoneIcon } from '@patternfly/react-icons/dist/esm/icons/microphone-icon';
@@ -30,8 +30,6 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   tooltipProps,
   ...props
 }: MicrophoneButtonProps) => {
-  // Configure tooltip
-  const tooltipUseMicrophoneRef = React.useRef();
 
   // Microphone
   // --------------------------------------------------------------------------
@@ -83,30 +81,26 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   }
 
   return (
-    <>
+    <Tooltip
+      id="pf-chatbot__tooltip--use-microphone"
+      content={isListening ? 'Stop listening' : 'Use microphone'}
+      position={tooltipProps?.position || 'top'}
+      entryDelay={tooltipProps?.entryDelay || 0}
+      exitDelay={tooltipProps?.exitDelay || 0}
+      distance={tooltipProps?.distance || 8}
+      animationDuration={tooltipProps?.animationDuration || 0}
+      {...tooltipProps}
+    >
       <Button
-        ref={tooltipUseMicrophoneRef}
         variant="plain"
         className={`pf-chatbot__button--microphone ${isListening ? 'pf-chatbot__button--microphone--active' : ''} ${className ?? ''}`}
         aria-describedby="pf-chatbot__tooltip--use-microphone"
         aria-label={props['aria-label'] || 'Microphone Button'}
         onClick={isListening ? stopListening : startListening}
+        icon={<Icon iconSize="xl" isInline><MicrophoneIcon /></Icon>}
         {...props}
-      >
-        <MicrophoneIcon />
-      </Button>
-      <Tooltip
-        id="pf-chatbot__tooltip--use-microphone"
-        content={isListening ? 'Stop listening' : 'Use microphone'}
-        triggerRef={tooltipUseMicrophoneRef}
-        position={tooltipProps?.position || 'top'}
-        entryDelay={tooltipProps?.entryDelay || 0}
-        exitDelay={tooltipProps?.exitDelay || 0}
-        distance={tooltipProps?.distance || 8}
-        animationDuration={tooltipProps?.animationDuration || 0}
-        {...tooltipProps}
       />
-    </>
+    </Tooltip>
   );
 };
 
