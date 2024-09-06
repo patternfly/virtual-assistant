@@ -3,7 +3,7 @@
 // ============================================================================
 import React from 'react';
 
-import { Content, ContentVariants, Card, CardHeader, CardTitle, CardBody } from '@patternfly/react-core';
+import { Content, ContentVariants, Card, CardHeader, CardTitle, CardBody, Flex } from '@patternfly/react-core';
 
 export interface ChatbotWelcomePromptProps extends React.HTMLProps<HTMLDivElement> {
   /** Title for the welcome message*/
@@ -32,14 +32,23 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
   className,
   ...props
 }: ChatbotWelcomePromptProps) => (
-  <div className={`pf-chatbot--layout--welcome ${className ?? ''}`} {...props}>
+  <Flex
+    className={`pf-chatbot--layout--welcome ${className ?? ''}`}
+    direction={{ default: 'column' }}
+    gap={{ default: 'gapLg' }}
+    {...props}
+  >
     <Content component={ContentVariants.h1}>
       <span className="pf-chatbot__hello">{title}</span>
       <br />
       <span className="pf-chatbot__question">{description}</span>
     </Content>
 
-    <div className="pf-chatbot__prompt-suggestions">
+    <Flex
+      className="pf-chatbot__prompt-suggestions"
+      direction={{ default: 'row', lg: 'column' }}
+      gap={{ default: 'gapLg' }}
+    >
       {prompts?.map((prompt) => (
         <Card key={prompt.message} className="pf-chatbot__prompt-suggestion" isClickable>
           <CardHeader
@@ -56,8 +65,8 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
           <CardBody>{prompt.message}</CardBody>
         </Card>
       ))}
-    </div>
-  </div>
+    </Flex>
+  </Flex>
 );
 
 export default ChatbotWelcomePrompt;

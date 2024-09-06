@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { Tooltip, TooltipProps, Dropdown, DropdownProps, MenuToggle, MenuToggleElement } from '@patternfly/react-core';
+import {
+  Tooltip,
+  TooltipProps,
+  Dropdown,
+  DropdownProps,
+  MenuToggle,
+  MenuToggleElement,
+  Icon
+} from '@patternfly/react-core';
 import EllipsisIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
 
 export interface ChatbotHeaderOptionsDropdownProps extends Omit<DropdownProps, 'toggle'> {
@@ -28,7 +36,11 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
         variant="plain"
         aria-label="Chatbot options"
         ref={toggleRef}
-        icon={<EllipsisIcon />}
+        icon={
+          <Icon iconSize="xl" isInline>
+            <EllipsisIcon />
+          </Icon>
+        }
         isExpanded={isOptionsMenuOpen}
         onClick={() => setIsOptionsMenuOpen(!isOptionsMenuOpen)}
       />

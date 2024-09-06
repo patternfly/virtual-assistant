@@ -25,31 +25,32 @@ export const AttachButton: React.FunctionComponent<AttachButtonProps> = ({
   className,
   tooltipProps,
   ...props
-}: AttachButtonProps) => {
-
-  return (
-    <Tooltip
-      id="pf-chatbot__tooltip--attach"
-      content="Attach"
-      position="top"
-      entryDelay={tooltipProps?.entryDelay || 0}
-      exitDelay={tooltipProps?.exitDelay || 0}
-      distance={tooltipProps?.distance || 8}
-      animationDuration={tooltipProps?.animationDuration || 0}
-      {...tooltipProps}
-    >
-      <Button
-        variant="plain"
-        className={`pf-chatbot__button--attach ${className ?? ''}`}
-        aria-describedby="pf-chatbot__tooltip--attach"
-        aria-label={props['aria-label'] || 'Attach Button'}
-        isDisabled={isDisabled}
-        onClick={onClick}
-        icon={<Icon iconSize="xl" isInline><PaperclipIcon /></Icon>}
-        {...props}
-      />
-    </Tooltip>
-  );
-};
+}: AttachButtonProps) => (
+  <Tooltip
+    id="pf-chatbot__tooltip--attach"
+    content="Attach"
+    position="top"
+    entryDelay={tooltipProps?.entryDelay || 0}
+    exitDelay={tooltipProps?.exitDelay || 0}
+    distance={tooltipProps?.distance || 8}
+    animationDuration={tooltipProps?.animationDuration || 0}
+    {...tooltipProps}
+  >
+    <Button
+      variant="plain"
+      className={`pf-chatbot__button--attach ${className ?? ''}`}
+      aria-describedby="pf-chatbot__tooltip--attach"
+      aria-label={props['aria-label'] || 'Attach Button'}
+      isDisabled={isDisabled}
+      onClick={onClick}
+      icon={
+        <Icon iconSize="xl" isInline>
+          <PaperclipIcon />
+        </Icon>
+      }
+      {...props}
+    />
+  </Tooltip>
+);
 
 export default AttachButton;

@@ -71,7 +71,7 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({ children, classN
     <>
       <JumpButton position="top" isHidden={isOverflowing && atTop} onClick={scrollToTop} />
       <div className={`pf-chatbot__messagebox ${className ?? ''}`} ref={messageBoxRef}>
-        <div className="pf-chatbot__messagebox-overflow">{children}</div>
+        <div>{children}</div>
       </div>
       <JumpButton position="bottom" isHidden={isOverflowing && atBottom} onClick={scrollToBottom} />
     </>

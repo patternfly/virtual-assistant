@@ -2,19 +2,15 @@
 // Toggle Chatbot
 // ============================================================================
 .pf-v6-c-button.pf-chatbot__button {
-  --pf-t--chatbot-toggle--background: var(--pf-t--color--black); // ideally, we'd be using semantic tokens for colors here
-  --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--90);
-  --pf-t--chatbot-toggle--color: var(--pf-t--color--white);
-  --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--white);
-  --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--white);
-
   position: fixed;
   inset-block-end: var(--pf-t--global--spacer--md);
-  inset-inline-end: var(--pf-t--global--spacer--md); // these properties replace bottom/right for RTL language support
+  inset-inline-end: var(--pf-t--global--spacer--md);
   background-color: var(--pf-t--chatbot-toggle--background);
   border-radius: var(--pf-t--global--border--radius--pill);
   color: var(--pf-t--chatbot-toggle--color);
-  padding: 0.75rem; // we don't have a token that seems to be the right size for this at this point...
+  padding: var(--pf-t--global--spacer--md);
+  width: 3rem;
+  height: 3rem;
 
   &:hover, &:focus {
     background-color: var(--pf-t--chatbot-toggle--background--hover);
@@ -29,17 +25,3 @@
   svg path:first-child { fill: var(--pf-t--chatbot-toggle--icon--fill); stroke: var(--pf-t--chatbot-toggle--icon--stroke); }
 }
 
-
-// Chatbot Dark Theme
-// ----------------------------------------------------------------------------
-.pf-v6-theme-dark {
-
-  .pf-v6-c-button.pf-chatbot__button{
-    --pf-t--chatbot-toggle--background: var(--pf-t--color--white);
-    --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--10);
-    --pf-t--chatbot-toggle--color: var(--pf-t--color--black);
-    --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--black);
-    --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--black);
-  }
-
-}

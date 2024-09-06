@@ -5,14 +5,14 @@
 import React from 'react';
 
 // Import Patternfly components
-import { Button, Label, Content, ContentVariants, Flex, PopoverProps } from '@patternfly/react-core';
+import { Button, Content, ContentVariants, Flex, PopoverProps } from '@patternfly/react-core';
 
 // Import Patternfly icons
 import { InfoCircleIcon } from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons/dist/esm/icons/external-link-alt-icon';
 
 // Import Chatbot components
-import Popover from '../Popover/Popover';
+import ChatbotPopover from '../ChatbotPopover/ChatbotPopover';
 
 export interface ChatbotFootnoteProps extends React.HTMLProps<HTMLDivElement> {
   /** Label to show for the footnote */
@@ -78,7 +78,7 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
 
   // Define popover footer content
   const popoverFooterContent = (
-    <>
+    <Flex gap={{ default: 'gapSm' }}>
       {popover?.cta && (
         <Button
           variant="secondary"
@@ -102,13 +102,18 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
           {popover.link.label}
         </Button>
       )}
-    </>
+    </Flex>
   );
 
   return (
-    <Flex className={`pf-chatbot__footnote ${className ?? ''}`} alignItems={{ default: 'alignItemsCenter' }} justifyContent={{ default: 'justifyContentCenter' }} {...props}>
+    <Flex
+      className={`pf-chatbot__footnote ${className ?? ''}`}
+      alignItems={{ default: 'alignItemsCenter' }}
+      justifyContent={{ default: 'justifyContentCenter' }}
+      {...props}
+    >
       {popover && (
-        <Popover
+        <ChatbotPopover
           className="pf-chatbot__popover--footnote"
           aria-label={popover.popoverProps?.['aria-label'] || 'More information'}
           isVisible={isVisible}
@@ -125,7 +130,7 @@ export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
           <Button variant="link" size="sm">
             {label} <InfoCircleIcon />
           </Button>
-        </Popover>
+        </ChatbotPopover>
       )}
       {!popover && <Content component={ContentVariants.small}>{label}</Content>}
     </Flex>

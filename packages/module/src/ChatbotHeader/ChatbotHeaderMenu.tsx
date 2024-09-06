@@ -25,11 +25,12 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
         aria-describedby="pf-chatbot__tooltip--toggle-menu"
         onClick={onMenuToggle}
         aria-label="Toggle menu"
-      >
-        <Icon size="lg">
-          <BarsIcon />
-        </Icon>
-      </Button>
+        icon={
+          <Icon size="lg" isInline>
+            <BarsIcon />
+          </Icon>
+        }
+      />
     </Tooltip>
   </SplitItem>
 );

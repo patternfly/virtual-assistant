@@ -24,7 +24,12 @@ export const ChatbotFooter: React.FunctionComponent<ChatbotFooterProps> = ({
   className,
   ...props
 }: ChatbotFooterProps) => (
-  <Flex className={`pf-chatbot__footer ${className ?? ''}`} direction={{ default: 'column' }} rowGap={{ default: 'rowGapMd' }} {...props}>
+  <Flex
+    className={`pf-chatbot__footer ${className ?? ''}`}
+    direction={{ default: 'column' }}
+    rowGap={{ default: 'rowGapMd' }}
+    {...props}
+  >
     <Divider />
     {children}
   </Flex>

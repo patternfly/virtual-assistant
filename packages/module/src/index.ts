@@ -21,6 +21,9 @@ export * from './ChatbotFooter';
 export { default as ChatbotHeader } from './ChatbotHeader';
 export * from './ChatbotHeader';
 
+export { default as ChatbotPopover } from './ChatbotPopover';
+export * from './ChatbotPopover';
+
 export { default as ChatbotToggle } from './ChatbotToggle';
 export * from './ChatbotToggle';
 
@@ -51,8 +54,8 @@ export * from './Message';
 export { default as MessageBar } from './MessageBar';
 export * from './MessageBar';
 
-export { default as Popover } from './Popover';
-export * from './Popover';
+export { default as MessageBox } from './MessageBox';
+export * from './MessageBox';
 
 export { default as PreviewAttachment } from './PreviewAttachment';
 export * from './PreviewAttachment';

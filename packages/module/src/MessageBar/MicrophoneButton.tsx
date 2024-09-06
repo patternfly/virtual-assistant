@@ -30,7 +30,6 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   tooltipProps,
   ...props
 }: MicrophoneButtonProps) => {
-
   // Microphone
   // --------------------------------------------------------------------------
   const [speechRecognition, setSpeechRecognition] = React.useState<SpeechRecognition>();
@@ -97,7 +96,11 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
         aria-describedby="pf-chatbot__tooltip--use-microphone"
         aria-label={props['aria-label'] || 'Microphone Button'}
         onClick={isListening ? stopListening : startListening}
-        icon={<Icon iconSize="xl" isInline><MicrophoneIcon /></Icon>}
+        icon={
+          <Icon iconSize="xl" isInline>
+            <MicrophoneIcon />
+          </Icon>
+        }
         {...props}
       />
     </Tooltip>

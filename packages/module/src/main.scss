@@ -13,9 +13,60 @@
 @import './MessageBar/MessageBar';
 @import './MessageBox/MessageBox';
 @import './Message/Message';
-@import './Popover/Popover';
+@import './ChatbotPopover/ChatbotPopover';
 
 :where(:root) {
+  // ============================================================================
+  // Chatbot Custom Default Tokens
+  // ============================================================================
+
+  --pf-t--chatbot--heading--font-family: var(
+      --pf-v6-c-content--heading--FontFamily,
+      redhatdisplayvf,
+      redhatdisplay,
+      helvetica,
+      arial,
+      sans-serif
+  );
+
+  --pf-t--chatbot--illustration--fill: var(--pf-t--color--red--50);
+  --pf-t--chatbot--code--background: var(--pf-t--color--gray--20);
+  --pf-t--chatbot--jump--background: var(--pf-t--chatbot--background);
+  --pf-t--chatbot--jump--background--hover: var(--pf-t--color--white);
+
+  --pf-t--chatbot-toggle--background: var(--pf-t--color--black);
+  --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--90);
+  --pf-t--chatbot-toggle--color: var(--pf-t--color--white);
+  --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--white);
+  --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--white);
+
+  --pf-t--chatbot--timing-function: cubic-bezier(0.77,0,0.175,1);
+
+  // ============================================================================
+  // Chatbot Custom Dark Theme Tokens
+  // ============================================================================
+  .pf-v6-theme-dark {
+
+    --pf-t--chatbot--illustration--fill: var(--pf-t--color--white);
+    --pf-t--chatbot--code--background: var(--pf-t--color--gray--60);
+    --pf-t--chatbot--jump--background--hover: var(--pf-t--color--black);
+
+    --pf-t--chatbot-toggle--background: var(--pf-t--color--white);
+    --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--10);
+    --pf-t--chatbot-toggle--color: var(--pf-t--color--black);
+    --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--black);
+    --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--black);
+  }
+
+
+  // ============================================================================
+  // Chatbot Default tokens using PF semantic tokens
+  // ============================================================================
+
+  --pf-t--chatbot--font-size: var(--pf-t--global--font--size--md);
+  --pf-t--chatbot--background: var(--pf-t--global--background--color--secondary--default);
+  --pf-t--chatbot--border: var(--pf-t--global--border--color--default);
+
   --pf-t--chatbot--icon--fill: var(--pf-t--global--icon--color--subtle);
   --pf-t--chatbot--icon--fill--hover: var(--pf-t--global--icon--color--regular);
   --pf-t--chatbot--icon--fill--active: var(--pf-t--global--text--color--regular);
@@ -23,8 +74,6 @@
   --pf-t--chatbot--blue-icon--fill: var(--pf-t--global--color--brand--default);
   --pf-t--chatbot--blue-icon--fill--hover: var(--pf-t--global--color--brand--hover);
   --pf-t--chatbot--blue-icon--background--color--hover: rgba(224, 240, 255, .5); // --pf-t--color--blue--10 @ 50%
-
-  --pf-t--chatbot--timing-function: cubic-bezier(0.77,0,0.175,1);
 
 }
 

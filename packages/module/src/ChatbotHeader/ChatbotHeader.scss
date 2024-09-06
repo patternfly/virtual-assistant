@@ -2,60 +2,14 @@
 // Chatbot Header
 // ============================================================================
 .pf-chatbot__header {
-  grid-area: 1 / 1 / 2 / 2;
   position: relative;
-  // display: grid;
-  grid-template-columns: 48px 1fr 48px;
-  align-items: center;
-  justify-content: center;
-  column-gap: var(--pf-t--global--spacer--400);
-  padding: var(--pf-t--global--spacer--400);
   background-color: var(--pf-t--chatbot--background);
-
-  // Divider
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    display: block;
-    width: calc(100% - 48px);
-    height: 1px;
-    background-color: var(--pf-t--chatbot--border);
-    transform: translateX(-50%);
-  }
 
   // Title -or- Brand
   .pf-chatbot__title {
-    grid-area: 1 / 2 / 2 / 3;
-    align-self: center;
-    justify-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-
     img {
       max-height: 40px;
     }
-  }
-
-  .pf-chatbot__actions {
-    display: flex;
-  }
-
-  // Toggle Menu
-  .pf-v6-c-button.pf-chatbot__button--toggle-menu {
-    --pf-v6-c-button--BorderRadius: var(--pf-t--global--border--radius--pill);
-    grid-area: 1 / 1 / 2 / 2;
-  }
-
-  // Toggle Options
-  .pf-v6-c-button.pf-chatbot__button--toggle-options {
-    --pf-v6-c-button--BorderRadius: var(--pf-t--global--border--radius--pill);
-    grid-area: 1 / 3 / 2 / 4;
   }
 }
 
@@ -64,159 +18,46 @@
 // ============================================================================
 .pf-chatbot--fullscreen {
   .pf-chatbot__header {
-    padding-top: 0;
-    padding-bottom: 0;
-    background-color: var(--pf-t--color--white);
-
-    &::after {
-      display: none;
-    }
+    padding-top: var(--pf-t--global--spacer--sm);
+    padding-bottom: var(--pf-t--global--spacer--sm);
+    background-color: var(--pf-t--global--background--color--primary--default);
+  }
+  .pf-chatbot__header__divider {
+    display: none;
   }
 }
 
 // ============================================================================
-// Chatbot Display Mode - Embedded
+// Chatbot Display Mode - Docked
 // ============================================================================
-@media screen and (min-width: 1024px) {
-  .pf-chatbot--embedded {
-    .pf-chatbot__header {
-      padding-top: 0;
-      padding-bottom: 0;
-      background-color: var(--pf-t--color--white);
-
-      &::after {
-        display: none;
-      }
-    }
+.pf-chatbot--docked {
+  .pf-chatbot__header {
+    padding-top: var(--pf-t--global--spacer--sm);
+    padding-bottom: var(--pf-t--global--spacer--sm);
+    background-color: var(--pf-t--chatbot--background);
   }
-}
-
-// ============================================================================
-// Chatbot Dark Theme
-// ============================================================================
-.pf-v6-theme-dark {
-  .pf-chatbot--fullscreen {
-    .pf-chatbot__header {
-      background-color: var(--pf-t--color--gray--90);
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .pf-chatbot--embedded {
-      .pf-chatbot__header {
-        background-color: var(--pf-t--color--gray--90);
-      }
-    }
-  }
-}
-
-// ============================================================================
-// Toggle Chatbot
-// ============================================================================
-.pf-v6-c-button.pf-chatbot__button {
-  --pf-t--chatbot-toggle--background: var(
-    --pf-t--color--black
-  ); // ideally, we'd be using semantic tokens for colors here
-  --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--90);
-  --pf-t--chatbot-toggle--color: var(--pf-t--color--white);
-  --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--white);
-  --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--white);
-
-  position: fixed;
-  bottom: var(--pf-t--global--spacer--md);
-  right: var(--pf-t--global--spacer--md); // should this be on the left in a right-to-left language?
-  background-color: var(--pf-t--chatbot-toggle--background);
-  border-radius: var(--pf-t--global--border--radius--pill);
-  color: var(--pf-t--chatbot-toggle--color);
-  padding: 0.75rem; // we don't have a token that seems to be the right size for this at this point...
-
-  &:hover,
-  &:focus {
-    background-color: var(--pf-t--chatbot-toggle--background--hover);
-  }
-
-  .pf-v6-c-button__icon {
-    display: contents;
-  }
-
-  // Icon
-  svg {
-    width: var(--pf-t--global--spacer--lg);
-    height: var(--pf-t--global--spacer--lg);
-  }
-  svg path:first-child {
-    fill: var(--pf-t--chatbot-toggle--icon--fill);
-    stroke: var(--pf-t--chatbot-toggle--icon--stroke);
-  }
-}
-
-// Chatbot Dark Theme
-// ----------------------------------------------------------------------------
-.pf-v6-theme-dark {
-  .pf-v6-c-button.pf-chatbot__button {
-    --pf-t--chatbot-toggle--background: var(--pf-t--color--white);
-    --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--10);
-    --pf-t--chatbot-toggle--color: var(--pf-t--color--black);
-    --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--black);
-    --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--black);
+  .pf-chatbot__header__divider {
+    display: none;
   }
 }
 
 // ============================================================================
 // Toggle Options
 // ============================================================================
-.pf-chatbot__button--toggle-options.pf-v6-c-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
+.pf-chatbot__button--toggle-options, .pf-chatbot__button--toggle-menu {
+  width: 3rem;
+  height: 3rem;
   border-radius: var(--pf-t--global--border--radius--pill);
-  color: var(--pf-t--chatbot--icon--fill);
+  padding: var(--pf-t--global--spacer--md);
 
-  .pf-v6-c-button__text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
+  .pf-v6-c-button__icon {
+    color: var(--pf-t--chatbot--icon--fill);
   }
 
-  .pf-v6-c-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .pf-v6-c-icon__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: calc(var(--pf-t--global--icon--size--100) * 2); // 24px icon
-      height: auto;
-      fill: var(--pf-t--chatbot--icon--fill);
+  // Interactive states
+  &:hover, &:focus {
+    .pf-v6-c-button__icon {
+      color: var(--pf-t--chatbot--icon--fill--hover);
     }
-  }
-
-  &:hover,
-  &:focus {
-    .pf-v6-c-icon__content {
-      svg {
-        fill: var(--pf-t--chatbot--icon--fill--hover);
-      }
-    }
-  }
-}
-
-// ============================================================================
-// Options Dropdown
-// ============================================================================
-.pf-chatbot__options.pf-v6-c-menu {
-  .pf-v6-c-menu__item-text {
-    display: flex;
-    align-items: center;
-    gap: var(--pf-t--global--spacer--200);
   }
 }

@@ -2,7 +2,7 @@
 // Chatbot Footer - Message Bar
 // ============================================================================
 import React from 'react';
-import { TextArea, TextAreaProps, Flex, FlexItem } from '@patternfly/react-core';
+import { TextAreaProps, Flex, FlexItem } from '@patternfly/react-core';
 import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 
 // Import Chatbot components
@@ -64,9 +64,14 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   );
 
   return (
-    <Flex className={`pf-chatbot__message-bar ${className ?? ''}`} alignItems={{default:'alignItemsCenter'}} justifyContent={{default: 'justifyContentFlexEnd'}} flexWrap={{default:'wrap'}}>
-      <FlexItem flex={{default: 'flex_1'}} className="pf-chatbot__message-bar-input">
-        <TextArea
+    <Flex
+      className={`pf-chatbot__message-bar ${className ?? ''}`}
+      alignItems={{ default: 'alignItemsCenter' }}
+      justifyContent={{ default: 'justifyContentFlexEnd' }}
+      flexWrap={{ default: 'wrap' }}
+    >
+      <FlexItem flex={{ default: 'flex_1' }} className="pf-chatbot__message-bar-input">
+        <AutoTextArea
           ref={textareaRef}
           className="pf-chatbot__message-textarea"
           value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
@@ -87,7 +92,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             onSpeechRecognition={setMessage}
           />
         )}
-        <SendButton value={message} onClick={handleSend} />
+        {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
       </FlexItem>
     </Flex>
   );

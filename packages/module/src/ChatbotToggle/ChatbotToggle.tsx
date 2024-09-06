@@ -5,7 +5,7 @@
 import React from 'react';
 
 // Import PatternFly components
-import { Button, ButtonProps, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 
 // Import Chatbot components
@@ -61,7 +61,11 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         aria-label={toggleButtonLabel || `${toolTipLabel} toggle`}
         onClick={onToggleChatbot}
         aria-expanded={isChatbotVisible}
-        icon={icon}
+        icon={
+          <Icon iconSize="xl" isInline>
+            {icon}
+          </Icon>
+        }
         {...props}
       >
         {/* Notification dot placeholder */}

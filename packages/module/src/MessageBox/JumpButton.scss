@@ -3,21 +3,22 @@
 // ============================================================================
 .pf-chatbot__jump {
   position: absolute;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 0;
+  inset-inline-start: 50%;
+  width: 3rem;
+  height: 3rem;
+  padding: var(--pf-t--global--spacer--md);
+  border-radius: var(--pf-t--global--border--radius--pill);
+
   background-color: var(--pf-t--chatbot--jump--background);
   border: 1px solid var(--pf-t--chatbot--border);
   box-shadow: var(--pf-t--global--box-shadow--sm);
   color: var(--pf-t--chatbot--icon--fill);
-  font-size: var(--pf-t--global--font--size--300);
   transform: translate3d(-50%, 0, 0);
   transition:
-    background-color var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--100),
-    box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--100),
-    transform var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--200),
-    opacity var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--200);
+    background-color var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--sm),
+    box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--sm),
+    transform var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--md),
+    opacity var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--md);
   z-index: var(--pf-t--global--z-index--2xl);
 
   &:hover,
@@ -28,7 +29,7 @@
   }
 
   &--top {
-    top: var(--pf-t--global--spacer--300);
+    inset-block-start: var(--pf-t--global--spacer--md);
 
     &--hidden {
       transform: translate3d(-50%, -8px, 0);
@@ -38,7 +39,7 @@
   }
 
   &--bottom {
-    bottom: var(--pf-t--global--spacer--300);
+    inset-block-end: var(--pf-t--global--spacer--md);
 
     &--hidden {
       transform: translate3d(-50%, 8px, 0);

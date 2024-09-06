@@ -52,16 +52,25 @@ export const BasicDemo: React.FunctionComponent = () => {
         <ChatbotHeaderOptionsDropdown>
           <DropdownGroup label="Display mode">
             <DropdownList>
-              <DropdownItem value="Overlay" key="switchDisplayOverlay">
-                <OutlinedWindowRestoreIcon />
+              <DropdownItem
+                value={ChatbotDisplayMode.default}
+                key="switchDisplayOverlay"
+                icon={<OutlinedWindowRestoreIcon aria-hidden />}
+              >
                 <span>Overlay</span>
               </DropdownItem>
-              <DropdownItem value="Dock to window" key="switchDisplayDock">
-                <OpenDrawerRightIcon />
+              <DropdownItem
+                value={ChatbotDisplayMode.docked}
+                key="switchDisplayDock"
+                icon={<OpenDrawerRightIcon aria-hidden />}
+              >
                 <span>Dock to window</span>
               </DropdownItem>
-              <DropdownItem value="Fullscreen" key="switchDisplayFullscreen">
-                <ExpandIcon />
+              <DropdownItem
+                value={ChatbotDisplayMode.fullscreen}
+                key="switchDisplayFullscreen"
+                icon={<ExpandIcon aria-hidden />}
+              >
                 <span>Fullscreen</span>
               </DropdownItem>
             </DropdownList>

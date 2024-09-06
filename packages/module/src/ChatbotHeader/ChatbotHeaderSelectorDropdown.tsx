@@ -26,7 +26,6 @@ export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeade
   const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
     <Tooltip className="pf-chatbot__tooltip" content="Chatbot selector" position="bottom" {...tooltipProps}>
       <MenuToggle
-        className="pf-chatbot__button--toggle-options"
         variant="secondary"
         aria-label="Chatbot selector"
         ref={toggleRef}

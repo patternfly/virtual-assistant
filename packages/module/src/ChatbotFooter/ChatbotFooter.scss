@@ -5,7 +5,6 @@
 // Chatbot Footer
 // ============================================================================
 .pf-chatbot__footer {
-  padding: var(--pf-t--global--spacer--lg);
   background-color: var(--pf-t--chatbot--background);
 }
 
@@ -14,6 +13,8 @@
 // ============================================================================
 .pf-chatbot--fullscreen {
   .pf-chatbot__footer {
+    padding: var(--pf-t--global--spacer--sm) 12rem;
+
     .pf-v6-c-divider {
       display: none;
     }
@@ -21,14 +22,14 @@
 }
 
 // ============================================================================
-// Chatbot Display Mode - Embedded
+// Chatbot Display Mode - Docked
 // ============================================================================
-@media screen and (min-width: 1024px) {
-  .pf-chatbot--embedded {
-    .pf-chatbot__footer {
-      .pf-v6-c-divider {
-        display: none;
-      }
+.pf-chatbot--docked {
+  .pf-chatbot__footer {
+    padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--lg);
+
+    .pf-v6-c-divider {
+      display: none;
     }
   }
 }

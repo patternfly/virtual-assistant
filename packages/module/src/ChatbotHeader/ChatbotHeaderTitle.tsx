@@ -13,7 +13,7 @@ export const ChatbotHeaderTitle: React.FunctionComponent<ChatbotHeaderTitleProps
   className,
   children
 }: ChatbotHeaderTitleProps) => (
-  <SplitItem isFilled className={`pf-chatbot__title ${className}`}>
+  <SplitItem isFilled className={`pf-chatbot__title ${className || ''}`}>
     {children}
   </SplitItem>
 );

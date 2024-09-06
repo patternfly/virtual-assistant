@@ -2,75 +2,19 @@
 // Chatbot Layout - Chat - Welcome
 // ============================================================================
 .pf-chatbot--layout--welcome {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  height: 100%;
-  gap: var(--pf-t--global--spacer--400);
-  padding-block-end: var(--pf-t--global--spacer--400);
+  padding-block-end: var(--pf-t--global--spacer--lg);
 
   .pf-v6-c-content--h1 {
-    --pf-v6-c-content--h1--FontSize: var(--pf-t--global--font--size--3xl);
-    --pf-v6-c-content--h1--FontWeight: 600;
+    --pf-v6-c-content--h1--FontSize: var(--pf-t--global--font--size--3xl); // larger than any of our semantic tokens
+    --pf-v6-c-content--h1--FontWeight: var(--pf-t--global--font--weight--400);
     --pf-v6-c-content--h1--MarginBlockEnd: 0;
   }
 
   .pf-chatbot__hello {
-    color: var(--pf-t--color--blue--50);
+    color: var(--pf-t--global--color--brand--default);
   }
 
   .pf-chatbot__question {
-    color: var(--pf-t--color--gray--60);
-  }
-
-  .pf-chatbot__prompt-suggestions {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-
-    .pf-v6-c-card {
-      width: 100%;
-    }
-  }
-}
-
-// ============================================================================
-// Chatbot Display Mode - Fullscreen
-// ============================================================================
-.pf-chatbot--fullscreen {
-  .pf-chatbot--layout--welcome {
-    .pf-chatbot__prompt-suggestions {
-      flex-direction: row;
-    }
-  }
-}
-
-// ============================================================================
-// Chatbot Display Mode - Embedded
-// ============================================================================
-@media screen and (min-width: 1024px) {
-  .pf-chatbot--embedded {
-    .pf-chatbot--layout--welcome {
-      .pf-chatbot__prompt-suggestions {
-        flex-direction: row;
-      }
-    }
-  }
-}
-
-// ============================================================================
-// Chatbot Dark Theme
-// ============================================================================
-.pf-v6-theme-dark {
-  .pf-chatbot--layout--welcome {
-    .pf-chatbot__hello {
-      color: var(--pf-t--color--blue--30);
-    }
-
-    .pf-chatbot__question {
-      color: var(--pf-t--color--gray--30);
-    }
+    color: var(--pf-t--global--text--color--subtle);
   }
 }
