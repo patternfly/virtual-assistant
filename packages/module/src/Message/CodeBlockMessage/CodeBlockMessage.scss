@@ -3,23 +3,23 @@
 // ============================================================================
 .pf-chatbot__message-code-block {
   width: 100%;
-  background-color: rgb(40, 43, 46); // match syntax highlighting
-  border-radius: 6px;
-  color: var(--pf-t--color--white);
+  background-color: var(--pf-t--color--gray--80); // same in light + dark theme
+  color: var(--pf-t--color--white); // same in light + dark theme
+  border-radius: var(--pf-t--global--border--radius--small);
 
   // Code block
   .pf-v6-c-code-block {
-    --pf-t--global--border--color--default: rgba(255, 255, 255, 0.2);
+    --pf-t--global--border--color--default: var(--pf-t--global--border--color--default);
     background-color: inherit;
   }
 
   // Code block header
   .pf-v6-c-code-block__header {
-    --pf-v6-c-code-block__header--PaddingBlockStart: var(--pf-t--global--spacer--200);
-    --pf-v6-c-code-block__header--PaddingBlockEnd: var(--pf-t--global--spacer--200);
-    --pf-v6-c-code-block__header--PaddingInlineStart: var(--pf-t--global--spacer--300);
-    --pf-v6-c-code-block__header--PaddingInlineEnd: var(--pf-t--global--spacer--300);
-    color: var(--pf-t--color--white);
+    --pf-v6-c-code-block__header--PaddingBlockStart: var(--pf-t--global--spacer--sm);
+    --pf-v6-c-code-block__header--PaddingBlockEnd: var(--pf-t--global--spacer--sm);
+    --pf-v6-c-code-block__header--PaddingInlineStart: var(--pf-t--global--spacer--md);
+    --pf-v6-c-code-block__header--PaddingInlineEnd: var(--pf-t--global--spacer--md);
+    color: var(--pf-t--global--text--color--inverse);
 
     .pf-v6-c-code-block__actions {
       width: 100%;
@@ -39,7 +39,7 @@
     }
 
     .pf-chatbot__button--copy.pf-v6-c-button {
-      color: var(--pf-t--color--gray--30);
+      color: var(--pf-t--color--white);
 
       &:hover,
       &:focus {
@@ -50,10 +50,10 @@
 
   // Code block content
   .pf-v6-c-code-block__content {
-    --pf-v6-c-code-block__content--PaddingBlockStart: var(--pf-t--global--spacer--300);
-    --pf-v6-c-code-block__content--PaddingBlockEnd: var(--pf-t--global--spacer--300);
-    --pf-v6-c-code-block__content--PaddingInlineStart: var(--pf-t--global--spacer--300);
-    --pf-v6-c-code-block__content--PaddingInlineEnd: var(--pf-t--global--spacer--300);
+    --pf-v6-c-code-block__content--PaddingBlockStart: var(--pf-t--global--spacer--md);
+    --pf-v6-c-code-block__content--PaddingBlockEnd: var(--pf-t--global--spacer--md);
+    --pf-v6-c-code-block__content--PaddingInlineStart: var(--pf-t--global--spacer--md);
+    --pf-v6-c-code-block__content--PaddingInlineEnd: var(--pf-t--global--spacer--md);
     font-size: var(--pf-t--global--font--size--sm);
 
     pre,

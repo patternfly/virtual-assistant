@@ -62,7 +62,7 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         onClick={onToggleChatbot}
         aria-expanded={isChatbotVisible}
         icon={
-          <Icon iconSize="xl" isInline>
+          <Icon isInline>
             {icon}
           </Icon>
         }

@@ -3,6 +3,9 @@
 .pf-chatbot__messagebox {
   height: 100%;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--pf-v6-l-flex--spacer--row--base);
 }
 
 
