@@ -61,11 +61,7 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         aria-label={toggleButtonLabel || `${toolTipLabel} toggle`}
         onClick={onToggleChatbot}
         aria-expanded={isChatbotVisible}
-        icon={
-          <Icon isInline>
-            {icon}
-          </Icon>
-        }
+        icon={<Icon isInline>{icon}</Icon>}
         {...props}
       >
         {/* Notification dot placeholder */}
