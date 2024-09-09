@@ -29,6 +29,9 @@ ChatbotHeaderTitle,
 ChatbotHeaderOptionsDropdown,
 ChatbotHeaderSelectorDropdown
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import {
+ChatbotDisplayMode
+} from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
