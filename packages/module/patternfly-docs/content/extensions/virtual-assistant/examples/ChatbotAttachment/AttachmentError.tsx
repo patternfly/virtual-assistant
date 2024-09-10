@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, AlertActionCloseButton } from '@patternfly/react-core';
 
-export const BasicDemo: React.FunctionComponent = () => (
+export const AttachmentErrorExample: React.FunctionComponent = () => (
   <Alert
     variant="danger"
     // eslint-disable-next-line no-console

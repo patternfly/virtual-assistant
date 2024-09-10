@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from '@patternfly/react-core';
-import { PreviewAttachment } from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import { AttachmentEdit } from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 
-export const BasicDemo: React.FunctionComponent = () => {
+export const AttachmentEditModalExample: React.FunctionComponent = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleModalToggle = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
@@ -12,13 +12,14 @@ export const BasicDemo: React.FunctionComponent = () => {
   return (
     <>
       <Button onClick={handleModalToggle}>Launch modal</Button>
-      <PreviewAttachment
+      <AttachmentEdit
         code="I am a code snippet"
         fileName="test.yaml"
         handleModalToggle={handleModalToggle}
         isModalOpen={isModalOpen}
-        onDismiss={() => null}
-        onEdit={() => null}
+        onCancel={() => null}
+        // eslint-disable-next-line no-console
+        onSave={(_event, code) => console.log(`The new code is "${code}"`)}
       />
     </>
   );

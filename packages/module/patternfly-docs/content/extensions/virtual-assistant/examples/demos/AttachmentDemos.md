@@ -5,7 +5,7 @@ section: extensions
 subsection: Chat bots / AI
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Virtual assistant
+id: Chatbot attachment
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
 source: react-demos
 sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/demos/demos.md
@@ -19,19 +19,24 @@ import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/di
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
+import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
+import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
+import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
+import AttachmentIcon from './AttachmentIcon.svg';
+import { useDropzone } from 'react-dropzone';
 
 # Demos
 
-### Basic example
+### Attach via upload button in message bar
 
-A blank example of the virtual assistant body.
-
-```js file="./VirtualAssistantDemo.tsx" isFullscreen
+```js file="./ChatbotAttachment.tsx" isFullscreen
 
 ```
 
-### Theme sensitive SVG demo
+### Attach via menu of options in message bar
 
-```js file="./IncludingAThemeSensitiveSVG.tsx"
+```js file="./ChatbotAttachmentMenu.tsx" isFullscreen
 
 ```

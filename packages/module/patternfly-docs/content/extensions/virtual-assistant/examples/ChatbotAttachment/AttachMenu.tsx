@@ -44,7 +44,7 @@ const uploadMenuItems = [
   </DropdownList>
 ];
 
-export const BasicDemo: React.FunctionComponent = () => {
+export const AttachmentMenuExample: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [userFacingMenuItems, setUserFacingMenuItems] = React.useState<React.ReactNode>([]);
 
@@ -95,39 +95,33 @@ export const BasicDemo: React.FunctionComponent = () => {
   };
 
   return (
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      <AttachMenu
-        filteredItems={userFacingMenuItems}
-        isOpen={isOpen}
-        onOpenChange={(isOpen) => setIsOpen(isOpen)}
-        onOpenChangeKeys={['Escape']}
-        // eslint-disable-next-line no-console
-        onSelect={(_ev, value) => console.log('selected', value)}
-        handleTextInputChange={onTextChange}
-        popperProps={{ direction: 'up', distance: '8' }}
-        searchInputPlaceholder="Search cluster resources..."
-        toggle={(toggleRef) => (
-          <Button
-            style={{
-              alignItems: 'center',
-              borderRadius: '50%',
-              display: 'flex',
-              height: '48px',
-              justifyContent: 'center',
-              padding: '0',
-              width: '48px',
-              lineHeight: '1rem'
-            }}
-            ref={toggleRef}
-            onClick={onToggleClick}
-            icon={<img src={PaperclipIcon} alt="Add an attachment" />}
-          />
-        )}
-      />
-    </div>
+    <AttachMenu
+      filteredItems={userFacingMenuItems}
+      isOpen={isOpen}
+      onOpenChange={(isOpen) => setIsOpen(isOpen)}
+      onOpenChangeKeys={['Escape']}
+      // eslint-disable-next-line no-console
+      onSelect={(_ev, value) => console.log('selected', value)}
+      handleTextInputChange={onTextChange}
+      popperProps={{ direction: 'up', distance: '8' }}
+      searchInputPlaceholder="Search cluster resources..."
+      toggle={(toggleRef) => (
+        <Button
+          style={{
+            alignItems: 'center',
+            borderRadius: '50%',
+            display: 'flex',
+            height: '48px',
+            justifyContent: 'center',
+            padding: '0',
+            width: '48px',
+            lineHeight: '1rem'
+          }}
+          ref={toggleRef}
+          onClick={onToggleClick}
+          icon={<img src={PaperclipIcon} alt="Add an attachment" />}
+        />
+      )}
+    />
   );
 };

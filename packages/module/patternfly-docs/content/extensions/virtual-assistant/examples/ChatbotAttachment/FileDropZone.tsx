@@ -9,7 +9,7 @@ interface readFile {
   loadError?: DOMException;
 }
 
-export const BasicDemo: React.FunctionComponent = () => {
+export const DropzoneExample: React.FunctionComponent = () => {
   const [currentFiles, setCurrentFiles] = React.useState<File[]>([]);
   const [readFileData, setReadFileData] = React.useState<readFile[]>([]);
 
