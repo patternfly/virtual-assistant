@@ -5,7 +5,6 @@ import { FormGroup } from '@patternfly/react-core/dist/dynamic/FormGroup';
 import { Stack } from '@patternfly/react-core/dist/dynamic/Stack';
 
 export const FileDetailsLabelExample: React.FunctionComponent = () => {
-
   const labelState = React.useState('plain');
 
   return (
@@ -21,11 +20,10 @@ export const FileDetailsLabelExample: React.FunctionComponent = () => {
           // eslint-disable-next-line no-console
           onClose={() => console.log('clicked close button!')}
           // eslint-disable-next-line no-console
-          {...(labelState === 'clickable' && {onClick: () => console.log('clicked entire button!')})}
-          {...(labelState === 'loading' && {isLoading: true})}
+          {...(labelState === 'clickable' && { onClick: () => console.log('clicked entire button!') })}
+          {...(labelState === 'loading' && { isLoading: true })}
         />
       </div>
     </Stack>
-
   );
-}
+};
