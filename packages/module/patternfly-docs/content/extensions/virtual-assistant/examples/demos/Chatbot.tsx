@@ -107,7 +107,7 @@ const welcomePrompts = [
   }
 ];
 
-export const BasicDemo: React.FunctionComponent = () => {
+export const ChatbotDemo: React.FunctionComponent = () => {
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
 
   const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
