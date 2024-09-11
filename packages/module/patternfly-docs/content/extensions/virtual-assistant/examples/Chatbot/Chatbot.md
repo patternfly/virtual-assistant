@@ -20,7 +20,8 @@ propComponents:
     'MessageBar',
     'ChatbotFootnote',
     'MessageBox',
-    'Message'
+    'Message',
+    'MessageBarWithAttachMenuProps'
   ]
 ---
 

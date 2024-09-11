@@ -18,6 +18,13 @@ export const FileDetailsLabelExample: React.FunctionComponent = () => {
           id="plain"
         />
         <Radio
+          isChecked={variant === 'closable'}
+          onChange={() => setVariant('closable')}
+          name="basic-inline-radio"
+          label="Closable"
+          id="closable"
+        />
+        <Radio
           isChecked={variant === 'clickable'}
           onChange={() => setVariant('clickable')}
           name="basic-inline-radio"
@@ -36,7 +43,7 @@ export const FileDetailsLabelExample: React.FunctionComponent = () => {
         <FileDetailsLabel
           fileName="auth-operator.yml"
           // eslint-disable-next-line no-console
-          onClose={() => console.log('clicked close button!')}
+          {...(variant === 'closable' && { onClose: () => console.log('clicked close button!') })}
           // eslint-disable-next-line no-console
           {...(variant === 'clickable' && { onClick: () => console.log('clicked entire button!') })}
           {...(variant === 'loading' && { isLoading: true })}

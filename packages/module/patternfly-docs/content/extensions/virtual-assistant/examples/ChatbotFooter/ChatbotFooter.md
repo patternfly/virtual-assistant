@@ -18,7 +18,8 @@ propComponents:
     'ChatbotFootnotePopover',
     'ChatbotFootnotePopoverCTA',
     'ChatbotFootnotePopoverBannerImage',
-    'ChatbotFootnotePopoverLink'
+    'ChatbotFootnotePopoverLink',
+    'MessageBarWithAttachMenuProps'
   ]
 ---
 
