@@ -7,17 +7,30 @@ import { Stack } from '@patternfly/react-core/dist/dynamic/Stack';
 export const FileDetailsLabelExample: React.FunctionComponent = () => {
   const [variant, setVariant] = React.useState('plain');
 
-  const onChange = (e, newVariant) => {
-    console.log(newVariant);
-    setVariant(newVariant);
-  }
-
   return (
     <Stack hasGutter>
       <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Variant">
-        <Radio isChecked={variant === 'plain'} onChange={() => setVariant('plain')} name="basic-inline-radio" label="Plain" id="plain" />
-        <Radio isChecked={variant === 'clickable'} onChange={() => setVariant('clickable')} name="basic-inline-radio" label="Clickable" id="clickable" />
-        <Radio isChecked={variant === 'loading'} onChange={() => setVariant('loading')} name="basic-inline-radio" label="Loading" id="loading" />
+        <Radio
+          isChecked={variant === 'plain'}
+          onChange={() => setVariant('plain')}
+          name="basic-inline-radio"
+          label="Plain"
+          id="plain"
+        />
+        <Radio
+          isChecked={variant === 'clickable'}
+          onChange={() => setVariant('clickable')}
+          name="basic-inline-radio"
+          label="Clickable"
+          id="clickable"
+        />
+        <Radio
+          isChecked={variant === 'loading'}
+          onChange={() => setVariant('loading')}
+          name="basic-inline-radio"
+          label="Loading"
+          id="loading"
+        />
       </FormGroup>
       <div className="pf-chatbot__file-details-example">
         <FileDetailsLabel
