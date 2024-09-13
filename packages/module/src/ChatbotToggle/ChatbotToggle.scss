@@ -5,9 +5,9 @@
   position: fixed;
   inset-block-end: var(--pf-t--global--spacer--md);
   inset-inline-end: var(--pf-t--global--spacer--md);
-  background-color: var(--pf-t--chatbot-toggle--background);
+  background-color: var(--pf-t--global--background--color--inverse--default);
   border-radius: var(--pf-t--global--border--radius--pill);
-  color: var(--pf-t--chatbot-toggle--color);
+  --pf-v6-c-button__icon--Color: var(--pf-t--chatbot-toggle--color);
   padding: var(--pf-t--global--spacer--md);
   width: 3rem;
   height: 3rem;
@@ -20,8 +20,11 @@
     display: contents;
   }
 
+  .pf-v6-theme-dark {
+    --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--20);
+  }
+
   // Icon
   svg { width: var(--pf-t--global--spacer--lg); height: var(--pf-t--global--spacer--lg); }
-  svg path:first-child { fill: var(--pf-t--chatbot-toggle--icon--fill); stroke: var(--pf-t--chatbot-toggle--icon--stroke); }
 }
 
