@@ -20,10 +20,6 @@
     display: contents;
   }
 
-  .pf-v6-theme-dark {
-    --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--20);
-  }
-
   // Icon
   svg { width: var(--pf-t--global--spacer--lg); height: var(--pf-t--global--spacer--lg); }
 }
