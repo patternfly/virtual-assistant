@@ -10,7 +10,7 @@ id: Chatbot attachment
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: ['AttachMenu', 'AttachmentEdit', 'FileDetails', 'FileDetailsLabel', 'FileDropZone', 'PreviewAttachment']
+propComponents: ['AttachMenu', 'AttachmentEdit', 'FileDetails', 'FileDetailsLabel', 'FileDropZone', 'PreviewAttachment', 'SourceDetailsMenuItem']
 ---
 
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';

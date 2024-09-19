@@ -38,7 +38,7 @@ import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-dra
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
-### Basic example
+### Chatbot header with controls
 
 ```js file="./ChatbotHeaderBasic.tsx"
 

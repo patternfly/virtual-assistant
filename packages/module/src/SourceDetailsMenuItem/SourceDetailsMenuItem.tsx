@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Icon, Flex, Stack, StackItem } from '@patternfly/react-core';
 
-interface SourceDetailsMenuItemProps {
+export interface SourceDetailsMenuItemProps extends React.HTMLProps<HTMLDivElement> {
   /** Icon */
   icon: React.ReactNode;
   /** Name of source */
@@ -10,8 +10,13 @@ interface SourceDetailsMenuItemProps {
   type?: string;
 }
 
-export const SourceDetailsMenuItem = ({ icon, name, type }: PropsWithChildren<SourceDetailsMenuItemProps>) => (
-  <Flex className="pf-chatbot__source-details" gap={{ default: 'gapSm' }}>
+export const SourceDetailsMenuItem: React.FunctionComponent<SourceDetailsMenuItemProps> = ({
+  icon,
+  name,
+  type,
+  ...props
+}: SourceDetailsMenuItemProps) => (
+  <Flex className="pf-chatbot__source-details" gap={{ default: 'gapSm' }} {...props}>
     <Flex
       justifyContent={{ default: 'justifyContentCenter' }}
       alignItems={{ default: 'alignItemsCenter' }}
