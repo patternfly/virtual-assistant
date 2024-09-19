@@ -20,5 +20,5 @@ export const ChatbotWelcomePromptExample: React.FunctionComponent = () => {
       description="How may I help you today?"
       prompts={welcomePrompts}
     />
-  )
-}
+  );
+};

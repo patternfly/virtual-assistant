@@ -3,7 +3,7 @@
 // ============================================================================
 import React from 'react';
 
-import { Content, ContentVariants, Card, CardHeader, CardTitle, CardBody, Flex } from '@patternfly/react-core';
+import { Content, ContentVariants, Card, CardHeader, CardTitle, CardBody } from '@patternfly/react-core';
 
 export interface ChatbotWelcomePromptProps extends React.HTMLProps<HTMLDivElement> {
   /** Title for the welcome message*/
@@ -32,10 +32,8 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
   className,
   ...props
 }: ChatbotWelcomePromptProps) => (
-  <Flex
+  <div
     className={`pf-chatbot--layout--welcome ${className ?? ''}`}
-    direction={{ default: 'column' }}
-    gap={{ default: 'gapLg' }}
     {...props}
   >
     <Content component={ContentVariants.h1}>
@@ -44,25 +42,23 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
       <span className="pf-chatbot__question">{description}</span>
     </Content>
 
-    <Flex className="pf-chatbot__prompt-suggestions" direction={{ default: 'column' }} gap={{ default: 'gapLg' }}>
-      {prompts?.map((prompt) => (
-        <Card key={prompt.message} className="pf-chatbot__prompt-suggestion" isClickable>
+    <div className="pf-chatbot__prompt-suggestions" >
+      {prompts?.map((prompt, index) => (
+        <Card key={`welcome-prompt-${index}`} className="pf-chatbot__prompt-suggestion" isClickable>
           <CardHeader
             selectableActions={{
-              // eslint-disable-next-line no-console
               onClickAction: prompt.onClick,
-              selectableActionId: prompt.message,
-              selectableActionAriaLabelledby: `welcome-prompt-${prompt.message}`,
-              name: `welcome-prompt-${prompt.message}`
+              selectableActionId: `welcome-prompt-input-${index}`,
+              selectableActionAriaLabelledby: `welcome-prompt-title-${index}`
             }}
           >
-            <CardTitle>{prompt.title}</CardTitle>
+            <CardTitle id={`welcome-prompt-title-${index}`}>{prompt.title}</CardTitle>
           </CardHeader>
           <CardBody>{prompt.message}</CardBody>
         </Card>
       ))}
-    </Flex>
-  </Flex>
+    </div>
+  </div>
 );
 
 export default ChatbotWelcomePrompt;
