@@ -46,6 +46,8 @@ By default the message bar enables uploading files. Setting the `hasAttachButton
 ```
 
 ### Message bar with attach menu appended to attach button
+Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/extensions/chat-bots--ai/chatbot-attachment) documentation for more features.
+
 ```js file="./ChatbotMessageBarAttach.tsx"
 
 ```
