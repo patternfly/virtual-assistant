@@ -28,7 +28,7 @@ import { ChatbotFooter, ChatbotFootnote } from '@patternfly/virtual-assistant/di
 import { MessageBar } from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
-
+import { useDropzone } from 'react-dropzone';
 
 ### Footnote with popover
 A footnote can be placed in a chatbot footer to display any legal disclaimers or information about the chatbot.
