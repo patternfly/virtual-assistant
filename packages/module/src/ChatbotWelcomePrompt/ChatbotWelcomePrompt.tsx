@@ -32,17 +32,14 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
   className,
   ...props
 }: ChatbotWelcomePromptProps) => (
-  <div
-    className={`pf-chatbot--layout--welcome ${className ?? ''}`}
-    {...props}
-  >
+  <div className={`pf-chatbot--layout--welcome ${className ?? ''}`} {...props}>
     <Content component={ContentVariants.h1}>
       <span className="pf-chatbot__hello">{title}</span>
       <br />
       <span className="pf-chatbot__question">{description}</span>
     </Content>
 
-    <div className="pf-chatbot__prompt-suggestions" >
+    <div className="pf-chatbot__prompt-suggestions">
       {prompts?.map((prompt, index) => (
         <Card key={`welcome-prompt-${index}`} className="pf-chatbot__prompt-suggestion" isClickable>
           <CardHeader
