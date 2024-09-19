@@ -51,7 +51,7 @@ export const DropzoneExample: React.FunctionComponent = () => {
   };
 
   return (
-    <FileDropZone onFileDrop={handleFileDrop}>
+    <FileDropZone onFileDrop={handleFileDrop} displayMode="fullscreen">
       <div className="pf-chatbot__file-drop-zone-example">
         Content that shows when no dragging is happening (drag an item here to see the drop zone)
       </div>
