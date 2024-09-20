@@ -1,8 +1,8 @@
 ---
 # Sidenav top-level section
 # should be the same for all markdown files
-section: extensions
-subsection: Chat bots / AI
+section: PatternFly AI
+subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
 id: Chatbot
@@ -22,7 +22,9 @@ propComponents: [
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
 
-### Chatbot container in various display modes
+### Container
+
+The `Chatbot` component is the chatbot container which adapts to various display modes, as well as both light and dark themes.
 
 ```js file="./ChatbotContainer.tsx" isFullscreen
 
@@ -30,8 +32,8 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 
 ### Chatbot content and message box
 
-The `ChatbotContent` component is the container that is placed within the `Chatbot` between the [ChatbotHeader](/extensions/chat-bots--ai/chatbot-header) and [ChatbotFooter](/extensions/chat-bots--ai/chatbot-footer).
-It usually contains a `ChatbotMessageBox` for displaying messages.
+The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/extensions/chat-bots--ai/chatbot-header) and [`<ChatbotFooter>`](/extensions/chat-bots--ai/chatbot-footer).
+It usually contains a `<ChatbotMessageBox>` for displaying messages.
 
 ```noLive
 <Chatbot>
@@ -45,9 +47,9 @@ It usually contains a `ChatbotMessageBox` for displaying messages.
 </Chatbot> 
 ```
 
-### Chatbot welcome prompt
+### Welcome prompt
 
-The welcome prompt fills the message box before the user has input their first message to the chatbot. It can contain pre determined prompts
+The welcome prompt fills the message box before the user has input their first message to the chatbot. This message should welcome users to the chatbot experience and encourage them to interact. It may be helpful to display predetermined prompts as a starting point.
 
 ```js file="./ChatbotWelcomePrompt.tsx"
 

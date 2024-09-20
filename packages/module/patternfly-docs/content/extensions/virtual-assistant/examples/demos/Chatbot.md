@@ -1,8 +1,8 @@
 ---
 # Sidenav top-level section
 # should be the same for all markdown files
-section: extensions
-subsection: Chat bots / AI
+section: PatternFly AI
+subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
 id: Chatbot
@@ -48,7 +48,7 @@ import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/ou
 import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
 
-### Basic example
+### Basic chatbot
 
 ```js file="./Chatbot.tsx" isFullscreen
 
