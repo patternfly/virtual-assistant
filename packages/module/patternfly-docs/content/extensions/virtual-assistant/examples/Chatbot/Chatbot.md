@@ -1,7 +1,7 @@
 ---
 # Sidenav top-level section
 # should be the same for all markdown files
-section: PatternFly AI
+section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
@@ -32,7 +32,7 @@ The `Chatbot` component is the chatbot container which adapts to various display
 
 ### Chatbot content and message box
 
-The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/extensions/chat-bots--ai/chatbot-header) and [`<ChatbotFooter>`](/extensions/chat-bots--ai/chatbot-footer).
+The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) and [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer).
 It usually contains a `<ChatbotMessageBox>` for displaying messages.
 
 ```noLive

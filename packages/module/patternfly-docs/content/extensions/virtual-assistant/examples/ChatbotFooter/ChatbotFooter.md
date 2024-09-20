@@ -1,7 +1,7 @@
 ---
 # Sidenav top-level section
 # should be the same for all markdown files
-section: PatternFly AI
+section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
@@ -46,7 +46,7 @@ By default the message bar enables uploading files. Setting the `hasAttachButton
 ```
 
 ### Message bar with attach menu appended to attach button
-Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/extensions/chat-bots--ai/chatbot-attachment) documentation for more features.
+Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/patternfly-ai/chatbot/chatbot-attachment) documentation for more features.
 
 ```js file="./ChatbotMessageBarAttach.tsx"
 

@@ -8,10 +8,10 @@ module.exports = (sourceMD, sourceProps) => {
 
   // Parse md files
   const contentBase = path.join(__dirname, './content');
-  sourceMD(path.join(contentBase, 'extensions/**/*.md'), 'extensions');
+  sourceMD(path.join(contentBase, 'extensions/**/*.md'), 'PatternFly-AI');
 
   /**
-    If you want to parse content from node_modules instead of providing a relative/absolute path, 
+    If you want to parse content from node_modules instead of providing a relative/absolute path,
     you can do something similar to this:
     const extensionPath = require
       .resolve('@patternfly/react-log-viewer/package.json')
