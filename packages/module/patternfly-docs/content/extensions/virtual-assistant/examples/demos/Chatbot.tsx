@@ -161,13 +161,13 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
-  const dummyRef = React.useRef<HTMLDivElement>(null);
+  const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
 
   // Autu-scrolls to the latest message
   React.useEffect(() => {
     // don't scroll the first load - in this demo, we know we start with two messages
     if (messages.length > 2) {
-      dummyRef.current?.scrollIntoView({ behavior: 'smooth' });
+      scrollToBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
@@ -360,15 +360,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
                   {messages.map((message) => (
                     <Message key={message.name} {...message} />
                   ))}
-                  <div ref={dummyRef}></div>
+                  <div ref={scrollToBottomRef}></div>
                 </MessageBox>
               </ChatbotContent>
               <ChatbotFooter>
-                <MessageBar
-                  onSendMessage={handleSend}
-                  hasMicrophoneButton
-                  isSendButtonDisabled={isSendButtonDisabled}
-                />
+                <MessageBar onSendMessage={handleSend} hasMicrophoneButton isSendButtonDisabled={isSendButtonDisabled} />
                 <ChatbotFootnote {...footnoteProps} />
               </ChatbotFooter>
             </>

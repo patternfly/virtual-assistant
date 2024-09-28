@@ -54,6 +54,19 @@ import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
 ### Basic chatbot
 
+The demonstrated features in this demo include:
+- The [`<ChatbotToggle>`](/patternfly-ai/chatbot/chatbot-toggle) being able to toggle to the [`<Chatbot>`](/patternfly-ai/chatbot/chatbot) container.
+- A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built subcomponents laid out, including a `<ChatbotHeaderTitle>` which changes its presentation depending on the display mode.
+- The ability to swap display modes via the `<ChatbotHeaderOptionsDropdown>`
+- A `<ChatbotContent>` and [`<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) components are housing: 
+  1. an implemented `<ChatbotWelcomePrompt>`
+  2. an initial user [`<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions](patternfly-ai/chatbot/chatbot-messages#messages-with-feedback-response-actions)
+  3. logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
+- A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) housing a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` housing the implementation of:
+  1. [speech to text](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-to-text)
+  2. sending a message to the chatbot
+  3. receiving a response from a backend AI tool with a loading message state.
+
 ```js file="./Chatbot.tsx" isFullscreen
 
 ```

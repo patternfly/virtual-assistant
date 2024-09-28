@@ -49,7 +49,7 @@ It usually contains a `<ChatbotMessageBox>` for displaying messages.
 
 ### Welcome prompt
 
-The welcome prompt fills the message box before the user has input their first message to the chatbot. This message should welcome users to the chatbot experience and encourage them to interact. It may be helpful to display predetermined prompts as a starting point.
+The welcome prompt can fill the message box before the user has input their first message to the chatbot. This message should welcome users to the chatbot experience and encourage them to interact. It may be helpful to display predetermined prompts as a starting point.
 
 ```js file="./ChatbotWelcomePrompt.tsx"
 

@@ -24,7 +24,7 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({ children, classN
       const { scrollTop, scrollHeight, clientHeight } = element;
 
       setAtTop(scrollTop === 0);
-      setAtBottom(Math.round(scrollTop) + Math.round(clientHeight) >= Math.round(scrollHeight));
+      setAtBottom(Math.round(scrollTop) + Math.round(clientHeight) >= Math.round(scrollHeight) - 1); // rounding means it could be within a pixel of the bottom
     }
   }, []);
 

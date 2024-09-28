@@ -13,7 +13,7 @@ import TextMessage from './TextMessage/TextMessage';
 import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
 import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions';
 
-export interface MessageProps {
+export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Role of the user sending the message */
   role: 'user' | 'bot';
   /** Message content */
@@ -22,6 +22,8 @@ export interface MessageProps {
   name?: string;
   /** Avatar src for the user */
   avatar?: string;
+  /** Alt text placed on the avatar */
+  avatarAltText?: string;
   /** Timestamp for the message */
   timestamp?: string;
   /** Set this to true if message is being loaded */
@@ -55,7 +57,9 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   attachmentName,
   onAttachmentClick,
   onAttachmentClose,
-  actions
+  actions,
+  avatarAltText,
+  ...props
 }: MessageProps) => {
   // Configure default values
 
@@ -76,8 +80,8 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   };
 
   return (
-    <div className={`pf-chatbot__message pf-chatbot__message--${role}`}>
-      <Avatar src={avatar ?? DEFAULTS[role].avatar} alt={`Profile picture of ${role}`} />
+    <div className={`pf-chatbot__message pf-chatbot__message--${role}`} {...props}>
+      <Avatar src={avatar ?? DEFAULTS[role].avatar} alt={avatarAltText || `Profile picture of ${role}`} />
       <div className="pf-chatbot__message-contents">
         <div className="pf-chatbot__message-meta">
           <span className="pf-chatbot__message-name">{name}</span>

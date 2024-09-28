@@ -5,7 +5,7 @@ section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Chatbot attachment
+id: Chatbot attachments
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
 source: react
 # If you use typescript, the name of the interface to display props for
