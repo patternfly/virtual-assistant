@@ -49,10 +49,9 @@ In Safari and Chrome, you will see a microphone button in the message bar if the
 
 ### Message bar with attach menu appended to attach button
 
-Depending on the implementation, the event handlers attached to the `attachMenuItems` within the `<MessageBar>`'s `attachMenuProps` prop could trigger a variety of side effects. For example, selecting a menu item could open a modal of more options, could navigate to a particular page, or could drill down into a sub menu.
+You can change the behavior of the attach button to open a menu, rather than the default browser-based file attachment window. This menu can display different actions related to attachments. <br/>
 <br/>
-<br/>
-Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/patternfly-ai/chatbot/chatbot-attachment) documentation for more features.
+Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/patternfly-ai/chatbot/chatbot-attachments) documentation for more features.
 
 ```js file="./ChatbotMessageBarAttach.tsx"
 

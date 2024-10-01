@@ -40,12 +40,18 @@ import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-dra
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
-### Overall structure
+### Header sections
 
-The header of the chatbot has two primary sections, the `<ChatbotHeaderMain>` and the `<ChatbotHeaderActions>`.
-- The `<ChatbotHeaderMain>` can have an optional menu on the left to toggle open and closed a chat history menu. It can also have a `<ChatbotHeaderTitle>` which handles the layout and display of a title or image at different responsive sizes.
-- The `<ChatbotHeaderActions>` can be passed any controls to the header. Specifically, the `<ChatbotHeaderSelectorDropdown>` is a standard PatternFly dropdown styled to match the chatbot styles. The `<ChatbotHeaderOptionsDropdown>` is a dropdown with a kebab toggle. It is intended to be used to update the settings of the chatbot such as the display mode.
+The chatbot header is persistent, and contains the title for the chatbot window, as well as any related controls and actions.
+The `<ChatbotHeader>` has 2 sections:
+- `<ChatbotHeaderMain>`: Contains the title and an optional menu toggle
+  - `<ChatbotHeaderTitle>` handles the layout and display of a title or image at different responsive sizes.
+  - `<ChatbotHeaderMenu>` (optional) is placed on the left side of the header and used to toggle a chat history menu.
+- `<ChatbotHeaderActions>`: Contains any additional controls.
+  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that is matches the chatbot styles.
+  - The `<ChatbotHeaderOptionsDropdown>` component is a dropdown with a menu toggle that is intended to be used to update chatbot settings (like the display mode).
 
+Your `<ChatbotHeader>` code structure should look like this:
 ```noLive
 <ChatbotHeader>
   <ChatbotHeaderMain>
@@ -59,13 +65,13 @@ The header of the chatbot has two primary sections, the `<ChatbotHeaderMain>` an
 </ChatbotHeader>
 ```
 
-### Chatbot header with controls
+### Header controls
 
 ```js file="./ChatbotHeaderBasic.tsx"
 
 ```
 
-### Chatbot header title
+### Header title
 
 By default, HeaderTitle renders whatever children are passed in. Optionally, you can pass in a displayMode and props showOnEmbedded, showOnDocked, showOnFullScreen, and/or showOnDefault to render content conditionally.
 

@@ -49,8 +49,7 @@ It usually contains a `<ChatbotMessageBox>` for displaying messages.
 
 ### Welcome prompt
 
-The welcome prompt can fill the message box before the user has input their first message to the chatbot. This message should welcome users to the chatbot experience and encourage them to interact. It may be helpful to display predetermined prompts as a starting point.
-
+To introduce users to the chatbot experience, a welcome prompt can fill the message box before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the chatbot experience and encourage them to interact.
 ```js file="./ChatbotWelcomePrompt.tsx"
 
 ```
