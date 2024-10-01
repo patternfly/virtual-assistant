@@ -49,7 +49,7 @@ In Safari and Chrome, you will see a microphone button in the message bar if the
 
 ### Message bar with attach menu appended to attach button
 
-You can change the behavior of the attach button to open a menu, rather than the default browser-based file attachment window. This menu can display different actions related to attachments. <br/>
+You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments. <br/>
 <br/>
 Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/patternfly-ai/chatbot/chatbot-attachments) documentation for more features.
 
