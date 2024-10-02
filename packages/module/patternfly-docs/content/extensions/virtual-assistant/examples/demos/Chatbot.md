@@ -60,7 +60,7 @@ This demo displays a basic chatbot, which includes:
 3. The ability to swap display modes via `<ChatbotHeaderOptionsDropdown>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) with:
 - A `<ChatbotWelcomePrompt>`
-- An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](patternfly-ai/chatbot/chatbot-messages#messages-with-feedback-response-actions)
+- An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
 - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
 - [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-to-text)

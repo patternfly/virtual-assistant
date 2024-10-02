@@ -50,10 +50,10 @@ import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 This demo displays unique attachment features, including:
 1. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) components that contain:
 - An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages/#user-messages) with an attachment.
-- The ability to preview or edit the attachment using the [`<PreviewAttachment>` and `<AttachmentEdit>` components.](patternfly-ai/chatbot/chatbot-messages/#messages-with-attachments)
+- The ability to preview or edit the attachment using the [`<PreviewAttachment>` and `<AttachmentEdit>` components.](/patternfly-ai/chatbot/chatbot-messages#messages-with-attachments)
 - A PatternFly [`<Alert>`](/components/alert) to provide success or error messages for attachments.
 2. `<ChatbotContent>` and `<ChatbotFooter>`, wrapped in a `<FileDropZone>` component to support drag and drop attachments. The footer also:
-- Displays attached files, using a [`<FileDetailsLabel>`](patternfly-ai/chatbot/chatbot-attachments#interactive-chip-representing-uploading-file) component.
+- Displays attached files, using a [`<FileDetailsLabel>`](/patternfly-ai/chatbot/chatbot-attachments#interactive-chip-representing-uploading-file) component.
 - Demonstrates custom handling of file uploads, using the `handleAttach` in `<MessageBar>` and `handleFileDrop` in `<FileDropZone>`.
 
 This demo includes broader chatbot features, including:
@@ -64,8 +64,7 @@ This demo includes broader chatbot features, including:
 - A `<ChatbotWelcomePrompt>`
 - The ability to preview or edit the attachment.
 - An initial bot message
-- Logic for enabling auto-scrolling to the most recent message, whenever a new message is sent or received using `scrollToBottomRef`
-5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>`
+5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootnote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>`
 
 ```js file="./ChatbotAttachment.tsx" isFullscreen
 
@@ -75,10 +74,10 @@ This demo includes broader chatbot features, including:
 
 This demo displays unique attachment features, including:
 1. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) components that contain:
-- The ability to preview or edit the attachment using the [`<PreviewAttachment>` and `<AttachmentEdit>` components.](patternfly-ai/chatbot/chatbot-messages/#messages-with-attachments)
+- The ability to preview or edit the attachment using the [`<PreviewAttachment>` and `<AttachmentEdit>` components.](/patternfly-ai/chatbot/chatbot-messages#messages-with-attachments)
 - A PatternFly [`<Alert>`](/components/alert) to provide success or error messages for attachments.
 2. `<ChatbotContent>` and `<ChatbotFooter>`, wrapped in a `<FileDropZone>` component to support drag and drop attachments. The footer also:
-- Displays attached files, using a [`<FileDetailsLabel>`](patternfly-ai/chatbot/chatbot-attachments#interactive-chip-representing-uploading-file) component.
+- Displays attached files, using a [`<FileDetailsLabel>`](/patternfly-ai/chatbot/chatbot-attachments/#interactive-chip-representing-uploading-file) component.
 - Demonstrates custom handling of file uploads, using the `handleAttach` in `<MessageBar>` and `handleFileDrop` in `<FileDropZone>`.
 - Demonstrates how to define the `attachMenuProps` in the `<MessageBar>` to create a menu that allows users to select the source of an item they're attaching.
 
@@ -86,10 +85,8 @@ This demo includes broader chatbot features, including:
 1. A [`<ChatbotToggle>`](/patternfly-ai/chatbot/chatbot-toggle) that controls the [`<Chatbot>`](/patternfly-ai/chatbot/chatbot) container.
 2. A `<ChatbotContent>` and [`<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) with:
 - A `<ChatbotWelcomePrompt>`
-- The ability to preview or edit the attachment.
 - An initial user message and initial bot message
-- Logic for enabling auto-scrolling to the most recent message, whenever a new message is sent or received using `scrollToBottomRef`
-3. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>`
+3. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootnote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>`
 
 ```js file="./ChatbotAttachmentMenu.tsx" isFullscreen
 
