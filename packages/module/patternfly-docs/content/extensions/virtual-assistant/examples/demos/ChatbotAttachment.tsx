@@ -175,11 +175,7 @@ export const BasicDemo: React.FunctionComponent = () => {
         <ChatbotHeader>
           <ChatbotHeaderMain>
             <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
-            <ChatbotHeaderTitle
-              displayMode={displayMode}
-              showOnFullScreen={horizontalLogo}
-              showOnDefault={iconLogo}
-            />
+            <ChatbotHeaderTitle displayMode={displayMode} showOnFullScreen={horizontalLogo} showOnDefault={iconLogo} />
           </ChatbotHeaderMain>
           <ChatbotHeaderActions>
             <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
@@ -229,10 +225,7 @@ export const BasicDemo: React.FunctionComponent = () => {
                   {error}
                 </ChatbotAlert>
               )}
-              <ChatbotWelcomePrompt
-                title="Hello, Chatbot User"
-                description="How may I help you today?"
-              />
+              <ChatbotWelcomePrompt title="Hello, Chatbot User" description="How may I help you today?" />
               {messages.map((message) => (
                 <Message key={message.name} {...message} />
               ))}
@@ -244,11 +237,7 @@ export const BasicDemo: React.FunctionComponent = () => {
                 <FileDetailsLabel fileName={file.name} isLoading={isLoadingFile} onClose={onClose} />
               </div>
             )}
-            <MessageBar
-              onSendMessage={handleSend}
-              hasAttachButton
-              handleAttach={handleAttach}
-            />
+            <MessageBar onSendMessage={handleSend} hasAttachButton handleAttach={handleAttach} />
             <ChatbotFootnote label="Lightspeed uses AI. Check for mistakes." />
           </ChatbotFooter>
         </FileDropZone>
