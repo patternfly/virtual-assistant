@@ -364,7 +364,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
                 </MessageBox>
               </ChatbotContent>
               <ChatbotFooter>
-                <MessageBar onSendMessage={handleSend} hasMicrophoneButton isSendButtonDisabled={isSendButtonDisabled} />
+                <MessageBar
+                  onSendMessage={handleSend}
+                  hasMicrophoneButton
+                  isSendButtonDisabled={isSendButtonDisabled}
+                />
                 <ChatbotFootnote {...footnoteProps} />
               </ChatbotFooter>
             </>
