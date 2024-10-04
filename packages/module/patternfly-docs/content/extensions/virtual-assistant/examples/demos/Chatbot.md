@@ -66,6 +66,7 @@ This demo displays a basic chatbot, which includes:
 - [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-to-text)
 - Sending a message to the chatbot.
 - Receiving a response from a backend AI tool with a loading message state.
+6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history-nav) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
 ```js file="./Chatbot.tsx" isFullscreen
 

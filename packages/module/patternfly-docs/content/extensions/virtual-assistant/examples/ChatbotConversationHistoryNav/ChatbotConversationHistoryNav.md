@@ -49,7 +49,7 @@ It changes based on the displayMode of the parent Chatbot:
 - Default and docked are on top of the content and have a PatternFly backdrop between the drawer panel and drawer content
 - Fullscreen and embedded are inline with the drawer content
 
-These states can be viewed in the main chatbot demo.
+These states can be viewed in the [main chatbot demo](/patternfly-ai/chatbot/chatbot/react-demos#basic-chatbot).
 
 ### Drawer with search and "new chat" button
 
