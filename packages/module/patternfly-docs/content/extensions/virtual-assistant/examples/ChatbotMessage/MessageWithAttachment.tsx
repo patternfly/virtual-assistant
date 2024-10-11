@@ -3,6 +3,7 @@ import React from 'react';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
+import userAvatar from './user_avatar.jpg';
 
 export const AttachmentMenuExample: React.FunctionComponent = () => {
   const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
@@ -14,6 +15,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       <Message
         name="User"
         role="user"
+        avatar={userAvatar}
         content="Here is an uploaded file"
         attachmentName="auth-operator.yml"
         attachmentId="1"

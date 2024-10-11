@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import patternflyAvatar from './patternfly_avatar.jpg';
 
 export const AttachmentMenuExample: React.FunctionComponent = () => (
   <Message
     name="Bot"
     role="bot"
+    avatar={patternflyAvatar}
     content="Example content with updated timestamp text"
     timestamp="1 hour ago"
     actions={{

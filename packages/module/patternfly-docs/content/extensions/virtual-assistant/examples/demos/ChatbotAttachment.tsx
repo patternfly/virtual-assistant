@@ -27,6 +27,8 @@ import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg'
 import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
 import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
+import userAvatar from '../ChatbotMessage/user_avatar.jpg';
+import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
 
 interface ModalData {
   code: string;
@@ -51,6 +53,7 @@ export const BasicDemo: React.FunctionComponent = () => {
       role: 'user',
       content: "I'm referring to this attachment for added context in our conversation.",
       name: 'User',
+      avatar: userAvatar,
       attachmentName: 'auth-operator.yml',
       attachmentId: '1',
       onAttachmentClose,
@@ -63,6 +66,7 @@ export const BasicDemo: React.FunctionComponent = () => {
     {
       role: 'bot',
       content: 'Great, I can reference this attachment throughout our conversation.',
+      avatar: patternflyAvatar,
       name: 'Bot'
     }
   ];

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import patternflyAvatar from './patternfly_avatar.jpg';
 
 export const AttachmentMenuExample: React.FunctionComponent = () => {
   const onSetPage = (_event: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
@@ -13,6 +13,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       <Message
         name="Bot"
         role="bot"
+        avatar={patternflyAvatar}
         content="Example with sources"
         sources={{
           sources: [
@@ -38,6 +39,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       <Message
         name="Bot"
         role="bot"
+        avatar={patternflyAvatar}
         content="Example with very long sources"
         sources={{
           sources: [
@@ -58,6 +60,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       <Message
         name="Bot"
         role="bot"
+        avatar={patternflyAvatar}
         content="Example with only one source"
         sources={{
           sources: [
@@ -73,6 +76,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       <Message
         name="Bot"
         role="bot"
+        avatar={patternflyAvatar}
         content="Example with sources that include a title and link"
         sources={{
           sources: [
@@ -92,6 +96,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       <Message
         name="Bot"
         role="bot"
+        avatar={patternflyAvatar}
         content="Example with link-only sources (not recommended)"
         sources={{
           sources: [

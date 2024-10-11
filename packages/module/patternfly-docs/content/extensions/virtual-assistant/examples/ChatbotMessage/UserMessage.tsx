@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import userAvatar from './user_avatar.jpg';
 import customImage from './custom_user_img.jpeg';
 
 export const AttachmentMenuExample: React.FunctionComponent = () => {
@@ -19,7 +20,7 @@ Here is an inline code - \`() => void\``;
         timestamp="1 hour ago"
         avatar={customImage}
       />
-      <Message name="User" role="user" content={markdown} />
+      <Message name="User" role="user" content={markdown} avatar={userAvatar} />
     </>
   );
 };

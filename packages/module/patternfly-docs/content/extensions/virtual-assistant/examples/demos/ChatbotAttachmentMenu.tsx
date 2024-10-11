@@ -14,6 +14,8 @@ import { Divider, DropdownGroup, DropdownItem, DropdownList, DropEvent } from '@
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
+import userAvatar from '../ChatbotMessage/user_avatar.jpg';
+import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
@@ -68,12 +70,14 @@ const messages: MessageProps[] = [
   {
     role: 'user',
     content: 'Hello, can you give me an example of what you can do?',
-    name: 'User'
+    name: 'User',
+    avatar: userAvatar
   },
   {
     role: 'bot',
     content: 'I sure can!',
-    name: 'Bot'
+    name: 'Bot',
+    avatar: patternflyAvatar
   }
 ];
 

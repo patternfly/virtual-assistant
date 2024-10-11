@@ -42,6 +42,8 @@ import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-dra
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
+import userAvatar from '../ChatbotMessage/user_avatar.jpg';
+import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
 
 # Demos
 

@@ -30,6 +30,8 @@ import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg'
 import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
 import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
+import userAvatar from '../ChatbotMessage/user_avatar.jpg';
+import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -93,12 +95,14 @@ const initialMessages: MessageProps[] = [
   {
     role: 'user',
     content: 'Hello, can you give me an example of what you can do?',
-    name: 'User'
+    name: 'User',
+    avatar: userAvatar
   },
   {
     role: 'bot',
     content: markdown,
     name: 'Bot',
+    avatar: patternflyAvatar,
     actions: {
       // eslint-disable-next-line no-console
       positive: { onClick: () => console.log('Good response') },
@@ -191,12 +195,13 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     // we can't use structuredClone since messages contains functions, but we can't mutate
     // items that are going into state or the UI won't update correctly
     messages.forEach((message) => newMessages.push(message));
-    newMessages.push({ role: 'user', content: message, name: 'User' });
+    newMessages.push({ role: 'user', content: message, name: 'User', avatar: userAvatar });
     newMessages.push({
       role: 'bot',
       content: 'API response goes here',
       name: 'bot',
-      isLoading: true
+      isLoading: true,
+      avatar: patternflyAvatar
     });
     setMessages(newMessages);
 
@@ -212,6 +217,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         content: 'API response goes here',
         name: 'bot',
         isLoading: false,
+        avatar: patternflyAvatar,
         actions: {
           // eslint-disable-next-line no-console
           positive: { onClick: () => console.log('Good response') },

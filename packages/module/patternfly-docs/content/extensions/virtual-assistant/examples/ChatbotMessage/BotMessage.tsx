@@ -1,6 +1,6 @@
 import React from 'react';
-
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import patternflyAvatar from './patternfly_avatar.jpg';
 
 export const AttachmentMenuExample: React.FunctionComponent = () => {
   const markdown = `
@@ -35,9 +35,15 @@ export default MessageLoading;
 `;
   return (
     <>
-      <Message name="Bot" role="bot" content="Example content with updated timestamp text" timestamp="1 hour ago" />
-      <Message name="Bot" role="bot" content={markdown} />
-      <Message name="Bot" role="bot" content="Example content" isLoading />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content="Example content with updated timestamp text"
+        timestamp="1 hour ago"
+      />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={markdown} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content="Example content" isLoading />
     </>
   );
 };
