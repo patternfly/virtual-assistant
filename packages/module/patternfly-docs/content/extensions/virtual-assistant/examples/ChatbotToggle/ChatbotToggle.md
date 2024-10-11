@@ -21,9 +21,9 @@ import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotTog
 
 ```
 
-### Custom closed icon 
+### Custom toggle icon 
 
-A custom icon can be passed to the toggle. It's recommended that an SVG which uses `fill="currentColor"` be used to allow for the image to be visible in both light and dark theme.
+A custom icon can be passed to the toggle. To ensure the icon is visible in both light and dark themes, use an SVG image and set `fill="currentColor"`.
 
 ```js file="./CustomClosedIcon.tsx" isFullscreen
 
