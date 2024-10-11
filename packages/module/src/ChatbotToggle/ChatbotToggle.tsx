@@ -21,6 +21,8 @@ export interface ChatbotToggleProps extends ButtonProps {
   onToggleChatbot?: () => void;
   /** Accessible label for the toggle button */
   toggleButtonLabel?: string;
+  /** An image displayed in the chatbot toggle when it is closed */
+  closedToggleIcon?: () => JSX.Element;
 }
 
 const ChatIcon = () => (
@@ -48,10 +50,12 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
   onToggleChatbot,
   tooltipProps,
   toggleButtonLabel,
+  closedToggleIcon: ClosedToggleIcon,
   ...props
 }: ChatbotToggleProps) => {
   // Configure icon
-  const icon = isChatbotVisible ? <AngleDownIcon /> : <ChatIcon />;
+  const closedIcon = ClosedToggleIcon ? <ClosedToggleIcon /> : <ChatIcon />;
+  const icon = isChatbotVisible ? <AngleDownIcon /> : closedIcon;
 
   return (
     <Tooltip content={toolTipLabel} {...tooltipProps}>

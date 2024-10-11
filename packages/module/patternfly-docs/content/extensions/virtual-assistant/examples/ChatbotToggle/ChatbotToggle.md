@@ -20,3 +20,11 @@ import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotTog
 ```js file="./ChatbotToggleBasic.tsx" isFullscreen
 
 ```
+
+### Custom closed icon 
+
+
+
+```js file="./CustomClosedIcon.tsx" isFullscreen
+
+```
