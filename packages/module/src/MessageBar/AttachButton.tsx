@@ -55,7 +55,6 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
           variant="plain"
           ref={innerRef}
           className={`pf-chatbot__button--attach ${className ?? ''}`}
-          aria-describedby="pf-chatbot__tooltip--attach"
           aria-label={props['aria-label'] || 'Attach Button'}
           isDisabled={isDisabled}
           onClick={onClick ?? open}

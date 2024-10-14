@@ -25,7 +25,6 @@ const JumpButton: React.FunctionComponent<JumpButtonProps> = ({ position, isHidd
         variant="plain"
         className={`pf-chatbot__jump pf-chatbot__jump--${position} ${isHidden && `pf-chatbot__jump--${position}--hidden`}`}
         aria-label={`Jump ${position} button`}
-        aria-describedby={`pf-chatbot__tooltip--jump-${position}`}
         onClick={onClick}
       >
         <Icon iconSize="xl" isInline>

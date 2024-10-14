@@ -36,7 +36,6 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
     <Button
       className={`pf-chatbot__button--send ${className ?? ''}`}
       variant="link"
-      aria-describedby="pf-chatbot__tooltip--send"
       aria-label={props['aria-label'] || 'Send Button'}
       onClick={onClick}
       icon={

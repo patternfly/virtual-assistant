@@ -25,7 +25,6 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
       <Button
         className="pf-chatbot__button--toggle-menu"
         variant="plain"
-        aria-describedby="pf-chatbot__tooltip--toggle-menu"
         onClick={onMenuToggle}
         aria-label={menuAriaLabel}
         icon={

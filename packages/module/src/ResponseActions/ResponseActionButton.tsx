@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 
 export interface ResponseActionButtonProps {
-  /** Aria-label for the button */
+  /** Aria-label for the button. Defaults to the value of the tooltipConent if none provided */
   ariaLabel?: string;
   /** Icon for the button */
   icon: React.ReactNode;
@@ -40,8 +40,7 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
     <Button
       variant="plain"
       className={`pf-chatbot__button--response-action ${className ?? ''}`}
-      aria-describedby={`pf-chatbot__tooltip-response-action-${tooltipContent}`}
-      aria-label={ariaLabel}
+      aria-label={ariaLabel || tooltipContent}
       icon={
         <Icon isInline size="lg">
           {icon}

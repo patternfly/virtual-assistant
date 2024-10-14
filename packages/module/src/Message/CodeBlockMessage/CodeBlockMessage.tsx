@@ -54,7 +54,6 @@ const CodeBlockMessage = ({ children, className, ...props }: JSX.IntrinsicElemen
           aria-label="Copy code button"
           variant="plain"
           className="pf-chatbot__button--copy"
-          aria-describedby={tooltipID}
           onClick={(event) => handleCopy(event, children)}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
