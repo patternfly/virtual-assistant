@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 
 export interface ResponseActionButtonProps {
-  /** Aria-label for the button. Defaults to the value of the tooltipConent if none provided */
+  /** Aria-label for the button. Defaults to the value of the tooltipContent if none provided */
   ariaLabel?: string;
   /** Icon for the button */
   icon: React.ReactNode;
