@@ -13,6 +13,9 @@ import TextMessage from './TextMessage/TextMessage';
 import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
 import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions';
 import SourcesCard, { SourcesCardProps } from '../SourcesCard';
+import ListItemMessage from './ListMessage/ListItemMessage';
+import UnorderedListMessage from './ListMessage/UnorderedListMessage';
+import OrderedListMessage from './ListMessage/OrderedListMessage';
 
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Unique id for message */
@@ -108,7 +111,16 @@ export const Message: React.FunctionComponent<MessageProps> = ({
             {isLoading ? (
               <MessageLoading />
             ) : (
-              <Markdown components={{ p: TextMessage, code: CodeBlockMessage }} remarkPlugins={[remarkGfm]}>
+              <Markdown
+                components={{
+                  p: TextMessage,
+                  code: CodeBlockMessage,
+                  ul: UnorderedListMessage,
+                  ol: OrderedListMessage,
+                  li: ListItemMessage
+                }}
+                remarkPlugins={[remarkGfm]}
+              >
                 {content}
               </Markdown>
             )}

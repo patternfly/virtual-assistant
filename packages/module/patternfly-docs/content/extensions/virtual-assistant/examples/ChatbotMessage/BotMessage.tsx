@@ -33,6 +33,21 @@ export default MessageLoading;
 
 ~~~
 `;
+
+  const orderedList = `
+  Here is an ordered list:
+
+  1. Item 1
+  2. Item 2
+  3. Item 3`;
+
+  const unorderedList = `
+  Here is an unordered list:
+
+  * Item 1
+  * Item 2
+  * Item 3`;
+
   return (
     <>
       <Message
@@ -43,6 +58,8 @@ export default MessageLoading;
         timestamp="1 hour ago"
       />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={markdown} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={orderedList} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={unorderedList} />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content="Example content" isLoading />
     </>
   );
