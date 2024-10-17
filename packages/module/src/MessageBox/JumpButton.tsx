@@ -27,7 +27,7 @@ const JumpButton: React.FunctionComponent<JumpButtonProps> = ({ position, isHidd
         aria-label={`Jump ${position} button`}
         onClick={onClick}
       >
-        <Icon iconSize="xl" isInline>
+        <Icon iconSize="lg" isInline>
           {position === 'top' ? <ArrowUpIcon /> : <ArrowDownIcon />}
         </Icon>
       </Button>

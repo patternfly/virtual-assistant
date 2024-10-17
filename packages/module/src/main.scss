@@ -39,8 +39,6 @@
 
   --pf-t--chatbot--illustration--fill: var(--pf-t--color--red--50);
   --pf-t--chatbot--code--background: var(--pf-t--color--gray--20);
-  --pf-t--chatbot--jump--background: var(--pf-t--chatbot--background);
-  --pf-t--chatbot--jump--background--hover: var(--pf-t--color--white);
 
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--70);
 
@@ -76,7 +74,6 @@
 :where(.pf-v6-theme-dark) {
   --pf-t--chatbot--illustration--fill: var(--pf-t--color--white);
   --pf-t--chatbot--code--background: var(--pf-t--color--gray--60);
-  --pf-t--chatbot--jump--background--hover: var(--pf-t--color--black);
 
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--20);
 
