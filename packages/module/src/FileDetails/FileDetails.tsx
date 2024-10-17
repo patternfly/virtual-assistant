@@ -921,7 +921,15 @@ export const extensionToLanguage = {
   'rst.txt': 'reStructuredText',
   wisp: 'wisp',
   prg: 'xBase',
-  prw: 'xBase'
+  prw: 'xBase',
+  // manually added for Composer AI
+  doc: 'Document',
+  docx: 'Document',
+  odt: 'Document',
+  ppt: 'Presentation',
+  pptx: 'Presentation',
+  odp: 'Presentation',
+  pdf: 'PDF'
 };
 
 export const FileDetails = ({ fileName }: PropsWithChildren<FileDetailsProps>) => {
