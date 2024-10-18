@@ -27,8 +27,8 @@
 
 .pf-chatbot__file-label.pf-m-clickable:hover,
 .pf-chatbot__file-label.pf-m-clickable:focus-within {
-  --pf-v6-c-label--BackgroundColor: var(--pf-t--global--background--color--action--plain--hover);
-  --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--action--plain--hover);
+  --pf-v6-c-label--BackgroundColor: var(--pf-t--global--background--color--tertiary--default);
+  --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--tertiary--default);
 
   .pf-chatbot__code-icon {
     color: var(--pf-t--global--icon--color--status--custom--hover);
