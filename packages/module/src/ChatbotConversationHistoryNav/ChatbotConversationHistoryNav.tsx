@@ -184,7 +184,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   const onEscape = (event: React.KeyboardEvent) => {
     if (event.key === 'Escape') {
       // prevents using escape key on menu buttons from closing the panel, but I'm not sure if this is allowed
-      if ('type' in event.target && event.target.type !== 'button') {
+      if (event.target instanceof HTMLInputElement && event.target.type !== 'button') {
         setIsDrawerOpen(false);
       }
     }
