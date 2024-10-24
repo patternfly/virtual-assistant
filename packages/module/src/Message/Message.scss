@@ -25,6 +25,7 @@
     position: sticky;
     top: var(--pf-t--global--spacer--md);
     object-fit: cover;
+    pointer-events: none; // prevent dragging - interferes with FileDropZone
   }
 
   // Contents
