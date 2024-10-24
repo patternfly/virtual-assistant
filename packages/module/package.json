@@ -31,9 +31,9 @@
     "tag": "prerelease"
   },
   "dependencies": {
-    "@patternfly/react-core": "6.0.0-prerelease.21",
-    "@patternfly/react-code-editor": "6.0.0-prerelease.21",
-    "@patternfly/react-icons": "6.0.0-prerelease.7",
+    "@patternfly/react-core": "^6.0.0",
+    "@patternfly/react-code-editor": "^6.0.0",
+    "@patternfly/react-icons": "^6.0.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.3.28",
     "react-jss": "^10.10.0",
@@ -48,10 +48,10 @@
     "react-dom": "^17 || ^18"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "^6.0.0-alpha.109",
-    "@patternfly/patternfly": "^6.0.0-prerelease.15",
+    "@patternfly/documentation-framework": "^6.0.0-alpha.117",
+    "@patternfly/patternfly": "^6.0.0",
     "@patternfly/patternfly-a11y": "^4.3.1",
-    "@patternfly/react-table": "^6.0.0-prerelease.22",
+    "@patternfly/react-table": "^6.0.0",
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
