@@ -10,12 +10,12 @@ export interface LoadingMessageProps {
 export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon }) => (
   <Split>
     <SplitItem>
-      <Icon size="lg" className="pf-v6-u-mr-sm pf-v6-u-pt-md" data-test-id="assistant-loading-icon">
+      <Icon size="lg" className="pf-v6-u-mr-sm pf-v6-u-pt-md">
         <IconComponent />
       </Icon>
     </SplitItem>
     <SplitItem className="pf-u-background-color-200">
-      <div className="pf-v6-u-display-flex pf-u-align-items-center" data-test-id="assistant-loading-dots">
+      <div className="pf-v6-u-display-flex pf-u-align-items-center">
         <div>.</div>
         <div>.</div>
         <div>.</div>

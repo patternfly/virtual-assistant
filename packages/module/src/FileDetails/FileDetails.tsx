@@ -4,6 +4,8 @@ import path from 'path-browserify';
 interface FileDetailsProps {
   /** Name of file, including extension */
   fileName: string;
+  /** Custom test id for the component-generated language */
+  languageTestId?: string;
 }
 
 // source https://gist.github.com/ppisarczyk/43962d06686722d26d176fad46879d41
@@ -924,7 +926,7 @@ export const extensionToLanguage = {
   prw: 'xBase'
 };
 
-export const FileDetails = ({ fileName }: PropsWithChildren<FileDetailsProps>) => {
+export const FileDetails = ({ fileName, languageTestId }: PropsWithChildren<FileDetailsProps>) => {
   const language = extensionToLanguage[path.extname(fileName).slice(1)]?.toUpperCase();
   return (
     <Flex gap={{ default: 'gapSm' }}>
@@ -956,7 +958,11 @@ export const FileDetails = ({ fileName }: PropsWithChildren<FileDetailsProps>) =
         <StackItem>
           <span className="pf-chatbot__code-fileName">{path.parse(fileName).name}</span>
         </StackItem>
-        {language && <StackItem className="pf-chatbot__code-language">{language}</StackItem>}
+        {language && (
+          <StackItem data-testid={languageTestId} className="pf-chatbot__code-language">
+            {language}
+          </StackItem>
+        )}
       </Stack>
     </Flex>
   );

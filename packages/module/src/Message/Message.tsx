@@ -45,7 +45,12 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
     share?: ActionProps;
     listen?: ActionProps;
   };
+  /** Sources for message */
   sources?: SourcesCardProps;
+  /** Label for the English word "AI," used to tag messages with role "bot" */
+  botWord?: string;
+  /** Label for the English "Loading message," displayed to screenreaders when loading a message */
+  loadingWord?: string;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -61,10 +66,11 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   onAttachmentClose,
   actions,
   sources,
+  botWord = 'AI',
+  loadingWord = 'Loading message',
   ...props
 }: MessageProps) => {
   // Configure default values
-
   const DEFAULTS = {
     user: {
       name: 'User',
@@ -98,7 +104,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
           <span className="pf-chatbot__message-name">{name}</span>
           {role === 'bot' && (
             <Label variant="outline" isCompact>
-              AI
+              {botWord}
             </Label>
           )}
           <Timestamp date={date}>{timestamp}</Timestamp>
@@ -106,7 +112,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
         <div className="pf-chatbot__message-response">
           <div className="pf-chatbot__message-and-actions">
             {isLoading ? (
-              <MessageLoading />
+              <MessageLoading loadingWord={loadingWord} />
             ) : (
               <Markdown components={{ p: TextMessage, code: CodeBlockMessage }} remarkPlugins={[remarkGfm]}>
                 {content}
@@ -117,7 +123,11 @@ export const Message: React.FunctionComponent<MessageProps> = ({
           </div>
           {attachmentName && (
             <div className="pf-chatbot__message-attachment">
-              <FileDetailsLabel fileName={attachmentName} onClick={onAttachmentClick} onClose={onClose} />
+              <FileDetailsLabel
+                fileName={attachmentName}
+                onClick={onAttachmentClick}
+                onClose={onAttachmentClose && attachmentId ? onClose : undefined}
+              />
             </div>
           )}
         </div>

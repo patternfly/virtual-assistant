@@ -15,6 +15,10 @@ interface FileDetailsLabelProps {
   onClose?: (event: React.MouseEvent) => void;
   /** Aria label for close button */
   closeButtonAriaLabel?: string;
+  /** Custom test id for the component-generated language */
+  languageTestId?: string;
+  /** Custom test id for the loading spinner in the component */
+  spinnerTestId?: string;
 }
 
 export const FileDetailsLabel = ({
@@ -22,7 +26,9 @@ export const FileDetailsLabel = ({
   isLoading,
   onClick = undefined,
   onClose = undefined,
-  closeButtonAriaLabel
+  closeButtonAriaLabel,
+  languageTestId,
+  spinnerTestId
 }: PropsWithChildren<FileDetailsLabelProps>) => (
   <Label
     className="pf-chatbot__file-label"
@@ -45,11 +51,11 @@ export const FileDetailsLabel = ({
       gap={{ default: 'gapMd' }}
     >
       <FlexItem>
-        <FileDetails fileName={fileName} />
+        <FileDetails fileName={fileName} languageTestId={languageTestId} />
       </FlexItem>
       {isLoading && (
         <FlexItem>
-          <Spinner size="sm" />
+          <Spinner data-testid={spinnerTestId} size="sm" />
         </FlexItem>
       )}
     </Flex>

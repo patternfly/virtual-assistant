@@ -19,11 +19,11 @@ export interface JumpButtonProps {
 }
 
 const JumpButton: React.FunctionComponent<JumpButtonProps> = ({ position, isHidden, onClick }: JumpButtonProps) =>
-  isHidden ? undefined : (
+  isHidden ? null : (
     <Tooltip id={`pf-chatbot__tooltip--jump-${position}`} content={`Back to ${position}`} position="top">
       <Button
         variant="plain"
-        className={`pf-chatbot__jump pf-chatbot__jump--${position} ${isHidden && `pf-chatbot__jump--${position}--hidden`}`}
+        className={`pf-chatbot__jump pf-chatbot__jump--${position}`}
         aria-label={`Jump ${position} button`}
         onClick={onClick}
       >

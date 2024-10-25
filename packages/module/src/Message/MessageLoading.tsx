@@ -4,10 +4,10 @@
 
 import React from 'react';
 
-const MessageLoading = () => (
+const MessageLoading = ({ loadingWord }) => (
   <div className="pf-chatbot__message-loading">
     <span className="pf-chatbot__message-loading-dots">
-      <span className="pf-v6-screen-reader">Loading message</span>
+      <span className="pf-v6-screen-reader">{loadingWord}</span>
     </span>
   </div>
 );

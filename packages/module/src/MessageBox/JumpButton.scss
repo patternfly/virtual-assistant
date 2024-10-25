@@ -31,21 +31,9 @@
 
   &--top {
     inset-block-start: var(--pf-t--global--spacer--md) !important;
-
-    &--hidden {
-      transform: translate3d(-50%, -8px, 0) !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
   }
 
   &--bottom {
     inset-block-end: var(--pf-t--global--spacer--md) !important;
-
-    &--hidden {
-      transform: translate3d(-50%, 8px, 0) !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
   }
 }

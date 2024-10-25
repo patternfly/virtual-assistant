@@ -40,7 +40,7 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
     <Button
       variant="plain"
       className={`pf-chatbot__button--response-action ${className ?? ''}`}
-      aria-label={ariaLabel || tooltipContent}
+      aria-label={ariaLabel ?? tooltipContent}
       icon={
         <Icon isInline size="lg">
           {icon}
