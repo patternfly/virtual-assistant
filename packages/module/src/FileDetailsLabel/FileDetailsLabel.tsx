@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Button, Flex, FlexItem, Label } from '@patternfly/react-core';
+import { Button, Label } from '@patternfly/react-core';
 import FileDetails from '../FileDetails';
 import { Spinner } from '@patternfly/react-core';
 import { TimesIcon } from '@patternfly/react-icons';
@@ -37,22 +37,11 @@ export const FileDetailsLabel = ({
       />
     }
     onClick={onClick}
-    textMaxWidth="370px"
   >
-    <Flex
-      justifyContent={{ default: 'justifyContentCenter' }}
-      alignItems={{ default: 'alignItemsCenter' }}
-      gap={{ default: 'gapMd' }}
-    >
-      <FlexItem>
-        <FileDetails fileName={fileName} />
-      </FlexItem>
-      {isLoading && (
-        <FlexItem>
-          <Spinner size="sm" />
-        </FlexItem>
-      )}
-    </Flex>
+    <div className="pf-chatbot__file-label-contents">
+      <FileDetails className={isLoading ? 'pf-chatbot__file-label-loading' : undefined} fileName={fileName} />
+      {isLoading && <Spinner size="sm" />}
+    </div>
   </Label>
 );
 
