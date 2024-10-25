@@ -4,7 +4,7 @@ This repo contains React Virtual assistant implementation.
 
 ---
 
-## Install
+## Install 
 
 To play with virtual-assistant in your project, run
 
