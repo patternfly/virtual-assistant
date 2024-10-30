@@ -13,7 +13,10 @@ module.exports = {
       {
         preset: 'angular',
         releaseRules: [
-          { type: '*', release: 'patch' }
+          {
+            type: '*',
+            release: 'patch'
+          }
         ]
       }
     ],
