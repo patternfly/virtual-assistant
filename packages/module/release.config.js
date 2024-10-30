@@ -1,7 +1,7 @@
 module.exports = {
   branches: [
     'do-not-delete',
-    { name: '2.0.x', channel: 'prerelease-bugfix', range: '2.0.x' },
+    { name: '2.0.x', channel: 'prerelease-bugfix'},
     { name: 'main', channel: 'prerelease', prerelease: 'prerelease' }
   ],
   analyzeCommits: {
@@ -25,5 +25,5 @@ module.exports = {
     '@semantic-release/npm'
   ],
   tagFormat: 'patch-v${version}',
-  dryRun: true
+  dryRun: false
 };
