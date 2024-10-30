@@ -1,6 +1,6 @@
 # PatternFly Virtual Assistant
 
-This repo contains React Virtual assistant implementation.
+This repo contains React Virtual assistant implementation. 
 
 ---
 
