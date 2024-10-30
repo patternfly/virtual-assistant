@@ -88,11 +88,3 @@
   left: 0 !important;
   right: auto !important;
 }
-
-/* This is for the Code Modals, so they act like they're part of the
-/* chatbot. The PF modal doesn't allow us to change the position in
-/* a more targeted way, because you can only add classes onto the
-/* dialog itself.  */
-.pf-v6-c-backdrop {
-  position: static;
-}

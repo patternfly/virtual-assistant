@@ -105,6 +105,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
       aria-labelledby="code-modal-title"
       aria-describedby="code-modal"
       className={`pf-chatbot__code-modal pf-chatbot__code-modal--${displayMode}`}
+      backdropClassName="pf-chatbot__code-modal-backdrop"
     >
       <ModalHeader title={title} labelId="code-modal-title" />
       <ModalBody id="code-modal-body">
