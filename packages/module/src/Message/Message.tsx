@@ -47,11 +47,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   onAttachmentClose?: (attachmentId: string) => void;
   /** Props for message actions, such as feedback (positive or negative), copy button, share, and listen */
   actions?: {
-    positive?: ActionProps;
-    negative?: ActionProps;
-    copy?: ActionProps;
-    share?: ActionProps;
-    listen?: ActionProps;
+    [key: string]: ActionProps;
   };
   /** Sources for message */
   sources?: SourcesCardProps;
