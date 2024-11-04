@@ -65,7 +65,7 @@ If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`,
 
 ```
 
-### Messages actions
+### Message actions
 
 You can add actions to a message, to allow users to interact with the message content. These actions can include:
 
@@ -79,9 +79,9 @@ You can add actions to a message, to allow users to interact with the message co
 
 ```
 
-### Custom messages actions
+### Custom message actions
 
-You can add custom actions by passing an `actions` object with a key other than positive, negative, copy, share, or listen. This object can contain the following customizations: `ariaLabel`, `onClick`, `className`, `isDisabled`, `tooltipContent`, `tooltipProps`, and `icon`.
+Beyond the standard message actions (positive, negative, copy, share, or listen), you can add custom actions to a bot message by passing an `actions` object to the `<Message>` component. This object can contain the following customizations: `ariaLabel`, `onClick`, `className`, `isDisabled`, `tooltipContent`, `tooltipProps`, and `icon`.
 
 ```js file="./MessageWithCustomResponseActions.tsx"
 
