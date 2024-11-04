@@ -83,7 +83,7 @@ describe('Message bar', () => {
     render(<MessageBar onSendMessage={spy} />);
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
-    expect(input).toHaveValue('Hello world');
+    expect(input).toHaveTextContent('Hello world');
     await userEvent.type(input, '[Enter]');
     expect(spy).toHaveBeenCalledTimes(1);
   });
@@ -92,7 +92,7 @@ describe('Message bar', () => {
     render(<MessageBar onSendMessage={jest.fn} onChange={spy} />);
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'A');
-    expect(input).toHaveValue('A');
+    expect(input).toHaveTextContent('A');
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(expect.any(Object), 'A');
   });
@@ -103,14 +103,14 @@ describe('Message bar', () => {
     render(<MessageBar onSendMessage={jest.fn} />);
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
-    expect(input).toHaveValue('Hello world');
+    expect(input).toHaveTextContent('Hello world');
     expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
   });
   it('can disable send button shown when text is input', async () => {
     render(<MessageBar onSendMessage={jest.fn} isSendButtonDisabled />);
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
-    expect(input).toHaveValue('Hello world');
+    expect(input).toHaveTextContent('Hello world');
     expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Send button' })).toBeDisabled();
   });
@@ -119,7 +119,7 @@ describe('Message bar', () => {
     render(<MessageBar onSendMessage={spy} />);
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
-    expect(input).toHaveValue('Hello world');
+    expect(input).toHaveTextContent('Hello world');
     const sendButton = screen.getByRole('button', { name: 'Send button' });
     expect(sendButton).toBeTruthy();
     await userEvent.click(sendButton);

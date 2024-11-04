@@ -1,6 +1,5 @@
 import React from 'react';
-import { ButtonProps, DropEvent, TextAreaProps } from '@patternfly/react-core';
-import { AutoTextArea } from 'react-textarea-auto-witdth-height';
+import { ButtonProps, DropEvent } from '@patternfly/react-core';
 
 // Import Chatbot components
 import SendButton from './SendButton';
@@ -8,6 +7,7 @@ import MicrophoneButton from './MicrophoneButton';
 import { AttachButton } from './AttachButton';
 import AttachMenu from '../AttachMenu';
 import StopButton from './StopButton';
+import DOMPurify from 'dompurify';
 
 export interface MessageBarWithAttachMenuProps {
   /** Flag to enable whether attach menu is open */
@@ -30,7 +30,7 @@ export interface MessageBarWithAttachMenuProps {
   onAttachMenuOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface MessageBarProps extends TextAreaProps {
+export interface MessageBarProps {
   /** Callback to get the value of input message by user */
   onSendMessage: (message: string) => void;
   /** Class Name for the MessageBar component */
@@ -62,7 +62,7 @@ export interface MessageBarProps extends TextAreaProps {
     };
   };
   /** A callback for when the text area value changes. */
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLDivElement>, value: string) => void;
 }
 
 export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
@@ -84,19 +84,25 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   // --------------------------------------------------------------------------
   const [message, setMessage] = React.useState<string>('');
   const [isListeningMessage, setIsListeningMessage] = React.useState<boolean>(false);
-
-  const textareaRef = React.useRef(null);
+  const [showPlaceholder, setShowPlaceholder] = React.useState(true);
+  const textareaRef = React.useRef<HTMLDivElement>(null);
   const attachButtonRef = React.useRef<HTMLButtonElement>(null);
 
-  const handleChange = React.useCallback((event) => {
-    onChange && onChange(event, event.target.value);
-    setMessage(event.target.value);
-  }, []);
+  const handleInput = (event) => {
+    const newMessage = DOMPurify.sanitize(event.target.textContent);
+    setMessage(newMessage);
+    onChange && onChange(event, newMessage);
+  };
 
   // Handle sending message
   const handleSend = React.useCallback(() => {
     setMessage((m) => {
       onSendMessage(m);
+      setMessage('');
+      if (textareaRef.current) {
+        textareaRef.current.innerText = '';
+        textareaRef.current.blur();
+      }
       return '';
     });
   }, [onSendMessage]);
@@ -170,19 +176,27 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     );
   };
 
+  const placeholder = isListeningMessage ? 'Listening' : 'Send a message...';
+
   const messageBarContents = (
     <>
       <div className="pf-chatbot__message-bar-input">
-        <AutoTextArea
-          ref={textareaRef}
+        <div
+          contentEditable
+          suppressContentEditableWarning={true}
+          role="textbox"
+          aria-multiline="false"
           className="pf-chatbot__message-textarea"
-          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
+          onInput={handleInput}
+          onFocus={() => setShowPlaceholder(!showPlaceholder)}
+          onBlur={() => setShowPlaceholder(!showPlaceholder)}
+          aria-label={placeholder}
+          ref={textareaRef}
           onKeyDown={handleKeyDown}
-          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
-          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
           {...props}
-        />
+        >
+          {showPlaceholder ? placeholder : undefined}
+        </div>
       </div>
       <div className="pf-chatbot__message-bar-actions">{renderButtons()}</div>
     </>
