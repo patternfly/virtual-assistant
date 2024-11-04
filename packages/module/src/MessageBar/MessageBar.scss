@@ -35,7 +35,7 @@
     display: flex;
     justify-content: end;
     padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
-    padding-block-end: var(--pf-t--global--spacer--sm);
+    padding-block-end: var(--pf-t--global--spacer--xs);
     gap: var(--pf-t--global--spacer--xs);
   }
 
@@ -48,12 +48,9 @@
 
 // - Form control textarea
 .pf-chatbot__message-textarea {
-  padding-block-start: var(--pf-t--global--spacer--md);
-  padding-block-end: var(--pf-t--global--spacer--md);
-  padding-inline-start: var(--pf-t--global--spacer--md);
-  padding-inline-end: var(--pf-t--global--spacer--md);
   --pf-v6-c-form-control--before--BorderStyle: none;
   --pf-v6-c-form-control--after--BorderStyle: none;
+  resize: none;
   background-color: transparent;
   font-size: var(--pf-t--global--font--size--md);
   line-height: 1.5rem;
@@ -62,6 +59,15 @@
   display: block !important;
 
   .pf-v6-c-form-control__textarea:focus-visible {
+    outline: none;
+  }
+  textarea {
+    outline-offset: 0px;
+    --pf-v6-c-form-control--PaddingBlockStart: 0;
+    --pf-v6-c-form-control--PaddingBlockEnd: 0;
+    --pf-v6-c-form-control--BorderRadius: 0;
+  }
+  textarea:focus-visible {
     outline: none;
   }
 }

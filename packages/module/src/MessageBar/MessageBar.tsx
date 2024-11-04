@@ -1,6 +1,5 @@
 import React from 'react';
-import { ButtonProps, DropEvent, TextAreaProps } from '@patternfly/react-core';
-import { AutoTextArea } from 'react-textarea-auto-witdth-height';
+import { ButtonProps, DropEvent, TextArea, TextAreaProps } from '@patternfly/react-core';
 
 // Import Chatbot components
 import SendButton from './SendButton';
@@ -84,12 +83,90 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   // --------------------------------------------------------------------------
   const [message, setMessage] = React.useState<string>('');
   const [isListeningMessage, setIsListeningMessage] = React.useState<boolean>(false);
+  const [height, setHeight] = React.useState<number>();
+  const [hasSentMessage, setHasSentMessage] = React.useState(false);
 
-  const textareaRef = React.useRef(null);
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
   const attachButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  const setInitialLineHeight = (field: HTMLTextAreaElement) => {
+    field.style.setProperty('line-height', '1rem');
+    const parent = field.parentElement;
+    if (parent) {
+      parent.style.setProperty('margin-top', `0rem`);
+      parent.style.setProperty('margin-bottom', `0rem`);
+    }
+  };
+
+  const setAutoHeight = (field: HTMLTextAreaElement) => {
+    const parent = field.parentElement;
+    if (parent) {
+      parent.style.setProperty('height', 'inherit');
+      const computed = window.getComputedStyle(field);
+      // Calculate the height
+      const height =
+        parseInt(computed.getPropertyValue('border-top-width')) +
+        parseInt(computed.getPropertyValue('padding-top')) +
+        field.scrollHeight +
+        parseInt(computed.getPropertyValue('padding-bottom')) +
+        parseInt(computed.getPropertyValue('border-bottom-width'));
+      parent.style.setProperty('height', `${height}px`);
+
+      if (height > 32 || window.innerWidth <= 359) {
+        parent.style.setProperty('margin-bottom', `1rem`);
+        parent.style.setProperty('margin-top', `1rem`);
+      }
+
+      setHeight(height);
+    }
+  };
+
+  const handleNewLine = (field: HTMLTextAreaElement) => {
+    const parent = field.parentElement;
+    const oldHeight = height ?? 0;
+    if (parent) {
+      if (oldHeight === 0) {
+        parent.style.setProperty('margin-bottom', `1rem`);
+        parent.style.setProperty('margin-top', `1rem`);
+      } else {
+        parent.style.setProperty('height', `${oldHeight + 16}px`);
+      }
+    }
+  };
+
+  const handleMobileHeight = (field: HTMLTextAreaElement) => {
+    const parent = field.parentElement;
+    if (parent) {
+      parent.style.setProperty('margin-bottom', `1rem`);
+      parent.style.setProperty('margin-top', `1rem`);
+    }
+  };
+
+  React.useEffect(() => {
+    const field = textareaRef.current;
+    if (field) {
+      setInitialLineHeight(field);
+      setAutoHeight(field);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const field = textareaRef.current;
+    if (field) {
+      setInitialLineHeight(field);
+      setAutoHeight(field);
+    }
+    setHasSentMessage(false);
+  }, [hasSentMessage]);
 
   const handleChange = React.useCallback((event) => {
     onChange && onChange(event, event.target.value);
+    if (textareaRef.current) {
+      if (event.target.value === '') {
+        setInitialLineHeight(textareaRef.current);
+      }
+      setAutoHeight(textareaRef.current);
+    }
     setMessage(event.target.value);
   }, []);
 
@@ -97,16 +174,34 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   const handleSend = React.useCallback(() => {
     setMessage((m) => {
       onSendMessage(m);
+      setHasSentMessage(true);
       return '';
     });
   }, [onSendMessage]);
 
+  // want to exclude things like delete, shift, etc.
+  const isTypeableKey = (key) => {
+    if (key.length > 1) {
+      return false;
+    }
+    return true;
+  };
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         if (!isSendButtonDisabled && !hasStopButton) {
           handleSend();
+        }
+      }
+      if (event.key === 'Enter' && event.shiftKey) {
+        if (textareaRef.current) {
+          handleNewLine(textareaRef.current);
+        }
+      }
+      if (window.innerWidth <= 411 && isTypeableKey(event.key)) {
+        if (textareaRef.current) {
+          handleMobileHeight(textareaRef.current);
         }
       }
     },
@@ -173,7 +268,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   const messageBarContents = (
     <>
       <div className="pf-chatbot__message-bar-input">
-        <AutoTextArea
+        {/* <AutoTextArea
           ref={textareaRef}
           className="pf-chatbot__message-textarea"
           value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
@@ -181,6 +276,16 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           onKeyDown={handleKeyDown}
           placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
           aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
+          {...props}
+        />*/}
+        <TextArea
+          className="pf-chatbot__message-textarea"
+          value={message}
+          onChange={handleChange}
+          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
+          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
+          ref={textareaRef}
+          onKeyDown={handleKeyDown}
           {...props}
         />
       </div>
