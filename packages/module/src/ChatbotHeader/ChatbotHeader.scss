@@ -47,6 +47,7 @@
     display: flex;
     gap: var(--pf-t--global--spacer--sm);
     justify-content: flex-end;
+    align-items: center;
     .pf-v6-c-menu-toggle.pf-m-secondary {
       width: 160px;
     }
