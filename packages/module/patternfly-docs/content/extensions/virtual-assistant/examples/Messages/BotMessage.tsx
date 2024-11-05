@@ -74,6 +74,13 @@ export default MessageLoading;
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={unorderedList} />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={moreComplexList} />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content="Example content" isLoading />
+      <Message role="bot" avatar={patternflyAvatar} content="Message with no name" />
+      <Message
+        name="Default Openshift Container Platform Assistant That Can Help With Any Query You Might Need Help With"
+        role="bot"
+        avatar={patternflyAvatar}
+        content="Message with very long name"
+      />
     </>
   );
 };

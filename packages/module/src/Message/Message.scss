@@ -15,6 +15,12 @@
   gap: var(--pf-t--global--spacer--lg);
   padding-bottom: var(--pf-t--global--spacer--2xl);
 
+  // Name
+  // --------------------------------------------------------------------------
+  .pf-v6-c-truncate {
+    --pf-v6-c-truncate--MinWidth: 0ch;
+    --pf-v6-c-truncate__start--MinWidth: 0ch;
+  }
   // Avatar
   // --------------------------------------------------------------------------
   .pf-v6-c-avatar {
@@ -61,6 +67,9 @@
     }
 
     // Timestamp
+    .pf-v6-c-timestamp {
+      flex: 1 0 max-content;
+    }
     time {
       font-size: var(--pf-t--global--font--size--xs);
     }
