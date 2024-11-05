@@ -13,18 +13,27 @@ export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
   children: React.ReactNode;
   /** Custom classname for the MessageBox component */
   className?: string;
+  /** Ref applied to message box */
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
-const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
+const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   announcement,
   ariaLabel = 'Scrollable message log',
   children,
+  innerRef,
   className
 }: MessageBoxProps) => {
   const [atTop, setAtTop] = React.useState(false);
   const [atBottom, setAtBottom] = React.useState(true);
   const [isOverflowing, setIsOverflowing] = React.useState(false);
-  const messageBoxRef = React.useRef<HTMLDivElement>(null);
+  const defaultRef = React.useRef<HTMLDivElement>(null);
+  let messageBoxRef;
+  if (innerRef) {
+    messageBoxRef = innerRef;
+  } else {
+    messageBoxRef = defaultRef;
+  }
 
   // Configure handlers
   const handleScroll = React.useCallback(() => {
@@ -83,7 +92,7 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
         tabIndex={0}
         aria-label={ariaLabel}
         className={`pf-chatbot__messagebox ${className ?? ''}`}
-        ref={messageBoxRef}
+        ref={innerRef ?? messageBoxRef}
       >
         {children}
         <div className="pf-chatbot__messagebox-announcement" aria-live="polite">
@@ -94,5 +103,9 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
     </>
   );
 };
+
+export const MessageBox = React.forwardRef((props: MessageBoxProps, ref: React.Ref<any>) => (
+  <MessageBoxBase innerRef={ref} {...props} />
+));
 
 export default MessageBox;

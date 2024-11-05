@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup } from '@patternfly/react-core';
+import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup, SkipToContent } from '@patternfly/react-core';
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
@@ -175,6 +175,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   );
   const [announcement, setAnnouncement] = React.useState<string>();
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
+  const toggleRef = React.useRef<HTMLButtonElement>(null);
 
   // Autu-scrolls to the latest message
   React.useEffect(() => {
@@ -299,12 +300,24 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     </>
   );
 
+  const handleSkipToContent = (e) => {
+    e.preventDefault();
+    if (toggleRef.current) {
+      toggleRef.current.focus();
+    }
+  };
+
   return (
     <>
+      <SkipToContent onClick={handleSkipToContent} href="#">
+        Skip to chatbot
+      </SkipToContent>
       <ChatbotToggle
         toolTipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
+        id="chatbot-toggle"
+        ref={toggleRef}
       />
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
         <ChatbotConversationHistoryNav

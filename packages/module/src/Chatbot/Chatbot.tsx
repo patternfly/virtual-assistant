@@ -26,7 +26,8 @@ export const Chatbot: React.FunctionComponent<ChatbotProps> = ({
   children,
   displayMode = ChatbotDisplayMode.default,
   isVisible = true,
-  className
+  className,
+  ...props
 }: ChatbotProps) => {
   // Configure docked mode
   React.useEffect(() => {
@@ -49,6 +50,7 @@ export const Chatbot: React.FunctionComponent<ChatbotProps> = ({
       variants={motionChatbot}
       initial="hidden"
       animate={isVisible ? 'visible' : 'hidden'}
+      {...props}
     >
       {isVisible ? children : undefined}
     </motion.div>

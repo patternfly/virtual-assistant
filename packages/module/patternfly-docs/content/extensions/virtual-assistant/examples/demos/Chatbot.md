@@ -77,6 +77,8 @@ This demo displays a basic chatbot, which includes:
 
 6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
+7. A skip to chatbot link, made with a [PatternFly 6 Skip to Content](/components/skip-to-content)
+
 ```js file="./Chatbot.tsx" isFullscreen
 
 ```
@@ -85,7 +87,7 @@ This demo displays a basic chatbot, which includes:
 
 This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in your product. This demo includes:
 
-1. A [PatternFly page](/components/page) with a sidebar and masthead
+1. A [PatternFly page](/components/page) with a sidebar, skip to chatbot link, and masthead
 2. A [`<Chatbot>`](/patternfly-ai/chatbot/chatbot-container) container.
 3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:

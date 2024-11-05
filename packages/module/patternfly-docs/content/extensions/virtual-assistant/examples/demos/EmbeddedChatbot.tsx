@@ -13,7 +13,8 @@ import {
   PageSidebarBody,
   PageSidebar,
   MastheadToggle,
-  PageToggleButton
+  PageToggleButton,
+  SkipToContent
 } from '@patternfly/react-core';
 
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
@@ -181,6 +182,8 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [announcement, setAnnouncement] = React.useState<string>();
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
+  const chatbotRef = React.useRef<HTMLDivElement>(null);
+
   const displayMode = ChatbotDisplayMode.embedded;
   // Autu-scrolls to the latest message
   React.useEffect(() => {
@@ -320,8 +323,20 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
     </PageSidebar>
   );
 
+  const skipToChatbot = (event: React.MouseEvent) => {
+    event.preventDefault();
+    chatbotRef.current?.focus();
+  };
+
+  const skipToContent = (
+    /* You can also add a SkipToContent for your main content here */
+    <SkipToContent href="#" onClick={skipToChatbot}>
+      Skip to chatbot
+    </SkipToContent>
+  );
+
   return (
-    <Page masthead={masthead} sidebar={sidebar} isContentFilled>
+    <Page skipToContent={skipToContent} masthead={masthead} sidebar={sidebar} isContentFilled>
       <Chatbot displayMode={displayMode}>
         <ChatbotConversationHistoryNav
           displayMode={displayMode}
@@ -375,7 +390,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
               <ChatbotContent>
                 {/* Update the announcement prop on MessageBox whenever a new message is sent
                  so that users of assistive devices receive sufficient context  */}
-                <MessageBox announcement={announcement}>
+                <MessageBox announcement={announcement} ref={chatbotRef}>
                   <ChatbotWelcomePrompt
                     title="Hello, Chatbot User"
                     description="How may I help you today?"
