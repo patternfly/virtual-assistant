@@ -176,6 +176,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const [announcement, setAnnouncement] = React.useState<string>();
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
   const toggleRef = React.useRef<HTMLButtonElement>(null);
+  const chatbotRef = React.useRef<HTMLDivElement>(null);
 
   // Autu-scrolls to the latest message
   React.useEffect(() => {
@@ -302,8 +303,14 @@ export const ChatbotDemo: React.FunctionComponent = () => {
 
   const handleSkipToContent = (e) => {
     e.preventDefault();
-    if (toggleRef.current) {
-      toggleRef.current.focus();
+    if (displayMode === ChatbotDisplayMode.default) {
+      if (toggleRef.current) {
+        toggleRef.current.focus();
+      }
+    } else {
+      if (chatbotRef.current) {
+        chatbotRef.current.focus();
+      }
     }
   };
 
@@ -319,7 +326,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         id="chatbot-toggle"
         ref={toggleRef}
       />
-      <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
+      <Chatbot isVisible={chatbotVisible} displayMode={displayMode} ref={chatbotRef}>
         <ChatbotConversationHistoryNav
           displayMode={displayMode}
           onDrawerToggle={() => {

@@ -64,3 +64,14 @@ html.pf-chatbot-allow--docked {
   border-radius: 0;
   box-shadow: none;
 }
+
+.pf-chatbot-container--embedded {
+  min-height: 100%;
+}
+
+.pf-chatbot-container {
+  // Hide chatbot
+  &--hidden {
+    pointer-events: none;
+  }
+}

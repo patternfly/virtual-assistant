@@ -13,6 +13,8 @@ export interface ChatbotProps {
   isVisible?: boolean;
   /** Custom classname for the Chatbot component */
   className?: string;
+  /** Ref applied to chatbot  */
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
 export enum ChatbotDisplayMode {
@@ -22,11 +24,12 @@ export enum ChatbotDisplayMode {
   fullscreen = 'fullscreen'
 }
 
-export const Chatbot: React.FunctionComponent<ChatbotProps> = ({
+const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
   children,
   displayMode = ChatbotDisplayMode.default,
   isVisible = true,
   className,
+  innerRef,
   ...props
 }: ChatbotProps) => {
   // Configure docked mode
@@ -52,9 +55,25 @@ export const Chatbot: React.FunctionComponent<ChatbotProps> = ({
       animate={isVisible ? 'visible' : 'hidden'}
       {...props}
     >
-      {isVisible ? children : undefined}
+      {/* Ref is intended for use with skip to chatbot links, etc. */}
+      {/* Motion.div does not accept refs */}
+      {isVisible ? (
+        <div
+          role="region"
+          aria-label={props['aria-label'] ?? 'Chatbot'}
+          className={`pf-chatbot-container pf-chatbot-container--${displayMode} ${!isVisible ? 'pf-chatbot-container--hidden' : ''}`}
+          tabIndex={0}
+          ref={innerRef}
+        >
+          {children}
+        </div>
+      ) : undefined}
     </motion.div>
   );
 };
+
+const Chatbot = React.forwardRef((props: ChatbotProps, ref: React.Ref<HTMLDivElement>) => (
+  <ChatbotBase innerRef={ref} {...props} />
+));
 
 export default Chatbot;

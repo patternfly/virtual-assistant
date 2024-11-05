@@ -337,7 +337,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
 
   return (
     <Page skipToContent={skipToContent} masthead={masthead} sidebar={sidebar} isContentFilled>
-      <Chatbot displayMode={displayMode}>
+      <Chatbot displayMode={displayMode} ref={chatbotRef}>
         <ChatbotConversationHistoryNav
           displayMode={displayMode}
           onDrawerToggle={() => {
@@ -390,7 +390,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
               <ChatbotContent>
                 {/* Update the announcement prop on MessageBox whenever a new message is sent
                  so that users of assistive devices receive sufficient context  */}
-                <MessageBox announcement={announcement} ref={chatbotRef}>
+                <MessageBox announcement={announcement}>
                   <ChatbotWelcomePrompt
                     title="Hello, Chatbot User"
                     description="How may I help you today?"
