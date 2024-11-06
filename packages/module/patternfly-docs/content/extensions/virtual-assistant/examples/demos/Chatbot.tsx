@@ -304,8 +304,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const handleSkipToContent = (e) => {
     e.preventDefault();
     if (displayMode === ChatbotDisplayMode.default) {
-      if (toggleRef.current) {
+      if (!chatbotVisible && toggleRef.current) {
         toggleRef.current.focus();
+      }
+      if (chatbotVisible && chatbotRef.current) {
+        chatbotRef.current.focus();
       }
     } else {
       if (chatbotRef.current) {

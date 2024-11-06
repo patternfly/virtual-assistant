@@ -58,15 +58,14 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
       {/* Ref is intended for use with skip to chatbot links, etc. */}
       {/* Motion.div does not accept refs */}
       {isVisible ? (
-        <div
-          role="region"
+        <section
           aria-label={props['aria-label'] ?? 'Chatbot'}
           className={`pf-chatbot-container pf-chatbot-container--${displayMode} ${!isVisible ? 'pf-chatbot-container--hidden' : ''}`}
-          tabIndex={0}
+          tabIndex={-1}
           ref={innerRef}
         >
           {children}
-        </div>
+        </section>
       ) : undefined}
     </motion.div>
   );
