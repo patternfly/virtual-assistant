@@ -62,7 +62,7 @@ export default MessageLoading;
 
   return (
     <>
-      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={`Text-based message from a bot named "Bot`} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={`Text-based message from a bot named "Bot"`} />
       <Message
         name="Bot"
         role="bot"
