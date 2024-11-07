@@ -87,7 +87,7 @@ This demo displays a basic chatbot, which includes:
 
 This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in your product. This demo includes:
 
-1. A [PatternFly page](/components/page) with a sidebar, skip to chatbot link, and masthead
+1. A [PatternFly page](/components/page) with a sidebar, "skip to chatbot" button, and masthead. To display the "skip to chatbot" button you must tab into the main window.
 2. A [`<Chatbot>`](/patternfly-ai/chatbot/chatbot-container) container.
 3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:
