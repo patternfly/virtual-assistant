@@ -2,7 +2,7 @@ import React from 'react';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 
-export const AttachmentMenuExample: React.FunctionComponent = () => {
+export const BotMessageExample: React.FunctionComponent = () => {
   const markdown = `
 Here is some YAML code:
 
@@ -62,11 +62,12 @@ export default MessageLoading;
 
   return (
     <>
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={`Text-based message from a bot named "Bot`} />
       <Message
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Example content with updated timestamp text"
+        content={`Text-based message from a bot named "Bot," with updated timestamp`}
         timestamp="1 hour ago"
       />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={markdown} />
@@ -74,12 +75,12 @@ export default MessageLoading;
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={unorderedList} />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={moreComplexList} />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content="Example content" isLoading />
-      <Message role="bot" avatar={patternflyAvatar} content="Message with no name" />
+      <Message role="bot" avatar={patternflyAvatar} content="Text-based message from a nameless bot" />
       <Message
         name="Default Openshift Container Platform Assistant That Can Help With Any Query You Might Need Help With"
         role="bot"
         avatar={patternflyAvatar}
-        content="Message with very long name"
+        content="Text-based message, where the bot's name is truncated"
       />
     </>
   );

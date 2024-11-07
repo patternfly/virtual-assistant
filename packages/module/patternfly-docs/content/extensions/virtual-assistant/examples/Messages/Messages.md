@@ -50,7 +50,7 @@ Messages from the chatbot will be marked with an "AI" label to clearly communica
 
 <br />
 
-By default, a date and timestamp is displayed with each message. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
+By default, a date and timestamp is displayed with each message. We recommend using the `timestamp` prop in real chatbots, since it will allow you to set persistent dates and times on messages, even if the messages re-render. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
 
 ```js file="./BotMessage.tsx"
 
