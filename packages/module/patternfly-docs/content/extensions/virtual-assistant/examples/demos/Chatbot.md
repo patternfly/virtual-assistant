@@ -77,7 +77,7 @@ This demo displays a basic chatbot, which includes:
 
 6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
-7. A "skip to chatbot" button that allows you to skip to the end of the chatbot content via the [PatternFly skip to content component](/components/skip-to-content). To display this button you must tab into the main window.
+7. A "skip to chatbot" button that allows you to skip to the chatbot content via the [PatternFly skip to content component](/components/skip-to-content). To display this button you must tab into the main window.
 
 ```js file="./Chatbot.tsx" isFullscreen
 

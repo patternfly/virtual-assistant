@@ -25,6 +25,7 @@ import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotCo
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 
 ### Container
 
@@ -69,5 +70,13 @@ To introduce users to the chatbot experience, a welcome prompt can fill the mess
 To provide users with a more specific direction, you can also include optional welcome prompts.
 
 ```js file="./ChatbotWelcomePrompt.tsx"
+
+```
+
+### Skip to content
+
+To provide page context, we recommend using a "skip to chatbot" button. This allows you to skip past other content on the page, directly to the chatbot content. The [PatternFly skip to content component](/components/skip-to-content) can be used for this purpose. To display this button, you must tab into the main window. We recommend putting focus on the toggle if the chatbot is closed, and the chatbot when it is open.
+
+```js file="./SkipToContent.tsx" isFullscreen
 
 ```
