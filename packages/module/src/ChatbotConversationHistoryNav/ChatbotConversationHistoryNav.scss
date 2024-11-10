@@ -4,6 +4,7 @@
 .pf-chatbot__history {
   .pf-chatbot__drawer-backdrop {
     position: absolute;
+    border-radius: var(--pf-t--global--border--radius--medium);
   }
   // Drawer input
   // ----------------------------------------------------------------------------
@@ -150,6 +151,16 @@
     }
     .pf-v6-c-drawer__panel {
       height: 100%;
+    }
+  }
+}
+
+.pf-chatbot--docked,
+.pf-chatbot--embedded,
+.pf-chatbot--fullscreen {
+  .pf-chatbot__history {
+    .pf-chatbot__drawer-backdrop {
+      border-radius: unset;
     }
   }
 }
