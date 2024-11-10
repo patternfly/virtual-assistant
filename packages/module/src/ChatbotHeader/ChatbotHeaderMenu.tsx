@@ -12,13 +12,16 @@ export interface ChatbotHeaderMenuProps {
   tooltipProps?: TooltipProps;
   /** Aria label for menu */
   menuAriaLabel?: string;
+  /** Ref applied to menu */
+  innerRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> = ({
+const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = ({
   className,
   onMenuToggle,
   tooltipProps,
-  menuAriaLabel = 'Toggle menu'
+  menuAriaLabel = 'Toggle menu',
+  innerRef
 }: ChatbotHeaderMenuProps) => (
   <div className={`pf-chatbot__menu ${className}`}>
     <Tooltip content="Menu" position="bottom" {...tooltipProps}>
@@ -27,6 +30,7 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
         variant="plain"
         onClick={onMenuToggle}
         aria-label={menuAriaLabel}
+        ref={innerRef}
         icon={
           <Icon size="xl" isInline>
             <BarsIcon />
@@ -37,4 +41,8 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
   </div>
 );
 
-export default ChatbotHeaderMenu;
+export const ChatbotHeaderMenu = React.forwardRef(
+  (props: ChatbotHeaderMenuProps, ref: React.Ref<HTMLButtonElement>) => (
+    <ChatbotHeaderMenuBase innerRef={ref} {...props} />
+  )
+);

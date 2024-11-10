@@ -182,7 +182,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [announcement, setAnnouncement] = React.useState<string>();
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
-  const chatbotRef = React.useRef<HTMLDivElement>(null);
+  const historyRef = React.useRef<HTMLButtonElement>(null);
 
   const displayMode = ChatbotDisplayMode.embedded;
   // Autu-scrolls to the latest message
@@ -325,7 +325,9 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
 
   const skipToChatbot = (event: React.MouseEvent) => {
     event.preventDefault();
-    chatbotRef.current?.focus();
+    if (historyRef.current) {
+      historyRef.current.focus();
+    }
   };
 
   const skipToContent = (
@@ -337,7 +339,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
 
   return (
     <Page skipToContent={skipToContent} masthead={masthead} sidebar={sidebar} isContentFilled>
-      <Chatbot displayMode={displayMode} ref={chatbotRef}>
+      <Chatbot displayMode={displayMode}>
         <ChatbotConversationHistoryNav
           displayMode={displayMode}
           onDrawerToggle={() => {
@@ -368,7 +370,11 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
             <>
               <ChatbotHeader>
                 <ChatbotHeaderMain>
-                  <ChatbotHeaderMenu aria-expanded={isDrawerOpen} onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  <ChatbotHeaderMenu
+                    ref={historyRef}
+                    aria-expanded={isDrawerOpen}
+                    onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+                  />
                   <ChatbotHeaderTitle>{horizontalLogo}</ChatbotHeaderTitle>
                 </ChatbotHeaderMain>
                 <ChatbotHeaderActions>

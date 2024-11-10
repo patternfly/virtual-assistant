@@ -177,6 +177,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
   const toggleRef = React.useRef<HTMLButtonElement>(null);
   const chatbotRef = React.useRef<HTMLDivElement>(null);
+  const historyRef = React.useRef<HTMLButtonElement>(null);
 
   // Autu-scrolls to the latest message
   React.useEffect(() => {
@@ -303,18 +304,29 @@ export const ChatbotDemo: React.FunctionComponent = () => {
 
   const handleSkipToContent = (e) => {
     e.preventDefault();
-    if (displayMode === ChatbotDisplayMode.default) {
-      if (!chatbotVisible && toggleRef.current) {
-        toggleRef.current.focus();
-      }
-      if (chatbotVisible && chatbotRef.current) {
-        chatbotRef.current.focus();
-      }
-    } else {
-      if (chatbotRef.current) {
-        chatbotRef.current.focus();
-      }
+    /* eslint-disable indent */
+    switch (displayMode) {
+      case ChatbotDisplayMode.default:
+        if (!chatbotVisible && toggleRef.current) {
+          toggleRef.current.focus();
+        }
+        if (chatbotVisible && chatbotRef.current) {
+          chatbotRef.current.focus();
+        }
+        break;
+
+      case ChatbotDisplayMode.docked:
+        if (chatbotRef.current) {
+          chatbotRef.current.focus();
+        }
+        break;
+      default:
+        if (historyRef.current) {
+          historyRef.current.focus();
+        }
+        break;
     }
+    /* eslint-enable indent */
   };
 
   return (
@@ -360,7 +372,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
             <>
               <ChatbotHeader>
                 <ChatbotHeaderMain>
-                  <ChatbotHeaderMenu aria-expanded={isDrawerOpen} onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  <ChatbotHeaderMenu
+                    ref={historyRef}
+                    aria-expanded={isDrawerOpen}
+                    onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+                  />
                   <ChatbotHeaderTitle
                     displayMode={displayMode}
                     showOnFullScreen={horizontalLogo}

@@ -15,6 +15,8 @@ export interface ChatbotProps {
   className?: string;
   /** Ref applied to chatbot  */
   innerRef?: React.Ref<HTMLDivElement>;
+  /** Custom aria label applied to focusable container */
+  ariaLabel?: string;
 }
 
 export enum ChatbotDisplayMode {
@@ -30,6 +32,7 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
   isVisible = true,
   className,
   innerRef,
+  ariaLabel,
   ...props
 }: ChatbotProps) => {
   // Configure docked mode
@@ -59,7 +62,7 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
       {/* Motion.div does not accept refs */}
       {isVisible ? (
         <section
-          aria-label={props['aria-label'] ?? 'Chatbot'}
+          aria-label={ariaLabel ?? 'Chatbot'}
           className={`pf-chatbot-container pf-chatbot-container--${displayMode} ${!isVisible ? 'pf-chatbot-container--hidden' : ''}`}
           tabIndex={-1}
           ref={innerRef}
