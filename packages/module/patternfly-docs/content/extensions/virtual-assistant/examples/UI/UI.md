@@ -10,32 +10,33 @@ id: UI
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: [
-  'Chatbot',
-  'ChatbotContent', 
-  'MessageBox',
-  'ChatbotWelcomePrompt',
-  'WelcomePrompt',
-  'ChatbotToggle',
-  'ChatbotHeader',
-  'ChatbotHeaderMain',
-  'ChatbotHeaderMenu',
-  'ChatbotHeaderActions',
-  'ChatbotHeaderTitle',
-  'ChatbotHeaderOptionsDropdown',
-  'ChatbotHeaderSelectorDropdown',
-  'ChatbotFooter',
-  'MessageBar',
-  'ChatbotFootnote',
-  'ChatbotFootnotePopover',
-  'ChatbotFootnotePopoverCTA',
-  'ChatbotFootnotePopoverBannerImage',
-  'ChatbotFootnotePopoverLink',
-  'MessageBarWithAttachMenuProps',
-  'SourceDetailsMenuItem',
-  'ChatbotConversationHistoryNav', 
-  'Conversation'
-]
+propComponents:
+  [
+    'Chatbot',
+    'ChatbotContent',
+    'MessageBox',
+    'ChatbotWelcomePrompt',
+    'WelcomePrompt',
+    'ChatbotToggle',
+    'ChatbotHeader',
+    'ChatbotHeaderMain',
+    'ChatbotHeaderMenu',
+    'ChatbotHeaderActions',
+    'ChatbotHeaderTitle',
+    'ChatbotHeaderOptionsDropdown',
+    'ChatbotHeaderSelectorDropdown',
+    'ChatbotFooter',
+    'MessageBar',
+    'ChatbotFootnote',
+    'ChatbotFootnotePopover',
+    'ChatbotFootnotePopoverCTA',
+    'ChatbotFootnotePopoverBannerImage',
+    'ChatbotFootnotePopoverLink',
+    'MessageBarWithAttachMenuProps',
+    'SourceDetailsMenuItem',
+    'ChatbotConversationHistoryNav',
+    'Conversation'
+  ]
 sortValue: 2
 ---
 
@@ -63,6 +64,7 @@ ChatbotHeaderSelectorDropdown
 import { ChatbotFooter, ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
 import { MessageBar } from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
+import { ChatbotModal } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotModal';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
 
@@ -265,6 +267,7 @@ To enable the stop button, set `hasStopButton` to `true` and pass in a `handleSt
 ## Navigation
 
 ### Side nav in a drawer
+
 The chatbot conversation history is contained in an interactive drawer, where users can interact with previous conversations or start a new conversation.
 
 The `<ChatbotConversationHistoryNav>` component is a wrapper placed within `<Chatbot>`, which contains all other chatbot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
@@ -311,5 +314,13 @@ Both the search input field and "New chat" buttons are optional.
 Actions can be added to conversations with `menuItems`. Optionally, you can also add a `className` to the menu via `menuClassName`, change the default aria-label and tooltip content via `label`, or add an `onSelect` callback for when a user selects an item.
 
 ```js file="./ChatbotHeaderDrawerWithActions.tsx"
+
+```
+
+### Modal
+
+Based on the [PatternFly modal](/components/modal), this modal adapts to the chatbot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the [attachment modals](/patternfly-ai/chatbot/messages#attachment-preview), but you can customize this modal to adapt it to other use cases as needed.
+
+```js file="./ChatbotModal.tsx"
 
 ```

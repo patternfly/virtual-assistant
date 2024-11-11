@@ -24,6 +24,9 @@ export * from './ChatbotFooter';
 export { default as ChatbotHeader } from './ChatbotHeader';
 export * from './ChatbotHeader';
 
+export { default as ChatbotModal } from './ChatbotModal';
+export * from './ChatbotModal';
+
 export { default as ChatbotPopover } from './ChatbotPopover';
 export * from './ChatbotPopover';
 

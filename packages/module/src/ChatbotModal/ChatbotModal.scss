@@ -1,0 +1,93 @@
+.pf-chatbot__chatbot-modal-backdrop {
+  position: static;
+}
+
+.pf-chatbot__chatbot-modal {
+  --pf-v6-c-modal-box--BorderRadius: var(--pf-t--global--border--radius--medium);
+  position: fixed;
+  inset-block-end: var(--pf-t--global--spacer--800); // no associated semantic token
+  inset-inline-end: var(--pf-t--global--spacer--lg);
+  width: 30rem;
+  height: 70vh;
+  background-color: var(--pf-t--global--background--color--secondary--default);
+
+  .pf-v6-c-modal-box__title {
+    --pf-v6-c-modal-box__title--FontSize: var(--pf-t--global--font--size--heading--h3);
+  }
+  .pf-v6-c-button.pf-m-primary.pf-m-block,
+  .pf-v6-c-button.pf-m-link.pf-m-block {
+    --pf-v6-c-button--FontWeight: 500;
+  }
+  .pf-v6-c-modal-box__footer {
+    padding-block-start: var(--pf-t--global--spacer--xl);
+    padding-block-end: var(--pf-t--global--spacer--xl);
+  }
+  .pf-v6-c-modal-box__header {
+    padding-block-end: var(--pf-t--global--spacer--lg);
+  }
+}
+
+// ============================================================================
+// Chatbot Display Mode - Fullscreen and Embedded
+// ============================================================================
+@media screen and (max-width: 600px) {
+  .pf-chatbot__chatbot-modal--embedded,
+  .pf-chatbot__chatbot-modal--fullscreen {
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media screen and (min-width: 601px) {
+  .pf-chatbot__chatbot-modal--embedded,
+  .pf-chatbot__chatbot-modal--fullscreen {
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    width: 50%;
+    height: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// ============================================================================
+// Chatbot Display Mode - Default
+// ============================================================================
+.pf-chatbot__chatbot-modal--default {
+  box-shadow: unset;
+}
+
+// ============================================================================
+// Chatbot Display Mode - Docked
+// ============================================================================
+.pf-chatbot__chatbot-modal--docked {
+  height: 100vh;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  border-radius: 0;
+  --pf-v6-c-modal-box--MaxHeight: 100vh;
+  box-shadow: unset;
+}
+
+// ============================================================================
+// Dark theme
+// ============================================================================
+.pf-v6-theme-dark {
+  .pf-v6-c-modal-box.pf-chatbot__chatbot-modal {
+    .pf-v6-c-modal-box__title {
+      color: #fff;
+    }
+  }
+}
+
+// ============================================================================
+// Backdrop
+// ============================================================================
+.pf-v6-c-backdrop.pf-chatbot__backdrop {
+  position: absolute;
+}

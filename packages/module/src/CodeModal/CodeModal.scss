@@ -1,19 +1,4 @@
-.pf-chatbot__code-modal-backdrop {
-  position: static;
-}
-
 .pf-chatbot__code-modal {
-  --pf-v6-c-modal-box--BorderRadius: var(--pf-t--global--border--radius--medium);
-  position: fixed;
-  inset-block-end: var(--pf-t--global--spacer--800); // no associated semantic token
-  inset-inline-end: var(--pf-t--global--spacer--lg);
-  width: 30rem;
-  height: 70vh;
-  background-color: var(--pf-t--global--background--color--secondary--default);
-
-  .pf-v6-c-modal-box__title {
-    --pf-v6-c-modal-box__title--FontSize: var(--pf-t--global--font--size--heading--h3);
-  }
   .pf-v6-c-code-editor {
     --pf-v6-c-code-editor__main--BackgroundColor: #1f1f1f;
     --pf-v6-c-code-editor__main--BorderEndStartRadius: 0;
@@ -25,6 +10,9 @@
     /** this is for the attachment editor header */
     border-start-start-radius: var(--pf-t--global--border--radius--small);
     border-start-end-radius: var(--pf-t--global--border--radius--small);
+  }
+  .pf-chatbot__code-modal-body {
+    gap: var(--pf-t--global--spacer--lg);
   }
   .pf-chatbot__code-modal--controls > .pf-v6-c-code-editor__header {
     flex-direction: row-reverse;
@@ -70,73 +58,9 @@
   .pf-v6-c-code-editor__header-main {
     display: none;
   }
-  .pf-v6-c-button.pf-m-primary.pf-m-block,
-  .pf-v6-c-button.pf-m-link.pf-m-block {
-    --pf-v6-c-button--FontWeight: 500;
-  }
-  .pf-v6-c-modal-box__close {
-    --pf-v6-c-modal-box__close--InsetBlockStart: 1.125rem;
-  }
-  .pf-chatbot__code-modal-body {
-    gap: var(--pf-t--global--spacer--lg);
-  }
-  .pf-v6-c-modal-box__footer {
-    padding-block-start: var(--pf-t--global--spacer--xl);
-    padding-block-end: var(--pf-t--global--spacer--xl);
-  }
-  .pf-v6-c-modal-box__header {
-    padding-block-end: var(--pf-t--global--spacer--lg);
-  }
   .pf-chatbot__code-modal-file-details {
     padding-inline-start: var(--pf-t--global--spacer--md);
   }
-}
-
-// ============================================================================
-// Chatbot Display Mode - Fullscreen and Embedded
-// ============================================================================
-@media screen and (max-width: 600px) {
-  .pf-chatbot__code-modal--embedded,
-  .pf-chatbot__code-modal--fullscreen {
-    inset-block-end: 0;
-    inset-inline-end: 0;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-@media screen and (min-width: 601px) {
-  .pf-chatbot__code-modal--embedded,
-  .pf-chatbot__code-modal--fullscreen {
-    inset-block-end: 0;
-    inset-inline-end: 0;
-    width: 50%;
-    height: fit-content;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-// ============================================================================
-// Chatbot Display Mode - Default
-// ============================================================================
-.pf-chatbot__code-modal--default {
-  box-shadow: unset;
-}
-
-// ============================================================================
-// Chatbot Display Mode - Docked
-// ============================================================================
-.pf-chatbot__code-modal--docked {
-  height: 100vh;
-  inset-block-end: 0;
-  inset-inline-end: 0;
-  border-radius: 0;
-  --pf-v6-c-modal-box--MaxHeight: 100vh;
-  box-shadow: unset;
 }
 
 // ============================================================================
@@ -149,16 +73,4 @@
       --pf-v6-c-button--hover__icon--Color: #c7c7c7;
     }
   }
-  .pf-v6-c-modal-box.pf-chatbot__code-modal {
-    .pf-v6-c-modal-box__title {
-      color: #fff;
-    }
-  }
-}
-
-// ============================================================================
-// Backdrop
-// ============================================================================
-.pf-v6-c-backdrop.pf-chatbot__backdrop {
-  position: absolute;
 }
