@@ -23,6 +23,9 @@ import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/Previe
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import SourcesCard from '@patternfly/virtual-assistant/dist/dynamic/SourcesCard';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
+import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
+import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
+import RedoIcon from '@patternfly/react-icons/dist/esm/icons/redo-icon';
 import patternflyAvatar from './patternfly_avatar.jpg';
 import userAvatar from './user_avatar.jpg';
 
@@ -62,7 +65,7 @@ If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`,
 
 ```
 
-### Messages actions
+### Message actions
 
 You can add actions to a message, to allow users to interact with the message content. These actions can include:
 
@@ -73,6 +76,14 @@ You can add actions to a message, to allow users to interact with the message co
 **Note:** The logic for the actions is not built into the component and must be implemented by the consuming application.
 
 ```js file="./MessageWithResponseActions.tsx"
+
+```
+
+### Custom message actions
+
+Beyond the standard message actions (positive, negative, copy, share, or listen), you can add custom actions to a bot message by passing an `actions` object to the `<Message>` component. This object can contain the following customizations: `ariaLabel`, `onClick`, `className`, `isDisabled`, `tooltipContent`, `tooltipProps`, and `icon`.
+
+```js file="./MessageWithCustomResponseActions.tsx"
 
 ```
 
