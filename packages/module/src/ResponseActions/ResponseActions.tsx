@@ -22,11 +22,13 @@ export interface ActionProps {
   tooltipContent?: string;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
+  /** Icon for custom response action */
+  icon?: React.ReactNode;
 }
 
 export interface ResponseActionProps {
   /** Props for message actions, such as feedback (positive or negative), copy button, share, and listen */
-  actions: {
+  actions: Record<string, ActionProps | undefined> & {
     positive?: ActionProps;
     negative?: ActionProps;
     copy?: ActionProps;
@@ -36,7 +38,7 @@ export interface ResponseActionProps {
 }
 
 export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions }) => {
-  const { positive, negative, copy, share, listen } = actions;
+  const { positive, negative, copy, share, listen, ...additionalActions } = actions;
   return (
     <div className="pf-chatbot__response-actions">
       {positive && (
@@ -94,6 +96,18 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={<VolumeUpIcon />}
         ></ResponseActionButton>
       )}
+      {Object.keys(additionalActions).map((action) => (
+        <ResponseActionButton
+          key={action}
+          ariaLabel={additionalActions[action]?.ariaLabel}
+          onClick={additionalActions[action]?.onClick}
+          className={additionalActions[action]?.className}
+          isDisabled={additionalActions[action]?.isDisabled}
+          tooltipContent={additionalActions[action]?.tooltipContent}
+          tooltipProps={additionalActions[action]?.tooltipProps}
+          icon={additionalActions[action]?.icon}
+        />
+      ))}
     </div>
   );
 };
