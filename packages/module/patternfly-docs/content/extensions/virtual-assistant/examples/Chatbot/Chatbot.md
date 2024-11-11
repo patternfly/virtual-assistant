@@ -75,7 +75,7 @@ To provide users with a more specific direction, you can also include optional w
 
 ### Skip to content
 
-To provide page context, we recommend using a "skip to chatbot" button. This allows you to skip past other content on the page, directly to the chatbot content. The [PatternFly skip to content component](/components/skip-to-content) can be used for this purpose. To display this button, you must tab into the main window. We recommend putting focus on the toggle if the chatbot is closed, and the chatbot when it is open.
+To provide page context, we recommend using a "skip to chatbot" button. This allows you to skip past other content on the page, directly to the chatbot content. The [PatternFly skip to content component](/components/skip-to-content) can be used for this purpose. To display this button, you must tab into the main window. When using default or docked modes, we recommend putting focus on the toggle if the chatbot is closed, and the chatbot when it is open. For fullscreen and embedded, we recommend putting the focus on the first focusable item in the chatbot, such as a menu toggle. This can be seen in our more fully-featured demos for the [default, embedded, and fullscreen chatbot](patternfly-ai/chatbot/chatbot-container/react-demos/basic-chatbot) and the [embedded chatbot](/patternfly-ai/chatbot/chatbot-container/react-demos/embedded-chatbot).
 
 ```js file="./SkipToContent.tsx" isFullscreen
 
