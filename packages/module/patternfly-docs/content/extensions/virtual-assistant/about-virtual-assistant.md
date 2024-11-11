@@ -3,6 +3,7 @@ section: PatternFly-AI
 subsection: Chatbot
 id: About chatbot
 sortValue: 1
+source: About
 ---
 
 **Note:** The PatternFly chatbot extension lives in its own package [`@patternfly/virtual-assistant`](https://www.npmjs.com/package/@patternfly/virtual-assistant)
