@@ -1,6 +1,6 @@
 ---
 section: PatternFly-AI
-subsection: chatbot
+subsection: Chatbot
 id: About chatbot
 sortValue: 1
 source: design-guidelines
