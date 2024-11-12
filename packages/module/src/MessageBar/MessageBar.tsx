@@ -7,6 +7,7 @@ import MicrophoneButton from './MicrophoneButton';
 import { AttachButton } from './AttachButton';
 import AttachMenu from '../AttachMenu';
 import StopButton from './StopButton';
+import { ChatbotDisplayMode } from '../Chatbot';
 
 export interface MessageBarWithAttachMenuProps {
   /** Flag to enable whether attach menu is open */
@@ -62,6 +63,8 @@ export interface MessageBarProps extends TextAreaProps {
   };
   /** A callback for when the text area value changes. */
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+  /** Display mode of chatbot, if you want to message bar to resize when the display mode changes */
+  displayMode?: ChatbotDisplayMode;
 }
 
 export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
@@ -77,15 +80,14 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   hasStopButton,
   buttonProps,
   onChange,
+  displayMode,
   ...props
 }: MessageBarProps) => {
   // Text Input
   // --------------------------------------------------------------------------
   const [message, setMessage] = React.useState<string>('');
   const [isListeningMessage, setIsListeningMessage] = React.useState<boolean>(false);
-  const [height, setHeight] = React.useState<number>();
   const [hasSentMessage, setHasSentMessage] = React.useState(false);
-
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
   const attachButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -95,6 +97,12 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     if (parent) {
       parent.style.setProperty('margin-top', `0rem`);
       parent.style.setProperty('margin-bottom', `0rem`);
+      parent.style.setProperty('height', 'inherit');
+
+      const grandparent = parent.parentElement;
+      if (grandparent) {
+        grandparent.style.setProperty('flex-basis', 'auto');
+      }
     }
   };
 
@@ -112,25 +120,34 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         parseInt(computed.getPropertyValue('border-bottom-width'));
       parent.style.setProperty('height', `${height}px`);
 
-      if (height > 32 || window.innerWidth <= 359) {
+      if (height > 32 || window.innerWidth <= 507) {
         parent.style.setProperty('margin-bottom', `1rem`);
         parent.style.setProperty('margin-top', `1rem`);
       }
+    }
+  };
 
-      setHeight(height);
+  const textIsLongerThan2Lines = (field: HTMLTextAreaElement) => {
+    const lineHeight = parseFloat(window.getComputedStyle(field).lineHeight);
+    const lines = field.scrollHeight / lineHeight;
+    return lines > 2;
+  };
+
+  const setAutoWidth = (field: HTMLTextAreaElement) => {
+    const parent = field.parentElement;
+    if (parent) {
+      const grandparent = parent.parentElement;
+      if (textIsLongerThan2Lines(field) && grandparent) {
+        grandparent.style.setProperty('flex-basis', `100%`);
+      }
     }
   };
 
   const handleNewLine = (field: HTMLTextAreaElement) => {
     const parent = field.parentElement;
-    const oldHeight = height ?? 0;
     if (parent) {
-      if (oldHeight === 0) {
-        parent.style.setProperty('margin-bottom', `1rem`);
-        parent.style.setProperty('margin-top', `1rem`);
-      } else {
-        parent.style.setProperty('height', `${oldHeight + 16}px`);
-      }
+      parent.style.setProperty('margin-bottom', `1rem`);
+      parent.style.setProperty('margin-top', `1rem`);
     }
   };
 
@@ -145,18 +162,56 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   React.useEffect(() => {
     const field = textareaRef.current;
     if (field) {
-      setInitialLineHeight(field);
-      setAutoHeight(field);
+      if (field.value === '') {
+        if (window.innerWidth > 507) {
+          setInitialLineHeight(field);
+        } else {
+          handleMobileHeight(field);
+        }
+      } else {
+        setAutoHeight(field);
+        setAutoWidth(field);
+      }
     }
+    const resetHeight = () => {
+      if (field) {
+        if (field.value === '') {
+          if (window.innerWidth > 507) {
+            setInitialLineHeight(field);
+          } else {
+            handleMobileHeight(field);
+          }
+        } else {
+          setAutoHeight(field);
+          setAutoWidth(field);
+        }
+      }
+    };
+    window.addEventListener('resize', resetHeight);
+
+    return () => {
+      window.removeEventListener('resize', resetHeight);
+    };
   }, []);
 
   React.useEffect(() => {
     const field = textareaRef.current;
     if (field) {
-      setInitialLineHeight(field);
-      setAutoHeight(field);
+      if (field.value === '') {
+        setInitialLineHeight(textareaRef.current);
+      } else {
+        setAutoHeight(textareaRef.current);
+        setAutoWidth(field);
+      }
     }
-    setHasSentMessage(false);
+  }, [displayMode, message]);
+
+  React.useEffect(() => {
+    const field = textareaRef.current;
+    if (field) {
+      setInitialLineHeight(field);
+      setHasSentMessage(false);
+    }
   }, [hasSentMessage]);
 
   const handleChange = React.useCallback((event) => {
@@ -164,8 +219,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     if (textareaRef.current) {
       if (event.target.value === '') {
         setInitialLineHeight(textareaRef.current);
+      } else {
+        setAutoHeight(textareaRef.current);
       }
-      setAutoHeight(textareaRef.current);
     }
     setMessage(event.target.value);
   }, []);
@@ -179,13 +235,6 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     });
   }, [onSendMessage]);
 
-  // want to exclude things like delete, shift, etc.
-  const isTypeableKey = (key) => {
-    if (key.length > 1) {
-      return false;
-    }
-    return true;
-  };
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === 'Enter' && !event.shiftKey) {
@@ -197,11 +246,6 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
       if (event.key === 'Enter' && event.shiftKey) {
         if (textareaRef.current) {
           handleNewLine(textareaRef.current);
-        }
-      }
-      if (window.innerWidth <= 411 && isTypeableKey(event.key)) {
-        if (textareaRef.current) {
-          handleMobileHeight(textareaRef.current);
         }
       }
     },
@@ -268,16 +312,6 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   const messageBarContents = (
     <>
       <div className="pf-chatbot__message-bar-input">
-        {/* <AutoTextArea
-          ref={textareaRef}
-          className="pf-chatbot__message-textarea"
-          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onKeyDown={handleKeyDown}
-          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
-          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
-          {...props}
-        />*/}
         <TextArea
           className="pf-chatbot__message-textarea"
           value={message}
