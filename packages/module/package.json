@@ -48,9 +48,9 @@
     "react-dom": "^17 || ^18"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "^6.0.0-alpha.121",
+    "@patternfly/documentation-framework": "^6.0.6",
     "@patternfly/patternfly": "^6.0.0",
-    "@patternfly/patternfly-a11y": "^4.3.1",
+    "@patternfly/patternfly-a11y": "^5.0.0",
     "@patternfly/react-table": "^6.0.0",
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/react": "^18.2.61",
@@ -62,6 +62,18 @@
     "react-router-dom": "^6.22.2",
     "rimraf": "^2.7.1",
     "typescript": "^5.3.3",
-    "@octokit/rest": "^18.0.0"
+    "@octokit/rest": "^18.0.0",
+    "victory-core": "^37.1.1",
+    "victory-scatter": "^37.1.1",
+    "victory-pie": "^37.1.1",
+    "victory-stack": "^37.1.1",
+    "victory-legend": "^37.1.1",
+    "victory-line": "^37.1.1",
+    "victory-group": "^37.1.1",
+    "victory-voronoi-container": "^37.1.1",
+    "victory-create-container": "^37.1.1",
+    "victory-cursor-container": "^37.1.1",
+    "victory-tooltip": "^37.1.1",
+    "victory-bar": "^37.1.1"
   }
 }
