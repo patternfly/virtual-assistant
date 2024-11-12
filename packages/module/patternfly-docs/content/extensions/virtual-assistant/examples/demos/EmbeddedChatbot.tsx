@@ -35,11 +35,11 @@ import ChatbotHeader, {
   ChatbotHeaderSelectorDropdown
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
 
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import { BarsIcon } from '@patternfly/react-icons';
-import userAvatar from '../ChatbotMessage/user_avatar.jpg';
-import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',

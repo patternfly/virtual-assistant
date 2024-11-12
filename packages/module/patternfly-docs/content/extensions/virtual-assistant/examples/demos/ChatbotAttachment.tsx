@@ -23,12 +23,12 @@ import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAler
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
-import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
-import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
-import userAvatar from '../ChatbotMessage/user_avatar.jpg';
-import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
+import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 interface ModalData {
   code: string;

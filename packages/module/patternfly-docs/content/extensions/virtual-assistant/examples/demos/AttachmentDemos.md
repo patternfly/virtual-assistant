@@ -5,9 +5,9 @@ section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Chatbot attachments
+id: Messages
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
-source: react-demos
+source: demo
 sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/demos/demos.md
 ---
 
@@ -26,8 +26,8 @@ import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/Previe
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import ChatbotHeader, {
 ChatbotHeaderMenu,
 ChatbotHeaderMain,
@@ -40,12 +40,12 @@ import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAler
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
-import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
-import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
-import userAvatar from '../ChatbotMessage/user_avatar.jpg';
-import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
+import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
-# Demos
+## Demos
 
 ### Attach via upload button in message bar
 

@@ -5,9 +5,9 @@ section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Chatbot container
+id: Overview
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
-source: react-demos
+source: demo
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
 propComponents:
@@ -49,12 +49,12 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import { BarsIcon } from '@patternfly/react-icons/dist/esm/icons/bars-icon';
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
-import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
-import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
-import userAvatar from '../ChatbotMessage/user_avatar.jpg';
-import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
+import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 ### Basic chatbot
 

@@ -13,6 +13,8 @@ results
 .eslintcache
 generated
 
+!generated/**/*.png
+
 # package managers
 lerna-debug.log
 
