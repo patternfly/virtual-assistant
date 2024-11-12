@@ -12,7 +12,7 @@ import { MicrophoneIcon } from '@patternfly/react-icons/dist/esm/icons/microphon
 export interface MicrophoneButtonProps extends ButtonProps {
   /** Boolean check if the browser is listening to speech or not */
   isListening: boolean;
-  /** Class Name for the Microphone button */
+  /** Class name for MicrophoneButton */
   className?: string;
   /** Callback to update the value of isListening */
   onIsListeningChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +20,8 @@ export interface MicrophoneButtonProps extends ButtonProps {
   onSpeechRecognition: React.Dispatch<React.SetStateAction<string>>;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
+  /** English text "Use microphone" and "Stop listening" used in the tooltip */
+  tooltipContent?: { active?: string; inactive?: string };
 }
 
 export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = ({
@@ -28,6 +30,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   onSpeechRecognition,
   className,
   tooltipProps,
+  tooltipContent = { active: 'Stop listening', inactive: 'Use microphone' },
   ...props
 }: MicrophoneButtonProps) => {
   // Microphone
@@ -84,7 +87,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
       aria="none"
       aria-live="polite"
       id="pf-chatbot__tooltip--use-microphone"
-      content={isListening ? 'Stop listening' : 'Use microphone'}
+      content={isListening ? tooltipContent.active : tooltipContent.inactive}
       position={tooltipProps?.position || 'top'}
       entryDelay={tooltipProps?.entryDelay || 0}
       exitDelay={tooltipProps?.exitDelay || 0}
@@ -95,7 +98,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
       <Button
         variant="plain"
         className={`pf-chatbot__button--microphone ${isListening ? 'pf-chatbot__button--microphone--active' : ''} ${className ?? ''}`}
-        aria-label={props['aria-label'] || 'Microphone Button'}
+        aria-label={props['aria-label'] || 'Microphone button'}
         onClick={isListening ? stopListening : startListening}
         icon={
           <Icon iconSize="xl" isInline>

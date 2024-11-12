@@ -2,6 +2,14 @@
 // Chatbot Main - Message - Content - Text
 // ============================================================================
 
+.pf-chatbot__message-and-actions {
+  blockquote {
+    .pf-chatbot__message-text {
+      display: inline-block;
+    }
+  }
+}
+
 // Need to inline shorter text
 .pf-chatbot__message-text {
   width: fit-content;
@@ -14,10 +22,6 @@
   p,
   a {
     --pf-v6-c-content--FontSize: var(--pf-t--chatbot--font-size);
-  }
-
-  p {
-    display: inline-block;
   }
 
   code {

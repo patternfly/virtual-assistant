@@ -142,7 +142,7 @@ When adding/making changes to a component, always make sure your code is tested:
 
 ### Styling:
 
-- for styling always use JSS
+- for styling always use CSS
 - new classNames should be named in camelCase starting with the name of a given component and following with more details clarifying its purpose/component's subsection to which the class is applied (`actionMenu`, `actionMenuDropdown`, `actionMenuDropdownToggle`, etc.)
 - do not use `pf-v6-u-XXX` classes, use CSS variables in a custom class instead (styles for the utility classes are not bundled with the standard patternfly.css - it would require the consumer to import also addons.css)
 
@@ -167,3 +167,23 @@ When adding/making changes to a component, always make sure your code is tested:
 
 - run npm run build:docs followed by npm run serve:docs, then run npm run test:a11y in a new terminal window to run our accessibility tests. Once the accessibility tests have finished running you can run
 - npm run serve:a11y to locally view the generated report
+
+## Generating screenshots
+
+From root folder:
+
+```sh
+npm install
+npm run build
+cd packages/module
+npm run docs:build
+npm run docs:serve
+```
+
+Open a new terminal tab while serving; make sure you are in package/module folder:
+
+```sh
+npm run docs:screenshots
+```
+
+These files will not be picked up by git; you'll have to look for them and add them manually.

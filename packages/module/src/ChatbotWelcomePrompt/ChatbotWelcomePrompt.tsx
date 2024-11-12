@@ -14,13 +14,15 @@ export interface ChatbotWelcomePromptProps extends React.HTMLProps<HTMLDivElemen
   prompts?: WelcomePrompt[];
   /** Custom classname for the WelcomePrompt component */
   className?: string;
+  /** Custom test id for the WelcomePrompt component */
+  testId?: string;
 }
 
 export interface WelcomePrompt {
   /** Message for the welcome prompt */
-  message: string;
+  message?: string;
   /** Title for the welcome prompt */
-  title?: string;
+  title: string;
   /** Callback handler for the onClick event for welcome prompt */
   onClick?: () => void;
 }
@@ -30,9 +32,10 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
   description,
   prompts,
   className,
+  testId,
   ...props
 }: ChatbotWelcomePromptProps) => (
-  <div className={`pf-chatbot--layout--welcome ${className ?? ''}`} {...props}>
+  <div data-testid={testId} className={`pf-chatbot--layout--welcome ${className ?? ''}`} {...props}>
     <Content component={ContentVariants.h1}>
       <span className="pf-chatbot__hello">{title}</span>
       <br />
@@ -51,7 +54,7 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
           >
             <CardTitle id={`welcome-prompt-title-${index}`}>{prompt.title}</CardTitle>
           </CardHeader>
-          <CardBody>{prompt.message}</CardBody>
+          {prompt.message && <CardBody>{prompt.message}</CardBody>}
         </Card>
       ))}
     </div>

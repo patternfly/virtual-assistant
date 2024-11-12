@@ -1,0 +1,22 @@
+// ============================================================================
+// Chatbot Footer - Message Bar - Stop
+// ============================================================================
+.pf-v6-c-button.pf-chatbot__button--stop {
+  background-color: var(--pf-t--global--color--brand--default);
+  border-radius: var(--pf-t--global--border--radius--pill);
+  padding: var(--pf-t--global--spacer--md);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pf-v6-c-button__icon {
+    color: var(--pf-t--global--icon--color--inverse);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--pf-t--global--color--brand--hover);
+  }
+}

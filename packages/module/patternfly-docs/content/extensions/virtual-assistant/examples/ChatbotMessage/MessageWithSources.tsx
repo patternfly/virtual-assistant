@@ -2,7 +2,7 @@ import React from 'react';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 
-export const AttachmentMenuExample: React.FunctionComponent = () => {
+export const MessageWithSourcesExample: React.FunctionComponent = () => {
   const onSetPage = (_event: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
     // eslint-disable-next-line no-console
     console.log(`Page changed to ${newPage}`);

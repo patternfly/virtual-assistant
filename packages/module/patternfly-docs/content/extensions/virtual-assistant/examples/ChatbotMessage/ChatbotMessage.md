@@ -23,6 +23,9 @@ import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/Previe
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import SourcesCard from '@patternfly/virtual-assistant/dist/dynamic/SourcesCard';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
+import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
+import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
+import RedoIcon from '@patternfly/react-icons/dist/esm/icons/redo-icon';
 import patternflyAvatar from './patternfly_avatar.jpg';
 import userAvatar from './user_avatar.jpg';
 
@@ -62,7 +65,7 @@ If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`,
 
 ```
 
-### Messages actions
+### Message actions
 
 You can add actions to a message, to allow users to interact with the message content. These actions can include:
 
@@ -76,6 +79,14 @@ You can add actions to a message, to allow users to interact with the message co
 
 ```
 
+### Custom message actions
+
+Beyond the standard message actions (positive, negative, copy, share, or listen), you can add custom actions to a bot message by passing an `actions` object to the `<Message>` component. This object can contain the following customizations: `ariaLabel`, `onClick`, `className`, `isDisabled`, `tooltipContent`, `tooltipProps`, and `icon`.
+
+```js file="./MessageWithCustomResponseActions.tsx"
+
+```
+
 ### Messages with sources
 
 If you are using Retrieval-Augmented Generation, you may want to display sources in a message. Passing `sources` to `<Message>` allows you to paginate between the sources you provide.
@@ -83,5 +94,15 @@ If you are using Retrieval-Augmented Generation, you may want to display sources
 The API for a source requires a link at minimum, but we strongly recommend providing a more descriptive title and body description so users have enough context. The title is limited to 1 line and the body is limited to 2 lines.
 
 ```js file="./MessageWithSources.tsx"
+
+```
+
+### Messages with quick responses
+
+You can offer convenient, clickable responses to messages in the form of quick actions. Quick actions are [PatternFly labels](/components/label/) in a label group, configured to display up to 5 visible labels.
+
+To add quick actions, pass `quickResponses` to `<Message>`. This can be overridden by passing additional `<LabelGroup>` props to `quickResponseContainerProps`, or additional `<Label>` props to `quickResponses`.
+
+```js file="./MessageWithQuickResponses.tsx"
 
 ```

@@ -16,6 +16,10 @@
   .pf-chatbot__header-main {
     display: flex;
     gap: var(--pf-t--global--spacer--sm);
+
+    img {
+      pointer-events: none; // prevent dragging on any brand images - interferes with FileDropZone
+    }
   }
 
   // Title -or- Brand
@@ -43,6 +47,7 @@
     display: flex;
     gap: var(--pf-t--global--spacer--sm);
     justify-content: flex-end;
+    align-items: center;
     .pf-v6-c-menu-toggle.pf-m-secondary {
       width: 160px;
     }

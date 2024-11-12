@@ -33,6 +33,33 @@ export default MessageLoading;
 
 ~~~
 `;
+
+  const orderedList = `
+  Here is an ordered list:
+
+  1. Item 1
+  2. Item 2
+  3. Item 3`;
+
+  const unorderedList = `
+  Here is an unordered list:
+
+  * Item 1
+  * Item 2
+  * Item 3`;
+
+  const moreComplexList = `You may be wondering whether you can display more complex lists with formatting. In response to your question, I will explain how to spread butter on toast.
+
+1. **Using a \`toaster\`:**
+
+   - Place \`bread\` in a \`toaster\`
+   - Once \`bread\` is lightly browned, remove from \`toaster\`
+
+2. **Using a \`knife\`:**
+
+     Acquire 1 tablespoon of room temperature \`butter\`. Use \`knife\` to spread butter on \`toast\`. Bon appétit!
+ `;
+
   return (
     <>
       <Message
@@ -43,6 +70,9 @@ export default MessageLoading;
         timestamp="1 hour ago"
       />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={markdown} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={orderedList} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={unorderedList} />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={moreComplexList} />
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content="Example content" isLoading />
     </>
   );

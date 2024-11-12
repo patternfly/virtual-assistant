@@ -4,13 +4,16 @@
 // importants are temporary until we can find a workaround for the way Backstage is pulling in style sheets
 .pf-chatbot__jump {
   position: absolute !important;
-  inset-inline-start: 50% !important;
-  width: 3rem !important;
-  height: 3rem !important;
+  inset-inline-start: 75% !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--pf-t--global--spacer--md) !important;
   border-radius: var(--pf-t--global--border--radius--pill) !important;
-
-  background-color: var(--pf-t--chatbot--jump--background) !important;
+  --pf-v6-c-button--MinWidth: 2rem;
+  background-color: var(--pf-t--global--background--color--primary--default) !important;
   border: 1px solid var(--pf-t--chatbot--border) !important;
   box-shadow: var(--pf-t--global--box-shadow--sm);
   color: var(--pf-t--chatbot--icon--fill) !important;
@@ -22,30 +25,22 @@
     opacity var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--md) !important;
   z-index: var(--pf-t--global--z-index--md) !important;
 
+  .pf-v6-c-button__text {
+    line-height: 1rem;
+  }
+
   &:hover,
   &:focus {
-    background-color: var(--pf-t--chatbot--jump--background--hover) !important;
+    background-color: var(--pf-t--global--background--color--primary--hover) !important;
     box-shadow: var(--pf-t--global--box-shadow--md) !important;
     color: var(--pf-t--chatbot--icon--fill--hover) !important;
   }
 
   &--top {
     inset-block-start: var(--pf-t--global--spacer--md) !important;
-
-    &--hidden {
-      transform: translate3d(-50%, -8px, 0) !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
   }
 
   &--bottom {
     inset-block-end: var(--pf-t--global--spacer--md) !important;
-
-    &--hidden {
-      transform: translate3d(-50%, 8px, 0) !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
   }
 }

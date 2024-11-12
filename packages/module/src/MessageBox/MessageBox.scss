@@ -20,3 +20,13 @@
   white-space: nowrap;
   width: 1px;
 }
+
+@media screen and (min-width: 64rem) {
+  .pf-chatbot--embedded,
+  .pf-chatbot--fullscreen {
+    .pf-chatbot__messagebox {
+      max-width: 60rem;
+      width: 100%;
+    }
+  }
+}

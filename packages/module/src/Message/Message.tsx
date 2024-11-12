@@ -6,14 +6,22 @@ import React from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Avatar, Label, Timestamp } from '@patternfly/react-core';
+import { Avatar, Label, LabelGroup, LabelGroupProps, LabelProps, Timestamp } from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
 import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
 import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions';
 import SourcesCard, { SourcesCardProps } from '../SourcesCard';
+import ListItemMessage from './ListMessage/ListItemMessage';
+import UnorderedListMessage from './ListMessage/UnorderedListMessage';
+import OrderedListMessage from './ListMessage/OrderedListMessage';
 
+export interface QuickResponse extends Omit<LabelProps, 'children'> {
+  content: string;
+  id: string;
+  onClick: () => void;
+}
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Unique id for message */
   id?: string;
@@ -39,13 +47,22 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   onAttachmentClose?: (attachmentId: string) => void;
   /** Props for message actions, such as feedback (positive or negative), copy button, share, and listen */
   actions?: {
-    positive?: ActionProps;
-    negative?: ActionProps;
-    copy?: ActionProps;
-    share?: ActionProps;
-    listen?: ActionProps;
+    [key: string]: ActionProps;
   };
+  /** Sources for message */
   sources?: SourcesCardProps;
+  /** Label for the English word "AI," used to tag messages with role "bot" */
+  botWord?: string;
+  /** Label for the English "Loading message," displayed to screenreaders when loading a message */
+  loadingWord?: string;
+  codeBlockProps?: {
+    'aria-label'?: string;
+    className?: string;
+  };
+  /** Props for quick responses */
+  quickResponses?: QuickResponse[];
+  /** Props for quick responses container */
+  quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -61,10 +78,14 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   onAttachmentClose,
   actions,
   sources,
+  botWord = 'AI',
+  loadingWord = 'Loading message',
+  codeBlockProps,
+  quickResponses,
+  quickResponseContainerProps = { numLabels: 5 },
   ...props
 }: MessageProps) => {
   // Configure default values
-
   const DEFAULTS = {
     user: {
       name: 'User',
@@ -98,7 +119,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
           <span className="pf-chatbot__message-name">{name}</span>
           {role === 'bot' && (
             <Label variant="outline" isCompact>
-              AI
+              {botWord}
             </Label>
           )}
           <Timestamp date={date}>{timestamp}</Timestamp>
@@ -106,18 +127,43 @@ export const Message: React.FunctionComponent<MessageProps> = ({
         <div className="pf-chatbot__message-response">
           <div className="pf-chatbot__message-and-actions">
             {isLoading ? (
-              <MessageLoading />
+              <MessageLoading loadingWord={loadingWord} />
             ) : (
-              <Markdown components={{ p: TextMessage, code: CodeBlockMessage }} remarkPlugins={[remarkGfm]}>
+              <Markdown
+                components={{
+                  p: TextMessage,
+                  code: ({ children }) => <CodeBlockMessage {...codeBlockProps}>{children}</CodeBlockMessage>,
+                  ul: UnorderedListMessage,
+                  ol: OrderedListMessage,
+                  li: ListItemMessage
+                }}
+                remarkPlugins={[remarkGfm]}
+              >
                 {content}
               </Markdown>
             )}
             {!isLoading && sources && <SourcesCard {...sources} />}
             {!isLoading && actions && <ResponseActions actions={actions} />}
+            {!isLoading && quickResponses && (
+              <LabelGroup
+                className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className}`}
+                {...quickResponseContainerProps}
+              >
+                {quickResponses.map(({ id, onClick, content, ...props }: QuickResponse) => (
+                  <Label variant="outline" color="blue" key={id} onClick={onClick} {...props}>
+                    {content}
+                  </Label>
+                ))}
+              </LabelGroup>
+            )}
           </div>
           {attachmentName && (
             <div className="pf-chatbot__message-attachment">
-              <FileDetailsLabel fileName={attachmentName} onClick={onAttachmentClick} onClose={onClose} />
+              <FileDetailsLabel
+                fileName={attachmentName}
+                onClick={onAttachmentClick}
+                onClose={onAttachmentClose && attachmentId ? onClose : undefined}
+              />
             </div>
           )}
         </div>

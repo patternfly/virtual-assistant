@@ -24,6 +24,10 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
           setIsEditModalOpen(false);
           setIsPreviewModalOpen(true);
         }}
+        onAttachmentClose={(id: string) => {
+          // eslint-disable-next-line no-console
+          console.log(`Closed attachment id ${id}`);
+        }}
       />
       {currentModalData && (
         <PreviewAttachment

@@ -9,23 +9,26 @@ import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/re
 import { PaperPlaneIcon } from '@patternfly/react-icons/dist/esm/icons/paper-plane-icon';
 
 export interface SendButtonProps extends ButtonProps {
-  /** OnClick Handler for the Send Button */
-  onClick: () => void;
-  /** Class Name for the Send button */
+  /** Callback for when button is clicked */
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Class Name for SendButton */
   className?: string;
   /** Props to control the PF Tooltip component */
-  tooltipProps?: TooltipProps;
+  tooltipProps?: Omit<TooltipProps, 'content'>;
+  /** English text "Send" used in the tooltip */
+  tooltipContent?: string;
 }
 
 export const SendButton: React.FunctionComponent<SendButtonProps> = ({
   className,
   onClick,
   tooltipProps,
+  tooltipContent = 'Send',
   ...props
 }: SendButtonProps) => (
   <Tooltip
     id="pf-chatbot__tooltip--send"
-    content="Send"
+    content={tooltipContent}
     position={tooltipProps?.position || 'top'}
     entryDelay={tooltipProps?.entryDelay || 0}
     exitDelay={tooltipProps?.exitDelay || 0}
@@ -36,7 +39,7 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
     <Button
       className={`pf-chatbot__button--send ${className ?? ''}`}
       variant="link"
-      aria-label={props['aria-label'] || 'Send Button'}
+      aria-label={props['aria-label'] || 'Send button'}
       onClick={onClick}
       icon={
         <Icon iconSize="xl" isInline>

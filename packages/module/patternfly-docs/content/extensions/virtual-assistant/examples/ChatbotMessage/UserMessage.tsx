@@ -8,7 +8,19 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
 
 > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
 
-Here is an inline code - \`() => void\``;
+Here is an inline code - \`() => void\`
+
+Here is an ordered list: 
+
+1. Item 1
+2. Item 3
+3. Item 4
+
+Here is an unordered list:
+
+* Item 1
+* Item 2
+* Item 3`;
 
   return (
     <>

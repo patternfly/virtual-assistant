@@ -91,13 +91,18 @@ export default MessageLoading;
 ~~~
 `;
 
+// It's important to set a date and timestamp prop since the Message components re-render.
+// The timestamps re-render with them.
+const date = new Date();
+
 const initialMessages: MessageProps[] = [
   {
     id: '1',
     role: 'user',
     content: 'Hello, can you give me an example of what you can do?',
     name: 'User',
-    avatar: userAvatar
+    avatar: userAvatar,
+    timestamp: date.toLocaleString()
   },
   {
     id: '2',
@@ -105,6 +110,7 @@ const initialMessages: MessageProps[] = [
     content: markdown,
     name: 'Bot',
     avatar: patternflyAvatar,
+    timestamp: date.toLocaleString(),
     actions: {
       // eslint-disable-next-line no-console
       positive: { onClick: () => console.log('Good response') },
@@ -201,17 +207,28 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const handleSend = (message: string) => {
     setIsSendButtonDisabled(true);
     const newMessages: MessageProps[] = [];
-    // we can't use structuredClone since messages contains functions, but we can't mutate
+    // We can't use structuredClone since messages contains functions, but we can't mutate
     // items that are going into state or the UI won't update correctly
     messages.forEach((message) => newMessages.push(message));
-    newMessages.push({ id: generateId(), role: 'user', content: message, name: 'User', avatar: userAvatar });
+    // It's important to set a timestamp prop since the Message components re-render.
+    // The timestamps re-render with them.
+    const date = new Date();
+    newMessages.push({
+      id: generateId(),
+      role: 'user',
+      content: message,
+      name: 'User',
+      avatar: userAvatar,
+      timestamp: date.toLocaleString()
+    });
     newMessages.push({
       id: generateId(),
       role: 'bot',
       content: 'API response goes here',
       name: 'Bot',
       isLoading: true,
-      avatar: patternflyAvatar
+      avatar: patternflyAvatar,
+      timestamp: date.toLocaleString()
     });
     setMessages(newMessages);
     // make announcement to assistive devices that new messages have been added
@@ -220,7 +237,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     // this is for demo purposes only; in a real situation, there would be an API response we would wait for
     setTimeout(() => {
       const loadedMessages: MessageProps[] = [];
-      // we can't use structuredClone since messages contains functions, but we can't mutate
+      // We can't use structuredClone since messages contains functions, but we can't mutate
       // items that are going into state or the UI won't update correctly
       newMessages.forEach((message) => loadedMessages.push(message));
       loadedMessages.pop();
@@ -231,6 +248,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         name: 'Bot',
         isLoading: false,
         avatar: patternflyAvatar,
+        timestamp: date.toLocaleString(),
         actions: {
           // eslint-disable-next-line no-console
           positive: { onClick: () => console.log('Good response') },

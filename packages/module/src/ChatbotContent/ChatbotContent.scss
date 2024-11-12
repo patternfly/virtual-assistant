@@ -16,8 +16,8 @@
   .pf-chatbot--fullscreen,
   .pf-chatbot--embedded {
     .pf-chatbot__content {
-      padding-left: 12rem;
-      padding-right: 12rem;
+      display: flex;
+      justify-content: center;
     }
   }
 }

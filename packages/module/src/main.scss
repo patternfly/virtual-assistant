@@ -1,27 +1,28 @@
 @import './AttachMenu/AttachMenu';
-@import './ChatbotConversationHistoryNav/ChatbotConversationHistoryNav';
 @import './Chatbot/Chatbot';
-@import './ChatbotToggle/ChatbotToggle';
+@import './ChatbotAlert/ChatbotAlert';
 @import './ChatbotContent/ChatbotContent';
-@import './ChatbotHeader/ChatbotHeader';
+@import './ChatbotConversationHistoryNav/ChatbotConversationHistoryNav';
 @import './ChatbotFooter/ChatbotFooter';
+@import './ChatbotHeader/ChatbotHeader';
+@import './ChatbotPopover/ChatbotPopover';
+@import './ChatbotToggle/ChatbotToggle';
 @import './ChatbotWelcomePrompt/ChatbotWelcomePrompt';
 @import './CodeModal/CodeModal';
 @import './FileDetails/FileDetails';
 @import './FileDetailsLabel/FileDetailsLabel';
 @import './FileDropZone/FileDropZone';
+@import './Message/Message';
+@import './Message/CodeBlockMessage/CodeBlockMessage';
+@import './Message/TextMessage/TextMessage';
+@import './Message/ListMessage/ListMessage';
+@import './Message/MessageLoading';
 @import './MessageBar/MessageBar';
 @import './MessageBox/MessageBox';
 @import './MessageBox/JumpButton';
-@import './Message/Message';
-@import './ChatbotPopover/ChatbotPopover';
-@import './SourceDetailsMenuItem/SourceDetailsMenuItem';
 @import './ResponseActions/ResponseActions';
-@import './ChatbotAlert/ChatbotAlert';
-@import './Message/CodeBlockMessage/CodeBlockMessage';
-@import './Message/TextMessage/TextMessage';
-@import './Message/MessageLoading';
 @import './SourcesCard/SourcesCard.scss';
+@import './SourceDetailsMenuItem/SourceDetailsMenuItem';
 
 :where(:root) {
   // ============================================================================
@@ -39,8 +40,6 @@
 
   --pf-t--chatbot--illustration--fill: var(--pf-t--color--red--50);
   --pf-t--chatbot--code--background: var(--pf-t--color--gray--20);
-  --pf-t--chatbot--jump--background: var(--pf-t--chatbot--background);
-  --pf-t--chatbot--jump--background--hover: var(--pf-t--color--white);
 
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--70);
 
@@ -76,7 +75,6 @@
 :where(.pf-v6-theme-dark) {
   --pf-t--chatbot--illustration--fill: var(--pf-t--color--white);
   --pf-t--chatbot--code--background: var(--pf-t--color--gray--60);
-  --pf-t--chatbot--jump--background--hover: var(--pf-t--color--black);
 
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--20);
 
@@ -87,12 +85,4 @@
 .ws-full-page-utils {
   left: 0 !important;
   right: auto !important;
-}
-
-/* This is for the Code Modals, so they act like they're part of the
-/* chatbot. The PF modal doesn't allow us to change the position in
-/* a more targeted way, because you can only add classes onto the
-/* dialog itself.  */
-.pf-v6-c-backdrop {
-  position: static;
 }

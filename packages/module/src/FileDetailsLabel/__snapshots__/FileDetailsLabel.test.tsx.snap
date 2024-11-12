@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileDetailsLabel should render file details label 1`] = `
+<div>
+  <span
+    class="pf-v6-c-label pf-m-filled pf-chatbot__file-label"
+  >
+    <span
+      class="pf-v6-c-label__content"
+    >
+      <span
+        class="pf-v6-c-label__text"
+      >
+        <div
+          class="pf-chatbot__file-label-contents"
+        >
+          <div
+            class="pf-v6-l-flex pf-m-gap-sm pf-chatbot__file-details undefined"
+          >
+            <div
+              class="pf-v6-l-flex pf-m-align-items-center pf-m-align-self-center pf-m-justify-content-center pf-chatbot__code-icon"
+            >
+              <svg
+                fill="currentColor"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 4C0 1.79086 1.79086 0 4 0H20C22.2091 0 24 1.79086 24 4V20C24 22.2091 22.2091 24 20 24H4C1.79086 24 0 22.2091 0 20V4Z"
+                  fill="currentColor"
+                />
+                <g
+                  clip-path="url(#clip0_3280_27505)"
+                >
+                  <path
+                    d="M13.8204 5.63002C13.3954 5.50752 12.9529 5.75502 12.8304 6.18002L9.63035 17.38C9.50785 17.805 9.75535 18.2475 10.1804 18.37C10.6054 18.4925 11.0479 18.245 11.1704 17.82L14.3704 6.62002C14.4929 6.19502 14.2454 5.75252 13.8204 5.63002ZM15.8354 8.63252C15.5229 8.94502 15.5229 9.45252 15.8354 9.76502L18.0679 12L15.8329 14.235C15.5204 14.5475 15.5204 15.055 15.8329 15.3675C16.1454 15.68 16.6529 15.68 16.9654 15.3675L19.7654 12.5675C20.0779 12.255 20.0779 11.7475 19.7654 11.435L16.9654 8.63502C16.6529 8.32252 16.1454 8.32252 15.8329 8.63502L15.8354 8.63252ZM8.16785 8.63252C7.85535 8.32002 7.34785 8.32002 7.03535 8.63252L4.23535 11.4325C3.92285 11.745 3.92285 12.2525 4.23535 12.565L7.03535 15.365C7.34785 15.6775 7.85535 15.6775 8.16785 15.365C8.48035 15.0525 8.48035 14.545 8.16785 14.2325L5.93285 12L8.16785 9.76502C8.48035 9.45252 8.48035 8.94502 8.16785 8.63252Z"
+                    fill="white"
+                  />
+                </g>
+                <defs>
+                  <clippath>
+                    <rect
+                      fill="white"
+                      height="12.8"
+                      transform="translate(4 5.60001)"
+                      width="16"
+                    />
+                  </clippath>
+                </defs>
+              </svg>
+            </div>
+            <div
+              class="pf-v6-l-stack"
+            >
+              <div
+                class="pf-v6-l-stack__item"
+              >
+                <span
+                  class="pf-chatbot__code-fileName"
+                >
+                  <div
+                    style="display: contents;"
+                  >
+                    <span
+                      class="pf-v6-c-truncate"
+                    >
+                      <span
+                        class="pf-v6-c-truncate__start"
+                      >
+                        test
+                      </span>
+                    </span>
+                  </div>
+                </span>
+              </div>
+              <div
+                class="pf-v6-l-stack__item pf-chatbot__code-language"
+              >
+                TEXT
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+    </span>
+  </span>
+</div>
+`;

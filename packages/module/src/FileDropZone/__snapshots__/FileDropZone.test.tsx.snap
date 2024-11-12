@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileDropZone should render file drop zone 1`] = `
+<div>
+  <div
+    class="pf-v6-c-multiple-file-upload pf-chatbot__dropzone pf-chatbot__dropzone--default pf-chatbot__dropzone--invisible "
+    role="presentation"
+    tabindex="0"
+  >
+    <input
+      multiple=""
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+  </div>
+</div>
+`;

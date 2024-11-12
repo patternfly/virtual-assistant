@@ -11,7 +11,12 @@ import { CheckIcon } from '@patternfly/react-icons/dist/esm/icons/check-icon';
 import { CopyIcon } from '@patternfly/react-icons/dist/esm/icons/copy-icon';
 import { ExtraProps } from 'react-markdown';
 
-const CodeBlockMessage = ({ children, className, ...props }: JSX.IntrinsicElements['code'] & ExtraProps) => {
+const CodeBlockMessage = ({
+  children,
+  className,
+  'aria-label': ariaLabel,
+  ...props
+}: JSX.IntrinsicElements['code'] & ExtraProps) => {
   const [copied, setCopied] = React.useState(false);
 
   const buttonRef = React.useRef();
@@ -51,7 +56,7 @@ const CodeBlockMessage = ({ children, className, ...props }: JSX.IntrinsicElemen
         {language && <div className="pf-chatbot__message-code-block-language">{language}</div>}
         <Button
           ref={buttonRef}
-          aria-label="Copy code button"
+          aria-label={ariaLabel ?? 'Copy code button'}
           variant="plain"
           className="pf-chatbot__button--copy"
           onClick={(event) => handleCopy(event, children)}
