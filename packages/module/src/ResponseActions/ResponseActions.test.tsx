@@ -5,11 +5,11 @@ import ResponseActions from './ResponseActions';
 import userEvent from '@testing-library/user-event';
 
 const ALL_ACTIONS = [
-  { type: 'positive', label: /Good response/i },
-  { type: 'negative', label: /Bad response/i },
-  { type: 'copy', label: /Copy/i },
-  { type: 'share', label: /Share/i },
-  { type: 'listen', label: /Listen/i }
+  { type: 'positive', label: "Good response" },
+  { type: 'negative', label: "Bad response" },
+  { type: 'copy', label: "Copy" },
+  { type: 'share', label: "Share" },
+  { type: 'listen', label: "Listen" }
 ];
 
 describe('ResponseActions', () => {
@@ -31,11 +31,11 @@ describe('ResponseActions', () => {
 
   it('should be able to change aria labels', () => {
     const actions = [
-      { type: 'positive', ariaLabel: /Thumbs up/i },
-      { type: 'negative', ariaLabel: /Thumbs down/i },
-      { type: 'copy', ariaLabel: /Copy the message/i },
-      { type: 'share', ariaLabel: /Share it with friends/i },
-      { type: 'listen', ariaLabel: /Listen up/i }
+      { type: 'positive', ariaLabel: "Thumbs up" },
+      { type: 'negative', ariaLabel: "Thumbs down" },
+      { type: 'copy', ariaLabel: "Copy the message" },
+      { type: 'share', ariaLabel: "Share it with friends" },
+      { type: 'listen', ariaLabel: "Listen up" }
     ];
     actions.forEach(({ type, ariaLabel }) => {
       render(<ResponseActions actions={{ [type]: { onClick: jest.fn(), ariaLabel } }} />);
