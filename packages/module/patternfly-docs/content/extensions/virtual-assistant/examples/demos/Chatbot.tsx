@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup } from '@patternfly/react-core';
+import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup, SkipToContent } from '@patternfly/react-core';
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
@@ -175,6 +175,9 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   );
   const [announcement, setAnnouncement] = React.useState<string>();
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
+  const toggleRef = React.useRef<HTMLButtonElement>(null);
+  const chatbotRef = React.useRef<HTMLDivElement>(null);
+  const historyRef = React.useRef<HTMLButtonElement>(null);
 
   // Autu-scrolls to the latest message
   React.useEffect(() => {
@@ -299,14 +302,46 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     </>
   );
 
+  const handleSkipToContent = (e) => {
+    e.preventDefault();
+    /* eslint-disable indent */
+    switch (displayMode) {
+      case ChatbotDisplayMode.default:
+        if (!chatbotVisible && toggleRef.current) {
+          toggleRef.current.focus();
+        }
+        if (chatbotVisible && chatbotRef.current) {
+          chatbotRef.current.focus();
+        }
+        break;
+
+      case ChatbotDisplayMode.docked:
+        if (chatbotRef.current) {
+          chatbotRef.current.focus();
+        }
+        break;
+      default:
+        if (historyRef.current) {
+          historyRef.current.focus();
+        }
+        break;
+    }
+    /* eslint-enable indent */
+  };
+
   return (
     <>
+      <SkipToContent onClick={handleSkipToContent} href="#">
+        Skip to chatbot
+      </SkipToContent>
       <ChatbotToggle
         toolTipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
+        id="chatbot-toggle"
+        ref={toggleRef}
       />
-      <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
+      <Chatbot isVisible={chatbotVisible} displayMode={displayMode} ref={chatbotRef}>
         <ChatbotConversationHistoryNav
           displayMode={displayMode}
           onDrawerToggle={() => {
@@ -337,7 +372,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
             <>
               <ChatbotHeader>
                 <ChatbotHeaderMain>
-                  <ChatbotHeaderMenu aria-expanded={isDrawerOpen} onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  <ChatbotHeaderMenu
+                    ref={historyRef}
+                    aria-expanded={isDrawerOpen}
+                    onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+                  />
                   <ChatbotHeaderTitle
                     displayMode={displayMode}
                     showOnFullScreen={horizontalLogo}

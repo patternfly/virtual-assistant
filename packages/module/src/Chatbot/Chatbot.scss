@@ -13,7 +13,6 @@
   border-radius: var(--pf-t--global--border--radius--medium);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   font-size: var(--pf-t--chatbot--font-size);
-  overflow: hidden;
   z-index: var(--pf-t--global--z-index--md);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -63,4 +62,28 @@ html.pf-chatbot-allow--docked {
   min-height: 100%;
   border-radius: 0;
   box-shadow: none;
+}
+
+.pf-chatbot-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--pf-t--global--border--radius--medium);
+  overflow: hidden;
+
+  // Hide chatbot
+  &--hidden {
+    pointer-events: none;
+  }
+}
+
+.pf-chatbot-container--embedded {
+  min-height: 100%;
+}
+
+.pf-chatbot-container--docked,
+.pf-chatbot-container--embedded,
+.pf-chatbot-container--fullscreen {
+  border-radius: unset;
 }
