@@ -5,11 +5,11 @@ import ResponseActions from './ResponseActions';
 import userEvent from '@testing-library/user-event';
 
 const ALL_ACTIONS = [
-  { type: 'positive', label: /Good response/i },
-  { type: 'negative', label: /Bad response/i },
-  { type: 'copy', label: /Copy/i },
-  { type: 'share', label: /Share/i },
-  { type: 'listen', label: /Listen/i }
+  { type: 'positive', label: 'Good response' },
+  { type: 'negative', label: 'Bad response' },
+  { type: 'copy', label: 'Copy' },
+  { type: 'share', label: 'Share' },
+  { type: 'listen', label: 'Listen' }
 ];
 
 describe('ResponseActions', () => {
