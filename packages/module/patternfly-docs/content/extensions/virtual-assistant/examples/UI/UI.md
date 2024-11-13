@@ -79,7 +79,7 @@ import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
 ### Container
 
-The PatternFly chatbot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/chatbot-toggle)
+The PatternFly chatbot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/ui#toggle)
 
 The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes (overlay/default, docked, fullscreen, and embedded) and supports both light and dark themes.
 
@@ -91,7 +91,7 @@ The "embedded" display mode is meant to be used within a [PatternFly page](/comp
 
 ### Content and message box
 
-The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) and [`<ChatbotFooter>`.](/patternfly-ai/chatbot/chatbot-footer)
+The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) and [`<ChatbotFooter>`.](/patternfly-ai/chatbot/ui#footer)
 <br />
 <br />
 `<ChatbotContent>` usually contains a `<ChatbotMessageBox>` for displaying messages.
@@ -111,7 +111,7 @@ Your code structure should look like this:
 </Chatbot>
 ```
 
-**Note**: When messages update, it is important to announce new messages to users of assistive technology. To do this, make sure to set the `announcement` prop on `<MessageBox>` whenever you display a new message in `<MessageBox>`. You can view this in action in our [basic chatbot](/patternfly-ai/chatbot/chatbot-container/react-demos#basic-chatbot) and [embedded chatbot](/patternfly-ai/chatbot/chatbot-container/react-demos#embedded-chatbot) demos.
+**Note**: When messages update, it is important to announce new messages to users of assistive technology. To do this, make sure to set the `announcement` prop on `<MessageBox>` whenever you display a new message in `<MessageBox>`. You can view this in action in our [basic chatbot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and [embedded chatbot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot) demos.
 
 ### Welcome prompt
 
@@ -128,7 +128,7 @@ To provide users with a more specific direction, you can also include optional w
 To provide page context, we recommend using a "skip to chatbot" button. This allows you to skip past other content on the page, directly to the chatbot content, using a [PatternFly skip to content component](/components/skip-to-content). To display this button, you must tab into the main window.
 <br />
 <br />
-When using default or docked modes, we recommend putting focus on the toggle if the chatbot is closed, and the chatbot when it is open. For fullscreen and embedded, we recommend putting the focus on the first focusable item in the chatbot, such as a menu toggle. This can be seen in our more fully-featured demos for the [default, embedded, and fullscreen chatbot](patternfly-ai/chatbot/chatbot-container/react-demos/basic-chatbot) and the [embedded chatbot](/patternfly-ai/chatbot/chatbot-container/react-demos/embedded-chatbot).
+When using default or docked modes, we recommend putting focus on the toggle if the chatbot is closed, and the chatbot when it is open. For fullscreen and embedded, we recommend putting the focus on the first focusable item in the chatbot, such as a menu toggle. This can be seen in our more fully-featured demos for the [default, embedded, and fullscreen chatbot](patternfly-ai/chatbot/overview/demo#basic-chatbot) and the [embedded chatbot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot).
 
 ```js file="./SkipToContent.tsx" isFullscreen
 
@@ -231,7 +231,7 @@ By default the message bar supports file uploads via an attach button. Setting `
 
 You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments.
 
-Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/chatbot-attachments#attachment-dropzone)
+Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/messages#attachment-dropzone)
 
 ```js file="./ChatbotMessageBarAttach.tsx"
 
@@ -289,7 +289,7 @@ The code structure will look like this:
 </Chatbot>
 ```
 
-The conversation history drawer looks different depending on the `displayMode` of the parent `<Chatbot>`. (As shown in the [main chatbot demo](/patternfly-ai/chatbot/chatbot-container/react-demos#basic-chatbot).):
+The conversation history drawer looks different depending on the `displayMode` of the parent `<Chatbot>`. (As shown in the [main chatbot demo](/patternfly-ai/chatbot/overview/demo#basic-chatbot).):
 
 - `Default` and `docked` display modes display the conversation history on top of the rest of the chatbot content, with a PatternFly backdrop between the drawer panel and drawer content.
 - `Fullscreen` and `embedded` display modes display the conversation history in line with the drawer content.
