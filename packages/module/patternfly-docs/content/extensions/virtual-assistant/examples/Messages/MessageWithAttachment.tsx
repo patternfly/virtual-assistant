@@ -5,10 +5,26 @@ import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/Previe
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import userAvatar from './user_avatar.jpg';
 
+interface ModalData {
+  code: string;
+  fileName: string;
+}
+
 export const AttachmentMenuExample: React.FunctionComponent = () => {
   const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = React.useState<boolean>(false);
   const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
+
+  const onClick = (event: React.MouseEvent, name: string) => {
+    setCurrentModalData({ fileName: name, code: 'test' });
+    setIsEditModalOpen(false);
+    setIsPreviewModalOpen(true);
+  };
+
+  const onClose = (event: React.MouseEvent, name: string, id: number | string | undefined) => {
+    // eslint-disable-next-line no-console
+    console.log(`Closed attachment with name: ${name} and id: ${id}`);
+  };
 
   return (
     <>
@@ -17,17 +33,17 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
         role="user"
         avatar={userAvatar}
         content="Here is an uploaded file"
-        attachmentName="auth-operator.yml"
-        attachmentId="1"
-        onAttachmentClick={() => {
-          setCurrentModalData({ fileName: 'auth-operator.yml', code: 'test' });
-          setIsEditModalOpen(false);
-          setIsPreviewModalOpen(true);
-        }}
-        onAttachmentClose={(id: string) => {
-          // eslint-disable-next-line no-console
-          console.log(`Closed attachment id ${id}`);
-        }}
+        attachments={[{ name: 'auth-operator.yml', id: '1', onClick, onClose }]}
+      />
+      <Message
+        name="User"
+        role="user"
+        avatar={userAvatar}
+        content="Here are two uploaded files"
+        attachments={[
+          { name: 'auth-operator.yml', id: '1' },
+          { name: 'patternfly.svg', id: '2' }
+        ]}
       />
       {currentModalData && (
         <PreviewAttachment

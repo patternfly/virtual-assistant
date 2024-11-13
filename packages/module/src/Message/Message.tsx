@@ -22,6 +22,25 @@ export interface QuickResponse extends Omit<LabelProps, 'children'> {
   id: string;
   onClick: () => void;
 }
+export interface MessageAttachment {
+  /** Name of file attached to the message */
+  name: string;
+  /** Unique identifier of file attached to the message */
+  id?: string | number;
+  /** Callback for when attachment label is clicked */
+  onClick?: (event: React.MouseEvent, name: string, id?: string | number) => void;
+  /** Callback for when attachment label is closed */
+  onClose?: (event: React.MouseEvent, name: string, id?: string | number) => void;
+  /** Whether file is loading */
+  isLoading?: boolean;
+  /** Aria label for attachment close button */
+  closeButtonAriaLabel?: string;
+  /** Custom test id for the language in the attachment component */
+  languageTestId?: string;
+  /** Custom test id for the loading spinner in the attachment component */
+  spinnerTestId?: string;
+}
+
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Unique id for message */
   id?: string;
@@ -37,14 +56,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   timestamp?: string;
   /** Set this to true if message is being loaded */
   isLoading?: boolean;
-  /** Unique identifier of file attached to the message */
-  attachmentId?: string;
-  /** Name of file attached to the message */
-  attachmentName?: string;
-  /** Callback for when attachment label is clicked */
-  onAttachmentClick?: () => void;
-  /** Callback for when attachment label is closed */
-  onAttachmentClose?: (attachmentId: string) => void;
+  /** Array of attachments attached to a message */
+  attachments?: MessageAttachment[];
   /** Props for message actions, such as feedback (positive or negative), copy button, share, and listen */
   actions?: {
     [key: string]: ActionProps;
@@ -72,10 +85,6 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   avatar,
   timestamp,
   isLoading,
-  attachmentId,
-  attachmentName,
-  onAttachmentClick,
-  onAttachmentClose,
   actions,
   sources,
   botWord = 'AI',
@@ -83,6 +92,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   codeBlockProps,
   quickResponses,
   quickResponseContainerProps = { numLabels: 5 },
+  attachments,
   ...props
 }: MessageProps) => {
   // Configure default values
@@ -96,10 +106,6 @@ export const Message: React.FunctionComponent<MessageProps> = ({
       avatar:
         'https://yt3.googleusercontent.com/ej8uvIe1AIFiJQXBwY9cfJmt0kO1cAeWxpBqG_cJndGHx95mFq1F8WakSoXIjtcprTbMQJoqH5M=s900-c-k-c0x00ffffff-no-rj'
     }
-  };
-
-  const onClose = () => {
-    onAttachmentClose && attachmentId && onAttachmentClose(attachmentId);
   };
 
   // Keep timestamps consistent between Timestamp component and aria-label
@@ -161,13 +167,22 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               </LabelGroup>
             )}
           </div>
-          {attachmentName && (
-            <div className="pf-chatbot__message-attachment">
-              <FileDetailsLabel
-                fileName={attachmentName}
-                onClick={onAttachmentClick}
-                onClose={onAttachmentClose && attachmentId ? onClose : undefined}
-              />
+          {attachments && (
+            <div className="pf-chatbot__message-attachments-container">
+              {attachments.map((attachment) => (
+                <div key={attachment.id ?? attachment.name} className="pf-chatbot__message-attachment">
+                  <FileDetailsLabel
+                    fileName={attachment.name}
+                    fileId={attachment.id}
+                    onClose={attachment.onClose}
+                    onClick={attachment.onClick}
+                    isLoading={attachment.isLoading}
+                    closeButtonAriaLabel={attachment.closeButtonAriaLabel}
+                    languageTestId={attachment.languageTestId}
+                    spinnerTestId={attachment.spinnerTestId}
+                  />
+                </div>
+              ))}
             </div>
           )}
         </div>
