@@ -23,7 +23,7 @@ import '@patternfly/virtual-assistant/dist/css/main.css';
 ### To add a new assistant sub-component:
 
 1. create a folder in `src/` matching its name (for example `src/MyComponent`)
-2. to the new folder add a new `.tsx` file named after the component (for example `src/MyComponent/MyComponent.tsx`)
+2. to the new folder add a new `.tsx` file named after the component (for example `src/MyComponent/MyComponent.tsx`) 
 3. to the same folder include an `index.ts` which will export the component as a default and then all necessary interfaces
 4. if this file structure is not met, your component won't be exposed correctly
 
