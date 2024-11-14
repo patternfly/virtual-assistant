@@ -2,7 +2,7 @@
 
 This repo contains React Virtual assistant implementation.
 
----
+--- 
 
 ## Install
 
