@@ -5,9 +5,9 @@ section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Chatbot container
+id: Overview
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
-source: react-demos
+source: demo
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
 propComponents:
@@ -49,35 +49,35 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import { BarsIcon } from '@patternfly/react-icons/dist/esm/icons/bars-icon';
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
-import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
-import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
-import userAvatar from '../ChatbotMessage/user_avatar.jpg';
-import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
+import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 ### Basic chatbot
 
 This demo displays a basic chatbot, which includes:
 
-1. The [`<ChatbotToggle>`](/patternfly-ai/chatbot/chatbot-toggle) that controls the [`<Chatbot>` container.](/patternfly-ai/chatbot/chatbot-container)
-2. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>` that changes its presentation depending on the display mode.
+1. The [`<ChatbotToggle>`](/patternfly-ai/chatbot/ui#toggle) that controls the [`<Chatbot>` container.](/patternfly-ai/chatbot/ui#container)
+2. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>` that changes its presentation depending on the display mode.
 3. The ability to swap display modes via `<ChatbotHeaderOptionsDropdown>`
-4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:
+4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/ui#content-and-message-box) with:
 
 - A `<ChatbotWelcomePrompt>`
-- An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
+- An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages#messages-actions)
 - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 
-5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
+5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
 
-- [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-recognition-and-file-attachment)
+- [Speech to text.](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)
 - Sending a message to the chatbot.
 - Receiving a response from a backend AI tool with a loading message state.
 
-6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
+6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/ui#navigation) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
-7. A "skip to chatbot" button that allows you to skip to the chatbot content via the [PatternFly skip to content component](/components/skip-to-content). To display this button you must tab into the main window.
+7. A "skip to chatbot" button that allows you to skip to the chatbot content via the [PatternFly skip to content component](/patternfly-ai/chatbot/ui#skip-to-content). To display this button you must tab into the main window.
 
 ```js file="./Chatbot.tsx" isFullscreen
 
@@ -88,17 +88,17 @@ This demo displays a basic chatbot, which includes:
 This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in your product. This demo includes:
 
 1. A [PatternFly page](/components/page) with a sidebar, "skip to chatbot" button, and masthead. To display the "skip to chatbot" button you must tab into the main window.
-2. A [`<Chatbot>`](/patternfly-ai/chatbot/chatbot-container) container.
-3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
-4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:
+2. A [`<Chatbot>`](/patternfly-ai/chatbot/ui#container) container.
+3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
+4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/ui#content-and-message-box) with:
    - A `<ChatbotWelcomePrompt>`
-   - An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
+   - An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages/#messages-actions)
    - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
-5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
-   - [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-recognition-and-file-attachment)
+5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
+   - [Speech to text.](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)
    - Sending a message to the chatbot.
    - Receiving a response from a backend AI tool with a loading message state.
-6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history) that can be toggled by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
+6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/ui#navigation) that can be toggled by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
 ```js file="./EmbeddedChatbot.tsx" isFullscreen
 

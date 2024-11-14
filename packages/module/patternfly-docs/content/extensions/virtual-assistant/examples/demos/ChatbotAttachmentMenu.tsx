@@ -14,8 +14,8 @@ import { Divider, DropdownGroup, DropdownItem, DropdownList, DropEvent } from '@
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
-import userAvatar from '../ChatbotMessage/user_avatar.jpg';
-import patternflyAvatar from '../ChatbotMessage/patternfly_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
