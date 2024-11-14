@@ -28,7 +28,7 @@ import '@patternfly/virtual-assistant/dist/css/main.css';
 4. if this file structure is not met, your component won't be exposed correctly
 
 #### Example component:
-
+ 
 ```
 import * as React from 'react';
 import { Text } from '@patternfly/react-core';
