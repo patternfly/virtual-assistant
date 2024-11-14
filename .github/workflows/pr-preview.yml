@@ -49,7 +49,7 @@ jobs:
         name: Upload docs
         if: always()
       - name: Install Chrome for Puppeteer
-        run: npx puppeteer browsers install chrome
+        run: npx puppeteer install && npx puppeteer browsers install chrome
       - run: npm run serve:docs & npm run test:a11y
         name: a11y tests
       - run: node .github/upload-preview.js packages/module/coverage
