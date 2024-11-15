@@ -6,7 +6,7 @@ import React from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Avatar, Label, LabelGroup, LabelGroupProps, LabelProps, Timestamp } from '@patternfly/react-core';
+import { Avatar, Label, LabelGroup, LabelGroupProps, LabelProps, Timestamp, Truncate } from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
@@ -116,7 +116,11 @@ export const Message: React.FunctionComponent<MessageProps> = ({
       <Avatar src={avatar ?? DEFAULTS[role].avatar} alt="" />
       <div className="pf-chatbot__message-contents">
         <div className="pf-chatbot__message-meta">
-          <span className="pf-chatbot__message-name">{name}</span>
+          {name && (
+            <span className="pf-chatbot__message-name">
+              <Truncate content={name} />
+            </span>
+          )}
           {role === 'bot' && (
             <Label variant="outline" isCompact>
               {botWord}

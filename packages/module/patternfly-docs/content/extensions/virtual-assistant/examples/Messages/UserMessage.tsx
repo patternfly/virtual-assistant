@@ -3,7 +3,7 @@ import React from 'react';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import userAvatar from './user_avatar.jpg';
 
-export const AttachmentMenuExample: React.FunctionComponent = () => {
+export const UserMessageExample: React.FunctionComponent = () => {
   const markdown = `A paragraph with *emphasis* and **strong importance**.
 
 > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
