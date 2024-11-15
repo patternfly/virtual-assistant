@@ -6,13 +6,11 @@ sortValue: 1
 source: design-guidelines
 ---
 
+import "../images.css"
+
 ## Elements 
 
-<!---
-<> <div class="ws-docs-content-img">
-![annotated image]()
-<> </div>
---->
+[add image]
 
 1. **Container:** The window that contains the ChatBot experience and all ChatBot components.
 1. **Toggle:** Button that allows users to open and close the ChatBot window.
@@ -31,7 +29,9 @@ In addition to the floating toggle, you can place an icon in the masthead that a
 
 ### Messages 
 
-[annotated image] 
+<div class="ws-docs-content-img">
+![annotated image](./img/message-elements.svg)
+</div>
 
 1. **Bot message:** Messages from the ChatBot, which are marked with an "AI" label to communicate the use of AI to users. You should choose a descriptive name for your ChatBot.
 1. **User message:** Messages that the user has sent to the ChatBot. The color of user messages differs from ChatBot messages, to clarify the conversation.
@@ -46,6 +46,10 @@ In addition to the floating toggle, you can place an icon in the masthead that a
 [PatternFly's AI guidelines](/patternfly-ai/about-ai) include transparency, which helps build trust with users and ensure accountability. It is also necessary to adhere to Red Hat's AI policies when using ChatBot with Red Hat products.
 
 The footnote provides a persistent space to display messaging about your product's Terms and Conditions, which focus on the rules of using the service, and Privacy Policy, which focuses on the handling of personal data.
+
+<div class="ws-docs-content-img">
+![annotated image](./img/footnote.svg)
+</div>
 
 It is highly recommended that you write content for these messages to ensure legal compliance, establish user trust, and clearly define the usage guidelines and data handling practices. 
 
@@ -87,13 +91,17 @@ Do not use a ChatBot when:
 
 Users can enter a conversation with a ChatBot by clicking on the toggle. Once the ChatBot window opens, the toggle will change to display an angle down icon to indicate that the toggle can be used to minimize the ChatBot. Users can select the toggle at any point in their journey to open and close the ChatBot as needed.
 
-[image of a ChatBot, closed and opened]
+<div class="ws-docs-content-img">
+![annotated image](./img/chatbot-toggle.svg)
+</div>
 
 ### Sending messages and attaching files
 
 To message the ChatBot, users can type directly into the message bar in the footer, or click any included actions. 
 
-[annotated image of message bar with these actions]
+<div class="ws-docs-content-img">
+![annotated image](./img/message-bar-elements.svg)
+</div>
 
 1. **Attach button:** Allows users to upload files from their computer. For more information, view [the attachment documentation]().
 1. **Use microphone button:** Supports speech recognition to allow users to use voice input.
@@ -102,7 +110,9 @@ To message the ChatBot, users can type directly into the message bar in the foot
 
 The ChatBot navigation menu primarily contains a users' conversation history with the ChatBot. Clicking the menu icon opens a side drawer in the ChatBot window. 
 
-[image of open conversation history]
+<div class="ws-docs-content-img">
+![annotated image](./img/conversation-history.svg)
+</div>
 
 By clicking into the navigation menu, users can search through previous conversations and perform additional actions, such as sharing a conversation with others. 
 
@@ -110,19 +120,27 @@ By clicking into the navigation menu, users can search through previous conversa
 
 There are a few display modes that users can choose when interacting with a ChatBot.
 
-[image of display mode menu]
+<div class="ws-docs-content-img">
+![annotated image](./img/display-menu.svg)
+</div>
 
 - **Overlay:** The default display mode, which places the ChatBot window on top of a product's UI. In overlay mode, the ChatBot can be closed and opened through the toggle. 
 
-    [image]
+<div class="ws-docs-content-img">
+![annotated image](./img/overlay.svg)
+</div>
 
 - **Docked:** Anchors the ChatBot in the UI as a side drawer. When docked, the ChatBot window is persistent, and cannot be toggled.
 
-    [image]
+<div class="ws-docs-content-img">
+![annotated image](./img/docked.svg)
+</div>
 
 - **Fullscreen:** The ChatBot window takes up the whole screen.
 
-     [image]
+<div class="ws-docs-content-img">
+![annotated image](./img/fullscreen.svg)
+</div>
 
 ## Placement
 
