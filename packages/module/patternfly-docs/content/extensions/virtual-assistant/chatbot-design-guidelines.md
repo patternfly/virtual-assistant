@@ -1,12 +1,12 @@
 ---
 section: PatternFly-AI
 subsection: Chatbot
-id: About chatbot
+id: Overview
 sortValue: 1
 source: design-guidelines
 ---
 
-import "../images.css"
+import "./images.css"
 
 ## Elements 
 
