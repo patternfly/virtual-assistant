@@ -319,8 +319,8 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 
 ### Modal
 
-Based on the [PatternFly modal](/components/modal), this modal adapts to the chatbot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the [attachment modals](/patternfly-ai/chatbot/messages#attachment-preview), but you can customize this modal to adapt it to other use cases as needed.
+Based on the [PatternFly modal](/components/modal), this modal adapts to the chatbot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the attachment modals, but you can customize this modal to adapt it to other use cases as needed. The modal will overlay the chatbot in default and docked modes, and will behave more like a traditional PatternFly modal in fullscreen and embedded modes.
 
-```js file="./ChatbotModal.tsx"
+```js file="./ChatbotModal.tsx" isFullscreen
 
 ```

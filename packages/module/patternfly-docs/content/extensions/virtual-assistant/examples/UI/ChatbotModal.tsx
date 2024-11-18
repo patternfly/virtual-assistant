@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, ModalBody, ModalFooter, ModalHeader } from '@patternfly/react-core';
+import { Button, FormGroup, ModalBody, ModalFooter, ModalHeader, Radio } from '@patternfly/react-core';
 import { ChatbotModal } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotModal';
-import { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 
 export const ChatbotModalExample: React.FunctionComponent = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [displayMode, setDisplayMode] = React.useState(ChatbotDisplayMode.default);
 
   const handleModalToggle = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
@@ -12,10 +13,50 @@ export const ChatbotModalExample: React.FunctionComponent = () => {
 
   return (
     <>
-      <Button onClick={handleModalToggle}>Launch modal</Button>
+      <div
+        style={{
+          position: 'fixed',
+          padding: 'var(--pf-t--global--spacer--lg)',
+          zIndex: '601',
+          boxShadow: 'var(--pf-t--global--box-shadow--lg)'
+        }}
+      >
+        <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Display mode">
+          <Radio
+            isChecked={displayMode === ChatbotDisplayMode.default}
+            onChange={() => setDisplayMode(ChatbotDisplayMode.default)}
+            name="basic-inline-radio"
+            label="Default"
+            id="default"
+          />
+          <Radio
+            isChecked={displayMode === ChatbotDisplayMode.docked}
+            onChange={() => setDisplayMode(ChatbotDisplayMode.docked)}
+            name="basic-inline-radio"
+            label="Docked"
+            id="docked"
+          />
+          <Radio
+            isChecked={displayMode === ChatbotDisplayMode.fullscreen}
+            onChange={() => setDisplayMode(ChatbotDisplayMode.fullscreen)}
+            name="basic-inline-radio"
+            label="Fullscreen"
+            id="fullscreen"
+          />
+          <Radio
+            isChecked={displayMode === ChatbotDisplayMode.embedded}
+            onChange={() => setDisplayMode(ChatbotDisplayMode.embedded)}
+            name="basic-inline-radio"
+            label="Embedded"
+            id="embedded"
+          />
+        </FormGroup>
+        <Button onClick={handleModalToggle}>Launch modal</Button>
+      </div>
+      <Chatbot displayMode={displayMode} isVisible></Chatbot>
       <ChatbotModal
         isOpen={isModalOpen}
-        displayMode={ChatbotDisplayMode.default}
+        displayMode={displayMode}
         onClose={handleModalToggle}
         ouiaId="ChatbotModal"
         aria-labelledby="basic-modal-title"
