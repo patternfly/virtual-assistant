@@ -10,18 +10,19 @@ id: Messages
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: [
-    'AttachMenu', 
-    'AttachmentEdit', 
-    'FileDetails', 
-    'FileDetailsLabel', 
-    'FileDropZone', 
+propComponents:
+  [
+    'AttachMenu',
+    'AttachmentEdit',
+    'FileDetails',
+    'FileDetailsLabel',
+    'FileDropZone',
     'PreviewAttachment',
     'Message',
     'PreviewAttachment',
     'ActionProps',
     'SourcesCardProps'
-]
+  ]
 sortValue: 3
 ---
 
@@ -122,7 +123,7 @@ If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`,
 
 ```
 
-We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io.](https://uppy.io/)
+We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io.](https://uppy.io/). To handle edge cases, like restricting the number or size of files, you can pass a function to the `handleAttach` prop on `MessageBar` or `onFileDrop` prop in `FileDropZone.`
 
 ### Attachment label
 
