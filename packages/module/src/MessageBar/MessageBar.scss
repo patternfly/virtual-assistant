@@ -46,6 +46,15 @@
     padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
     padding-block-end: var(--pf-chatbot__message-bar-child--PaddingBlockEnd);
     overflow: hidden;
+    position: relative;
+  }
+
+  &-placeholder {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    color: var(--pf-t--global--text--color--placeholder);
+    pointer-events: none;
   }
 }
 
@@ -64,4 +73,5 @@
   height: 100%;
   width: 100%;
   display: block !important;
+  position: relative;
 }

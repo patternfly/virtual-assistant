@@ -89,9 +89,23 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   const attachButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleInput = (event) => {
-    const newMessage = DOMPurify.sanitize(event.target.textContent);
-    setMessage(newMessage);
-    onChange && onChange(event, newMessage);
+    // newMessage === '' doesn't work unless we trim, which causes other problems
+    // textContent seems to work, but doesn't allow for markdown, so we need both
+    const messageText = DOMPurify.sanitize(event.target.textContent);
+    if (messageText === '') {
+      setShowPlaceholder(true);
+      setMessage('');
+      onChange && onChange(event, '');
+    } else {
+      setShowPlaceholder(false);
+      // this is so that tests work; RTL doesn't seem to like event.target.innerText, but browsers don't pick up markdown without it
+      let newMessage = messageText;
+      if (event.target.innerText) {
+        newMessage = DOMPurify.sanitize(event.target.innerText);
+      }
+      setMessage(newMessage);
+      onChange && onChange(event, newMessage);
+    }
   };
 
   // Handle sending message
@@ -101,6 +115,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
       setMessage('');
       if (textareaRef.current) {
         textareaRef.current.innerText = '';
+        setShowPlaceholder(true);
         textareaRef.current.blur();
       }
       return '';
@@ -181,6 +196,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   const messageBarContents = (
     <>
       <div className="pf-chatbot__message-bar-input">
+        {(showPlaceholder || message === '') && (
+          <div className="pf-chatbot__message-bar-placeholder">{placeholder}</div>
+        )}
         <div
           contentEditable
           suppressContentEditableWarning={true}
@@ -188,15 +206,17 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           aria-multiline="false"
           className="pf-chatbot__message-textarea"
           onInput={handleInput}
-          onFocus={() => setShowPlaceholder(!showPlaceholder)}
-          onBlur={() => setShowPlaceholder(!showPlaceholder)}
+          onFocus={() => setShowPlaceholder(false)}
+          onBlur={() => {
+            if (message === '') {
+              setShowPlaceholder(!showPlaceholder);
+            }
+          }}
           aria-label={placeholder}
           ref={textareaRef}
           onKeyDown={handleKeyDown}
           {...props}
-        >
-          {showPlaceholder ? placeholder : undefined}
-        </div>
+        ></div>
       </div>
       <div className="pf-chatbot__message-bar-actions">{renderButtons()}</div>
     </>
