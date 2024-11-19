@@ -105,6 +105,14 @@
   }
 }
 
+// Attachments
+// --------------------------------------------------------------------------
+.pf-chatbot__message-attachments-container {
+  display: flex;
+  gap: var(--pf-t--global--spacer--md);
+  flex-wrap: wrap;
+}
+
 @import './MessageLoading';
 @import './CodeBlockMessage/CodeBlockMessage';
 @import './TextMessage/TextMessage';

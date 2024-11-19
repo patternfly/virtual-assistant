@@ -100,13 +100,13 @@ describe('Message', () => {
     expect(screen.queryByText(`${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`)).toBeFalsy();
   });
   it('should render attachments', () => {
-    render(<Message role="user" content="Hi" attachmentName="testAttachment" />);
+    render(<Message role="user" content="Hi" attachments={[{ name: 'testAttachment' }]} />);
     expect(screen.getByText('Hi')).toBeTruthy();
     expect(screen.getByText('testAttachment')).toBeTruthy();
   });
   it('should be able to click attachments', async () => {
     const spy = jest.fn();
-    render(<Message role="user" content="Hi" attachmentName="testAttachment" onAttachmentClick={spy} />);
+    render(<Message role="user" content="Hi" attachments={[{ name: 'testAttachment', onClick: spy }]} />);
     expect(screen.getByText('Hi')).toBeTruthy();
     expect(screen.getByText('testAttachment')).toBeTruthy();
     await userEvent.click(screen.getByRole('button', { name: /testAttachment/i }));
@@ -114,14 +114,12 @@ describe('Message', () => {
   });
   it('should be able to close attachments', async () => {
     const spy = jest.fn();
-    render(
-      <Message role="user" content="Hi" attachmentId="001" attachmentName="testAttachment" onAttachmentClose={spy} />
-    );
+    render(<Message role="user" content="Hi" attachments={[{ name: 'testAttachment', onClose: spy }]} />);
     expect(screen.getByText('Hi')).toBeTruthy();
     expect(screen.getByText('testAttachment')).toBeTruthy();
+    expect(screen.getByRole('button', { name: /close testAttachment/i })).toBeTruthy();
     await userEvent.click(screen.getByRole('button', { name: /close testAttachment/i }));
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('001');
   });
   it('should render loading state', () => {
     render(<Message role="bot" name="Bot" content="Hi" isLoading />);

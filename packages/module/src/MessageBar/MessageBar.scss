@@ -17,11 +17,13 @@
 
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-end;
   background-color: var(--pf-t--global--background--color--primary--default);
   border-radius: calc(var(--pf-t--global--border--radius--medium) * 2);
   transition: box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--sm);
+
+  overflow: hidden;
 
   &:hover {
     box-shadow: inset 0 0 0 1px var(--pf-t--global--border--color--default);
@@ -34,8 +36,8 @@
   &-actions {
     display: flex;
     justify-content: end;
-    padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
-    padding-block-end: var(--pf-t--global--spacer--sm);
+    padding-block-start: var(--pf-t--global--spacer--xs);
+    padding-block-end: var(--pf-t--global--spacer--xs);
     gap: var(--pf-t--global--spacer--xs);
   }
 
@@ -43,25 +45,33 @@
     flex: 1 1 auto;
     padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
     padding-block-end: var(--pf-chatbot__message-bar-child--PaddingBlockEnd);
+    overflow: hidden;
+    position: relative;
+  }
+
+  &-placeholder {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    color: var(--pf-t--global--text--color--placeholder);
+    pointer-events: none;
   }
 }
 
-// - Form control textarea
 .pf-chatbot__message-textarea {
   padding-block-start: var(--pf-t--global--spacer--md);
   padding-block-end: var(--pf-t--global--spacer--md);
   padding-inline-start: var(--pf-t--global--spacer--md);
   padding-inline-end: var(--pf-t--global--spacer--md);
-  --pf-v6-c-form-control--before--BorderStyle: none;
-  --pf-v6-c-form-control--after--BorderStyle: none;
-  background-color: transparent;
   font-size: var(--pf-t--global--font--size--md);
   line-height: 1.5rem;
   max-height: 12rem;
   overflow-y: auto;
+  outline: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  height: 100%;
+  width: 100%;
   display: block !important;
-
-  .pf-v6-c-form-control__textarea:focus-visible {
-    outline: none;
-  }
+  position: relative;
 }
