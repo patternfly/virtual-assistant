@@ -1,6 +1,6 @@
 ---
 section: PatternFly-AI
-subsection: ChatBot
+subsection: Chatbot
 id: Overview
 sortValue: 1
 source: design-guidelines
@@ -11,7 +11,7 @@ import "./images.css"
 ## Elements 
 
 <div class="ws-docs-content-img">
-![Main elements of a ChatBot.](./img/ChatBot-elements.svg)
+![Main elements of a ChatBot.](./img/chatbot-elements.svg)
 </div>
 
 1. **Container:** The window that contains the entire ChatBot experience and all of its components.
@@ -92,10 +92,14 @@ Do not use a ChatBot when:
 
 Users can enter a conversation with a ChatBot by clicking on the toggle. Once the ChatBot window opens, the toggle will change to display an "angle down" icon to indicate that clicking the toggle again will minimize the ChatBot. Users can select the toggle at any point in their journey to open and close the ChatBot as needed.
 
+<div class="ws-docs-content-img">
+![2 toggles with open and closed icons.](./img/chatbot-toggle.svg)
+</div>
+
 When there is an unread message from the ChatBot, a notification badge should be placed on the toggle.
 
 <div class="ws-docs-content-img">
-![2 toggles, one with the default icon and a notification, the other with an arrow down icon.](./img/ChatBot-toggle.svg)
+![Toggle with notification badge.](./img/chatbot-toggle-notification.svg)
 </div>
 
 ### Sending messages and attaching files
