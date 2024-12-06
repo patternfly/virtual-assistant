@@ -147,6 +147,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
       textarea.focus();
       textarea.textContent = DOMPurify.sanitize(message);
     }
+    onChange && onChange({} as React.ChangeEvent<HTMLDivElement>, message);
   };
 
   const renderButtons = () => {
