@@ -257,6 +257,14 @@ In this example, the locale is set to to ja-JP. You can try it out by saying "ha
 
 ```
 
+### Message bar with always-shown send button
+
+You can use the `alwaysShowSendButton` prop if you want to always show the send button. You may also wish to apply the `isSendButtonDisabled` prop. Sending via the enter key will be disabled when this is passed in, demonstrated in the example below. You may want to enable or disable the send button based on whether there is text in the message bar. Whether text is present in the input can be detected via the `onChange` prop for `<MessageBar>`.
+
+```js file="./ChatbotMessageBarDisabled.tsx"
+
+```
+
 ### Message bar with attach menu appended to attach button
 
 You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments.
