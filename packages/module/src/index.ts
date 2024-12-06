@@ -71,3 +71,6 @@ export * from './SourceDetailsMenuItem';
 
 export { default as SourcesCard } from './SourcesCard';
 export * from './SourcesCard';
+
+export { default as TermsOfUse } from './TermsOfUse';
+export * from './TermsOfUse';

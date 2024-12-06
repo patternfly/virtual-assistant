@@ -52,6 +52,7 @@ import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel'
 import FileDropZone from '@patternfly/chatbot/dist/dynamic/FileDropZone';
 import { PreviewAttachment } from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
 import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
+import TermsOfUse from '@patternfly/chatbot/dist/dynamic/TermsOfUse';
 import {
 ChatbotHeader,
 ChatbotHeaderMain,
@@ -78,6 +79,7 @@ import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
+import termsAndConditionsHeader from './PF-TermsAndConditionsHeader.svg';
 
 ## Structure
 
@@ -345,10 +347,22 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 
 ```
 
+## Modals
+
 ### Modal
 
 Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the attachment modals, but you can customize this modal to adapt it to other use cases as needed. The modal will overlay the ChatBot in default and docked modes, and will behave more like a traditional PatternFly modal in fullscreen and embedded modes.
 
 ```js file="./ChatbotModal.tsx" isFullscreen
+
+```
+
+### Terms of Use
+
+Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and is meant to display terms and conditions for using a ChatBot in your project. The image in the header can be toggled on or off depending on whether the `image` and `altText` props are provided.
+
+This example also includes an example of how to use [skip to content](/patternfly-ai/chatbot/ui#skip-to-content). When the terms of use modal is open, focus is placed on the terms of use container. When it is closed, focus is placed on the chatbot. In a real example with a functioning toggle, you would also want to place focus on the toggle when appropriate.
+
+```js file="./TermsOfUse.tsx" isFullscreen
 
 ```
