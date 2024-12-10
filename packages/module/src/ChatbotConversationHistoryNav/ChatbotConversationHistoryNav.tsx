@@ -20,7 +20,8 @@ import {
   MenuList,
   MenuGroup,
   MenuItem,
-  MenuContent
+  MenuContent,
+  MenuItemProps
 } from '@patternfly/react-core';
 
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
@@ -44,6 +45,8 @@ export interface Conversation {
   label?: string;
   /** Callback for when user selects item. */
   onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
+  /** Additional props passed to conversation menu item */
+  additionalProps?: MenuItemProps;
 }
 export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Function called to toggle drawer */
@@ -121,6 +124,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
             )
           }
         : {})}
+      {...conversation.additionalProps}
       /* eslint-enable indent */
     >
       {conversation.text}
