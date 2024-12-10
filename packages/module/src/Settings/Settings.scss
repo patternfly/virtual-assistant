@@ -1,0 +1,25 @@
+.pf-chatbot__settings-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-chatbot__settings-form-row {
+  font-size: var(--pf-t--global--font--size--body--lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--pf-t--global--border--color--default);
+  padding: var(--pf-t--global--spacer--lg);
+  font-weight: 500;
+}
+
+.pf-chatbot__settings-form-row:last-of-type {
+  border-bottom: 0px;
+}
+
+.pf-chatbot__settings--title {
+  font-family: var(--pf-t--global--font--family--heading);
+  font-size: var(--pf-t--global--font--size--xl);
+  font-weight: 500;
+  text-align: center;
+}

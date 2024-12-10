@@ -65,6 +65,7 @@ import { ChatbotFooter, ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic
 import { MessageBar } from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetailsMenuItem';
 import { ChatbotModal } from '@patternfly/chatbot/dist/dynamic/ChatbotModal';
+import Settings from '@patternfly/chatbot/dist/dynamic/Settings';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
 
@@ -350,5 +351,11 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the attachment modals, but you can customize this modal to adapt it to other use cases as needed. The modal will overlay the ChatBot in default and docked modes, and will behave more like a traditional PatternFly modal in fullscreen and embedded modes.
 
 ```js file="./ChatbotModal.tsx" isFullscreen
+
+```
+
+### Settings
+
+```js file="./Settings.tsx" isFullscreen
 
 ```

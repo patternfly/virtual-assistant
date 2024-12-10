@@ -66,6 +66,9 @@ export * from './PreviewAttachment';
 export { default as ResponseActions } from './ResponseActions';
 export * from './ResponseActions';
 
+export { default as Settings } from './Settings';
+export * from './Settings';
+
 export { default as SourceDetailsMenuItem } from './SourceDetailsMenuItem';
 export * from './SourceDetailsMenuItem';
 
