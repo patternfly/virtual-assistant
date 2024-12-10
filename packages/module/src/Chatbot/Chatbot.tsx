@@ -35,15 +35,6 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
   ariaLabel,
   ...props
 }: ChatbotProps) => {
-  // Configure docked mode
-  React.useEffect(() => {
-    if (displayMode === ChatbotDisplayMode.docked) {
-      document.documentElement.classList.add('pf-chatbot-allow--docked');
-    } else {
-      document.documentElement.classList.remove('pf-chatbot-allow--docked');
-    }
-  }, [displayMode]);
-
   // Configure animations
   const motionChatbot = {
     visible: { opacity: 1, y: 0 },
