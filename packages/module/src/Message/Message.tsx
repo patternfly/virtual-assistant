@@ -25,6 +25,8 @@ import SourcesCard, { SourcesCardProps } from '../SourcesCard';
 import ListItemMessage from './ListMessage/ListItemMessage';
 import UnorderedListMessage from './ListMessage/UnorderedListMessage';
 import OrderedListMessage from './ListMessage/OrderedListMessage';
+import QuickStartTile from './QuickStarts/QuickStartTile';
+import { QuickStart } from './QuickStarts/types';
 
 export interface QuickResponse extends Omit<LabelProps, 'children'> {
   content: string;
@@ -89,6 +91,16 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   hasRoundAvatar?: boolean;
   /** Any additional props applied to the avatar, for additional customization  */
   avatarProps?: Omit<AvatarProps, 'alt'>;
+  /** Props for QuickStart card */
+  quickStarts?: {
+    quickStart: QuickStart;
+    onFooterClick: (id: any) => void;
+    minuteWord?: string;
+    minuteWordPlural?: string;
+    prerequisiteWord?: string;
+    prerequisiteWordPlural?: string;
+    quickStartButtonAriaLabel?: string;
+  };
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -108,6 +120,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   attachments,
   hasRoundAvatar = true,
   avatarProps,
+  quickStarts,
   ...props
 }: MessageProps) => {
   let avatarClassName;
@@ -196,6 +209,17 @@ export const Message: React.FunctionComponent<MessageProps> = ({
                 </div>
               ))}
             </div>
+          )}
+          {quickStarts && quickStarts.quickStart && (
+            <QuickStartTile
+              quickStart={quickStarts.quickStart}
+              onFooterClick={quickStarts.onFooterClick}
+              minuteWord={quickStarts.minuteWord}
+              minuteWordPlural={quickStarts.minuteWordPlural}
+              prerequisiteWord={quickStarts.prerequisiteWord}
+              prerequisiteWordPlural={quickStarts.prerequisiteWordPlural}
+              quickStartButtonAriaLabel={quickStarts.quickStartButtonAriaLabel}
+            />
           )}
         </div>
       </div>
