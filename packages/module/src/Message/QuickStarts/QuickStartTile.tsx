@@ -38,7 +38,7 @@ export interface QuickStartTileProps {
   /** Action config for button rendered next to title */
   action?: QuickstartAction;
   /** Callback that returns active quick start value when clicked */
-  onFooterClick: (id?: string) => void;
+  onSelectQuickStart: (id?: string) => void;
   /** Label for the English word "minute". */
   minuteWord?: string;
   /** Label for the English word "minutes". */
@@ -55,7 +55,7 @@ const QuickStartTile: React.FC<QuickStartTileProps> = ({
   className,
   quickStart,
   onClick,
-  onFooterClick,
+  onSelectQuickStart,
   minuteWord = 'minute',
   minuteWordPlural = 'minutes',
   prerequisiteWord,
@@ -81,8 +81,7 @@ const QuickStartTile: React.FC<QuickStartTileProps> = ({
 
   const onSelect = () => {
     if (!link) {
-      onFooterClick(id);
-      // setActiveQuickStart(id, tasks?.length);
+      onSelectQuickStart(id);
     } else {
       window.open(link.href, '_blank', 'noopener,noreferrer');
     }

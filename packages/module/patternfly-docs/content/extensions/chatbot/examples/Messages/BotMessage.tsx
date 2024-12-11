@@ -99,7 +99,7 @@ export default MessageLoading;
         content="Text-based message from a bot with QuickStart tile."
         quickStarts={{
           quickStart: explorePipelinesQuickStart,
-          onFooterClick: (id) => alert(id)
+          onSelectQuickStart: (id) => alert(id)
         }}
       />
       <Message
@@ -109,7 +109,7 @@ export default MessageLoading;
         content="Text-based message from a bot with QuickStart tile that includes prerequisites and a default icon."
         quickStarts={{
           quickStart: monitorSampleAppQuickStart,
-          onFooterClick: (id) => alert(id)
+          onSelectQuickStart: (id) => alert(id)
         }}
       />
     </>
