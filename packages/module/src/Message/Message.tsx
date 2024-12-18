@@ -25,6 +25,8 @@ import SourcesCard, { SourcesCardProps } from '../SourcesCard';
 import ListItemMessage from './ListMessage/ListItemMessage';
 import UnorderedListMessage from './ListMessage/UnorderedListMessage';
 import OrderedListMessage from './ListMessage/OrderedListMessage';
+import QuickStartTile from './QuickStarts/QuickStartTile';
+import { QuickStart, QuickstartAction } from './QuickStarts/types';
 
 export interface QuickResponse extends Omit<LabelProps, 'children'> {
   content: string;
@@ -89,6 +91,19 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   hasRoundAvatar?: boolean;
   /** Any additional props applied to the avatar, for additional customization  */
   avatarProps?: Omit<AvatarProps, 'alt'>;
+  /** Props for QuickStart card */
+  quickStarts?: {
+    quickStart: QuickStart;
+    onSelectQuickStart: (id: any) => void;
+    minuteWord?: string;
+    minuteWordPlural?: string;
+    prerequisiteWord?: string;
+    prerequisiteWordPlural?: string;
+    quickStartButtonAriaLabel?: string;
+    className?: string;
+    onClick?: () => void;
+    action?: QuickstartAction;
+  };
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -108,6 +123,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   attachments,
   hasRoundAvatar = true,
   avatarProps,
+  quickStarts,
   ...props
 }: MessageProps) => {
   let avatarClassName;
@@ -165,6 +181,17 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               </Markdown>
             )}
             {!isLoading && sources && <SourcesCard {...sources} />}
+            {quickStarts && quickStarts.quickStart && (
+              <QuickStartTile
+                quickStart={quickStarts.quickStart}
+                onSelectQuickStart={quickStarts.onSelectQuickStart}
+                minuteWord={quickStarts.minuteWord}
+                minuteWordPlural={quickStarts.minuteWordPlural}
+                prerequisiteWord={quickStarts.prerequisiteWord}
+                prerequisiteWordPlural={quickStarts.prerequisiteWordPlural}
+                quickStartButtonAriaLabel={quickStarts.quickStartButtonAriaLabel}
+              />
+            )}
             {!isLoading && actions && <ResponseActions actions={actions} />}
             {!isLoading && quickResponses && (
               <LabelGroup

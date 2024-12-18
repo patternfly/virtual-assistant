@@ -2,6 +2,8 @@ import React from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 import squareImg from './PF-social-color-square.svg';
+import { explorePipelinesQuickStart } from './quickStart.ts';
+import { monitorSampleAppQuickStart } from './quickStart2.ts';
 
 export const BotMessageExample: React.FunctionComponent = () => {
   const markdown = `
@@ -89,6 +91,26 @@ export default MessageLoading;
         avatar={squareImg}
         content="Text-based message from a bot with a square avatar. You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`."
         hasRoundAvatar={false}
+      />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content="Text-based message from a bot with QuickStart tile."
+        quickStarts={{
+          quickStart: explorePipelinesQuickStart,
+          onSelectQuickStart: (id) => alert(id)
+        }}
+      />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content="Text-based message from a bot with QuickStart tile that includes prerequisites and a default icon."
+        quickStarts={{
+          quickStart: monitorSampleAppQuickStart,
+          onSelectQuickStart: (id) => alert(id)
+        }}
       />
     </>
   );

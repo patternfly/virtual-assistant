@@ -39,6 +39,8 @@ import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel'
 import FileDropZone from '@patternfly/chatbot/dist/dynamic/FileDropZone';
 import { PreviewAttachment } from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
 import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
+import { explorePipelinesQuickStart } from './quickStart.ts';
+import { monitorSampleAppQuickStart } from './quickStart2.ts';
 
 import userAvatar from './user_avatar.svg';
 import squareImg from './PF-social-color-square.svg';

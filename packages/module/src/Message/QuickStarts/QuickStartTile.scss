@@ -1,0 +1,17 @@
+.pf-chatbot__quickstarts-tile {
+  // some icons provided to catalog tiles might have no defined height/width. Without this style, in those cases
+  // the icons would have a height and width of 0.
+  .pf-v6-c-card__header-main {
+    .pf-v6-c-icon__content {
+      display: contents;
+    }
+  }
+}
+
+.pf-v6-theme-dark {
+  .pf-chatbot__quickstarts-tile {
+    .pfext-catalog-item-icon__img {
+      filter: brightness(1.5) invert(1) hue-rotate(180deg) saturate(4);
+    }
+  }
+}
